@@ -1,4 +1,6 @@
-## 论文阅读（完整论文）
+## 论文阅读
+
+阅读论文后自己写总结还是很重要的，一方面提升阅读效果，二是在今后再阅读文章时可以帮助快速回忆，节省时间。
 
 - [论文阅读（完整论文）](#----------)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
