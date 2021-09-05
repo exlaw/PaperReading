@@ -1,5 +1,27 @@
 ## 论文阅读（完整论文）
 
+- [论文阅读（完整论文）](#----------)
+  * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
+  * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
+  * [Value-Agnostic Conversational Semantic Parsing](#value-agnostic-conversational-semantic-parsing)
+  * [Vocabulary Learning via Optimal Transport for Neural Machine Translation](#vocabulary-learning-via-optimal-transport-for-neural-machine-translation)
+  * [SMBOP: Semi-autoregressive Bottom-up Semantic Parsing](#smbop--semi-autoregressive-bottom-up-semantic-parsing)
+  * [ConSERT: A Contrastive Framework for Self-Supervised Sentence Representation Transfer](#consert--a-contrastive-framework-for-self-supervised-sentence-representation-transfer)
+  * [SimCSE: Simple Contrastive Learning of Sentence Embeddings](#simcse--simple-contrastive-learning-of-sentence-embeddings)
+  * [Keep the Structure: A Latent Shift-Reduce Parser for Semantic Parsing](#keep-the-structure--a-latent-shift-reduce-parser-for-semantic-parsing)
+  * [MEDA: Meta-Learning with Data Augmentation for Few-Shot Text Classification](#meda--meta-learning-with-data-augmentation-for-few-shot-text-classification)
+  * [All NLP Tasks Are Generation Tasks: A General Pretraining Framework](#all-nlp-tasks-are-generation-tasks--a-general-pretraining-framework)
+  * [Joint Verification and Reranking for Open Fact Checking Over Tables](#joint-verification-and-reranking-for-open-fact-checking-over-tables)
+  * [Towards Table-to-Text Generation with Numerical Reasoning](#towards-table-to-text-generation-with-numerical-reasoning)
+  * [Towards Robustness of Text-to-SQL Models against Synonym Substitution](#towards-robustness-of-text-to-sql-models-against-synonym-substitution)
+  * [LGESQL: Line Graph Enhanced Text-to-SQL Model with Mixed Local and Non-Local Relations](#lgesql--line-graph-enhanced-text-to-sql-model-with-mixed-local-and-non-local-relations)
+  * [Optimizing Deeper Transformers on Small Datasets](#optimizing-deeper-transformers-on-small-datasets)
+  * [From Paraphrasing to Semantic Parsing: Unsupervised Semantic Parsing via Synchronous Semantic Decoding](#from-paraphrasing-to-semantic-parsing--unsupervised-semantic-parsing-via-synchronous-semantic-decoding)
+  * [Span-based Semantic Parsing for Compositional Generalization](#span-based-semantic-parsing-for-compositional-generalization)
+  * [Compositional Generalization and Natural Language Variation: Can a Semantic Parsing Approach Handle Both?](#compositional-generalization-and-natural-language-variation--can-a-semantic-parsing-approach-handle-both-)
+  * [On the Sentence Embeddings from Pre-trained Language Models](#on-the-sentence-embeddings-from-pre-trained-language-models)
+  * [All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text](#all-that-s--human--is-not-gold--evaluating-human-evaluation-of-generated-text)
+
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
 https://ojs.aaai.org/index.php/AAAI/article/view/17615
