@@ -2,7 +2,7 @@
 
 阅读论文后自己写总结还是很重要的，一方面提升阅读效果，二是在今后再阅读文章时可以帮助快速回忆，节省时间。
 
-- [论文阅读（完整论文）](#----------)
+- [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
   * [Value-Agnostic Conversational Semantic Parsing](#value-agnostic-conversational-semantic-parsing)
@@ -23,7 +23,10 @@
   * [Compositional Generalization and Natural Language Variation: Can a Semantic Parsing Approach Handle Both?](#compositional-generalization-and-natural-language-variation--can-a-semantic-parsing-approach-handle-both-)
   * [On the Sentence Embeddings from Pre-trained Language Models](#on-the-sentence-embeddings-from-pre-trained-language-models)
   * [All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text](#all-that-s--human--is-not-gold--evaluating-human-evaluation-of-generated-text)
-  * [KILT: a Benchmark for Knowledge Intensive Language Tasks](#KILT: a Benchmark for Knowledge Intensive Language Tasks)
+  * [KILT: a Benchmark for Knowledge Intensive Language Tasks](#kilt--a-benchmark-for-knowledge-intensive-language-tasks)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
