@@ -23,6 +23,8 @@
   * [Compositional Generalization and Natural Language Variation: Can a Semantic Parsing Approach Handle Both?](#compositional-generalization-and-natural-language-variation--can-a-semantic-parsing-approach-handle-both-)
   * [On the Sentence Embeddings from Pre-trained Language Models](#on-the-sentence-embeddings-from-pre-trained-language-models)
   * [All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text](#all-that-s--human--is-not-gold--evaluating-human-evaluation-of-generated-text)
+  * [KILT: a Benchmark for Knowledge Intensive Language Tasks](#KILT: a Benchmark for Knowledge Intensive Language Tasks)
+
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -263,4 +265,10 @@ ACL 2021  Outstanding paper
 https://aclanthology.org/2021.acl-long.565.pdf
 
 在自然语言生成领域，人类评估一般被认为是标准， 但是随着模型生成的文本质量的提升，人类评估者是否能够非常好的对文本进行评估是需要进一步讨论的。 所以本文通过设计实验来评估人类是否能够区分 人类写作的文本和机器生成的文本， 在故事，新闻和食谱三个领域中，实验结果表明对于GPT2生成的文本识人类别准确率为57%， 对于GPT3生成的文本人类识别准确率为49%（甚至不如随机的50%）。 作者分析主要是随着模型性能的提升，生成文本的流利程度增加，错误往往发生在细节和逻辑层面，在生成的文本很长的情况下，非领域专家相对粗浅的阅读很难进行区分。 本文后续又通过三种方式对评估人员进行训练，分别是提供指导意见，给一些例子，给出对比，发现在给出例子的情况下准确率能到55%左右，虽然不是特别高，但是也已经好过了随机效果。   所以基于上述的实验结果，作者推荐后续的NLG领域在进行人工评估的时候最好给评估人员例子进行训练，并且对实验的设定进行更细节的报告来提升实验的可信程度。
+
+### KILT: a Benchmark for Knowledge Intensive Language Tasks
+
+目前的很多NLP任务都需要从外部的知识库中寻找一些知识，然后辅助任务的完成。 但是目前这类任务有非常多的数据集，每个任务都有不同的知识库，不同的假设，需要不同的数据加载器，评估方式和分析方式。  这样同一个模型在测试的时候就会带来不必要的计算开销，并且也很难测试知识在不同领域的前一。
+ 所以本文提出了一个统一的知识库，KILT，使用了一个统一的知识库，就是wiki 百科的2019/08/01的版本，针对其他数据集中的不同版本，首先对问题的链接进行了重新匹配，对于文字修改的部分，取BLEU最大的部分进行匹配。  同时，本文针对Fack-checking, entity-linking,slot-filling,question answering 等任务的输入和输出都进行了适配，所有KILT框架可以适配于这些任务。 最终整个模型使用了一个简单的 seq2seq encoder的baseline,就能在上述各个任务上取得非常有竞争力的实验结果。
+感觉这篇文章的主要贡献应该还是工程上的，统一了wiki百科的版本，给了一套统一的输入输出实验代码，测试起来更容易并且更有说服力了？
 
