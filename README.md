@@ -24,6 +24,10 @@
   * [On the Sentence Embeddings from Pre-trained Language Models](#on-the-sentence-embeddings-from-pre-trained-language-models)
   * [All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text](#all-that-s--human--is-not-gold--evaluating-human-evaluation-of-generated-text)
   * [KILT: a Benchmark for Knowledge Intensive Language Tasks](#kilt--a-benchmark-for-knowledge-intensive-language-tasks)
+  * [WIKITABLET: A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections](#wikitablet--a-large-scale-data-to-text-dataset-for-generating-wikipedia-article-sections)
+  * [Describing a Knowledge Base](#describing-a-knowledge-base)
+  * [GenWiki: A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki--a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
+  * [WikiGraphs: A Wikipedia Text - Knowledge Graph Paired Dataset](#wikigraphs--a-wikipedia-text---knowledge-graph-paired-dataset)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -278,4 +282,58 @@ https://arxiv.org/pdf/2009.02252.pdf
  所以本文提出了一个统一的知识库，KILT，使用了一个统一的知识库，就是wiki 百科的2019/08/01的版本，针对其他数据集中的不同版本，首先对问题的链接进行了重新匹配，对于文字修改的部分，取BLEU最大的部分进行匹配。  同时，本文针对Fack-checking, entity-linking,slot-filling,question answering 等任务的输入和输出都进行了适配，所有KILT框架可以适配于这些任务。 最终整个模型使用了一个简单的 seq2seq encoder的baseline,就能在上述各个任务上取得非常有竞争力的实验结果。
  
 感觉这篇文章的主要贡献应该还是工程上的，统一了wiki百科的版本，给了一套统一的输入输出实验代码，测试起来更容易并且更有说服力了？
+
+### WIKITABLET: A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections 
+
+https://arxiv-download.xixiaoyao.cn/pdf/2012.14919.pdf
+
+2021 ACL findings
+
+这篇文章主要在做 Data-to-Text 的数据集，之前的 Data-to-Text 数据集要么是多领域的单句生成，要么是单领域长篇生成。 这篇文章提出了一个非常大型的数据集，把wikipedia的文本和对应的表格数据和元数据进行了对应。 
+
+总体来说，这个数据集有两大挑战， 一是在一些data-to-text 的case 上需要一些world knowledge, 有相关能力的模型可以在这里测试。  二是包括了多种多样的表格类型和数据领域。 
+
+作者采用了一些比较简单的方法进行了测试，主要是使用了Transformer模型，并且辅助了一些优化方法，实验效果看起来不是很好，Transformer large模型甚至还不如Transformer base模型。  作者还进行了一些人工检查，结论是生成的文本流畅程度和质量不错，但是出现了一些一致性和事实性问题。  看文章中的说法这应该是非常大型的数据集，质量比较高，还有非常高的提升空间。
+
+
+### Describing a Knowledge Base
+
+ACL 2018
+
+ https://arxiv.org/pdf/1809.01797.pdf
+
+本文也是做 data-to-text 生成的问题。 本文主要有三个贡献， 一是提出了一个使用 slot-aware attention， table position self-attention  的pointer network 来做 data-to-text问题。 二是提出了一个新的评价指标KB reconstruction 。 三是提出了一个新的数据集。  下面一个一个的说。
+
+方法方面，由于data-text 要求准确生成表格中内容，之前的seq2seq方法难做到，只使用 pointer network 又很难把slot-type和slot-value进行对齐，所以作者提出了slot-aware attention来解决这个问题。 同时，一些表格中的slot相互之间是有关系的，之前的模型在生成的时候可能不会考虑到，又增加了Table position attention 
+来解决这个问题。
+
+评价指标方面，提出了KB reconstruction指标，因为之前到BLEU指标很难全面的评价生成文本的质量。KB reconstruction的主要思想是根据生成的文本重新生成KB，和之前的KB逐项对比，生成生成一个准确率。  但是最重要的问题，根据文章的描述，这个生成KB好像是人工的！！
+
+数据集方面，使用Wikipedia (2018/04/01) 和 Wikidata (2018/04/12) 在person 和 animal 两个领域进行了对齐，最后数据量是106,216 。 
+
+实验结果上，BLEU最好也就能达到23，不算很高，倒是采用KB reconstruction能达到70%以上的F1 score。
+
+
+### GenWiki: A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation 
+
+https://aclanthology.org/2020.coling-main.217.pdf
+
+ICCL 2020
+
+对于knowledge graph-text 领域的数据收集是十分困难的，所以当前的很多工作都在非常小的数据集上学习，并且该领域的无监督学习方法也开始活跃起来。 然而即使是采用无监督学习的方法，也有数据量不足的问题， 因为一个合格的无监督knowledge graph-text 数据需要满足四个条件： 1.  knowledge graph和text 的分布要尽可能相同 2. 文本要包含高质量的 entity 标注 3. 要比有监督数据集的规模大很多 4. 要有人工标注的测试集。 想要同时达到上面的条件还是非常困难的。 所以本文提出了GenWiki数据集，包含了1.3M的无监督数据对和1k的标注测试集。 
+
+无监督数据的构造， 爬取了wikipedia的文本，并且对于网站上出现的所有包含超链接的实体查询相关的知识图谱， 之后进行一些过滤，去掉明显不相关的文本和知识图谱元素，然后设计了一些规则和算法对文本中的实体进行标注。 这样形成的文本和知识图谱对就构成了训练集。  对上述形成的无监督数据对，用户需要判断是否容易修改，如果容易修改，就对其进行修改然后形成正确的测试集。
+
+作者尝试了多种无监督方法，最招的CycleGT 的BLEU值能达到40%以上， 效果已经还不错了，错误分析也是常识性错误比较多一点。
+
+
+### WikiGraphs: A Wikipedia Text - Knowledge Graph Paired Dataset 
+
+https://aclanthology.org/2021.textgraphs-1.7.pdf
+
+这篇文章提出了一个Wipipedia 文章和知识图谱对齐的数据集， WikiGrpah, 可以方便条件文本生成，知识图谱生成，图表示学习等领域的研究。  WikiGrpah 数据集中的每条数据是wikipedia 文章和free-base中的子图对。  这个数据集的主要特点是文本比较长，知识图谱也比较大。 但是数据没有上一篇 GenWiki多，只有23522个训练数据，和48个验证集数据，43个测试集数据。 （验证集和测试集也太少了）
+
+数据集的构造过程，先找到 WikiText-103中的文本，根据标题这样的关键信息去匹配Freebase中的实体，如果能匹配上，就进行下一个步骤，下一个步骤是去根据上一步匹配上的核心实体，在知识图谱上保留所有1-hop的子图。  最后一个步骤是过滤数据，对于相同类型边只选取一个典型。
+
+在 data-text, graph-retrieval，text-retrieval 三个任务上都进行了实验，data-text 目前最好的效果能达到BLEU值30左右， text-retrieval  recall@5 能有35， graph-retrieval能达到100% （作者解释是这个任务比较简单）。
 
