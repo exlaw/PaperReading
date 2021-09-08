@@ -28,9 +28,9 @@
   * [Describing a Knowledge Base](#describing-a-knowledge-base)
   * [GenWiki: A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki--a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
   * [WikiGraphs: A Wikipedia Text - Knowledge Graph Paired Dataset](#wikigraphs--a-wikipedia-text---knowledge-graph-paired-dataset)
+  * [Text-to-Table: A New Way of Information Extraction](#text-to-table--a-new-way-of-information-extraction)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
@@ -336,4 +336,16 @@ https://aclanthology.org/2021.textgraphs-1.7.pdf
 数据集的构造过程，先找到 WikiText-103中的文本，根据标题这样的关键信息去匹配Freebase中的实体，如果能匹配上，就进行下一个步骤，下一个步骤是去根据上一步匹配上的核心实体，在知识图谱上保留所有1-hop的子图。  最后一个步骤是过滤数据，对于相同类型边只选取一个典型。
 
 在 data-text, graph-retrieval，text-retrieval 三个任务上都进行了实验，data-text 目前最好的效果能达到BLEU值30左右， text-retrieval  recall@5 能有35， graph-retrieval能达到100% （作者解释是这个任务比较简单）。
+
+### Text-to-Table: A New Way of Information Extraction 
+
+https://arxiv.org/pdf/2109.02707.pdf
+
+这篇文章提出了 text-to-table这个任务，可以认为是 table-text 任务的反向任务。 作者认为，这个任务和其他的信息抽取任务有两点不同，1是数据规模，可以从非常长的文本中抽取很大的表格。 2是这个抽取是完全数据驱动的，不需要显式的定义schema。 
+
+因为schema不需要显式定义，table的结构约束并不多，所以本文采用了一个 Seq2Seq的框架来解决这个问题。 具体来说,baseline模型采用了BART这个预训练模型。  尽管table的结构限制并不多，但仅仅使用seq2seq模型仍并不能保证生成结构的准确性， 所以本文又额外增加了两个策略来缓解这个问题。
+
+第一个策略是table constraint, 由于seq2seq模型不能保证生成的数据每行数量一样多，所以设计了这个算法首先记下第一行的长度，之后每行decode产生这个长度时就自动开始decode下一行。  第二个策略是table relation embedding,   由于table数据本身不同cell之间是存在关系的，比如一个cell 和其row header和column header都有相关性，所以在生成每个cell的时候都增加了和其相关cell的attention。 
+
+在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。 
 
