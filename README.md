@@ -24,14 +24,13 @@
   * [On the Sentence Embeddings from Pre-trained Language Models](#on-the-sentence-embeddings-from-pre-trained-language-models)
   * [All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text](#all-that-s--human--is-not-gold--evaluating-human-evaluation-of-generated-text)
   * [KILT: a Benchmark for Knowledge Intensive Language Tasks](#kilt--a-benchmark-for-knowledge-intensive-language-tasks)
-  * [WIKITABLET: A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections](#wikitablet--a-large-scale-data-to-text-dataset-for-generating-wikipedia-article-sections)
+  * [WIKITABLET A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections](#wikitablet-a-large-scale-data-to-text-dataset-for-generating-wikipedia-article-sections)
   * [Describing a Knowledge Base](#describing-a-knowledge-base)
-  * [GenWiki: A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki--a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
-  * [WikiGraphs: A Wikipedia Text - Knowledge Graph Paired Dataset](#wikigraphs--a-wikipedia-text---knowledge-graph-paired-dataset)
-  * [Text-to-Table: A New Way of Information Extraction](#text-to-table--a-new-way-of-information-extraction)
+  * [GenWiki A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki-a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
+  * [WikiGraphs A Wikipedia Text Knowledge Graph Paired Dataset](#wikigraphs-a-wikipedia-text-knowledge-graph-paired-dataset)
+  * [Text-to-Table A New Way of Information Extraction](#text-to-table-a-new-way-of-information-extraction)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -283,7 +282,7 @@ https://arxiv.org/pdf/2009.02252.pdf
  
 感觉这篇文章的主要贡献应该还是工程上的，统一了wiki百科的版本，给了一套统一的输入输出实验代码，测试起来更容易并且更有说服力了？
 
-### WIKITABLET: A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections 
+### WIKITABLET A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections 
 
 https://arxiv-download.xixiaoyao.cn/pdf/2012.14919.pdf
 
@@ -314,7 +313,7 @@ ACL 2018
 实验结果上，BLEU最好也就能达到23，不算很高，倒是采用KB reconstruction能达到70%以上的F1 score。
 
 
-### GenWiki: A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation 
+### GenWiki A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation 
 
 https://aclanthology.org/2020.coling-main.217.pdf
 
@@ -327,7 +326,7 @@ ICCL 2020
 作者尝试了多种无监督方法，最招的CycleGT 的BLEU值能达到40%以上， 效果已经还不错了，错误分析也是常识性错误比较多一点。
 
 
-### WikiGraphs: A Wikipedia Text - Knowledge Graph Paired Dataset 
+### WikiGraphs A Wikipedia Text Knowledge Graph Paired Dataset 
 
 https://aclanthology.org/2021.textgraphs-1.7.pdf
 
@@ -337,7 +336,7 @@ https://aclanthology.org/2021.textgraphs-1.7.pdf
 
 在 data-text, graph-retrieval，text-retrieval 三个任务上都进行了实验，data-text 目前最好的效果能达到BLEU值30左右， text-retrieval  recall@5 能有35， graph-retrieval能达到100% （作者解释是这个任务比较简单）。
 
-### Text-to-Table: A New Way of Information Extraction 
+### Text-to-Table A New Way of Information Extraction 
 
 https://arxiv.org/pdf/2109.02707.pdf
 
@@ -345,7 +344,7 @@ https://arxiv.org/pdf/2109.02707.pdf
 
 因为schema不需要显式定义，table的结构约束并不多，所以本文采用了一个 Seq2Seq的框架来解决这个问题。 具体来说,baseline模型采用了BART这个预训练模型。  尽管table的结构限制并不多，但仅仅使用seq2seq模型仍并不能保证生成结构的准确性， 所以本文又额外增加了两个策略来缓解这个问题。
 
-第一个策略是table constraint, 由于seq2seq模型不能保证生成的数据每行数量一样多，所以设计了这个算法首先记下第一行的长度，之后每行decode产生这个长度时就自动开始decode下一行。  第二个策略是table relation embedding,   由于table数据本身不同cell之间是存在关系的，比如一个cell 和其row header和column header都有相关性，所以在生成每个cell的时候都增加了和其相关cell的attention。 
+第一个策略是table constraint, 由于seq2seq模型不能保证生成的数据每行数量一样多，所以设计了这个算法首先记下第一行的长度，之后每行decode产生这个长度时就自动开始decode下一行。  第二个策略是table relation embedding,   由于table数据本身不同cell之间是存在关系的，比如一个cell 和其row header和column header都有相关性，所以在生成每个cell的时候都增加了和其相关cell的attention。  具体来说，采用思路就是Self-Attention with Relative Position Representations 这篇文章中的Relation-aware Self-Attention（但这篇文章没引用）， 即在 transformer中增加了关系编码，如果两个编码之间之间本身有关系（cell 和 header关系），在计算attention的时候会增加一个关系向量。
 
-在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。 
+在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。  
 
