@@ -7,23 +7,23 @@
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
   * [Value-Agnostic Conversational Semantic Parsing](#value-agnostic-conversational-semantic-parsing)
   * [Vocabulary Learning via Optimal Transport for Neural Machine Translation](#vocabulary-learning-via-optimal-transport-for-neural-machine-translation)
-  * [SMBOP: Semi-autoregressive Bottom-up Semantic Parsing](#smbop--semi-autoregressive-bottom-up-semantic-parsing)
-  * [ConSERT: A Contrastive Framework for Self-Supervised Sentence Representation Transfer](#consert--a-contrastive-framework-for-self-supervised-sentence-representation-transfer)
-  * [SimCSE: Simple Contrastive Learning of Sentence Embeddings](#simcse--simple-contrastive-learning-of-sentence-embeddings)
+  * [SMBOP Semi-autoregressive Bottom-up Semantic Parsing](#smbop-semi-autoregressive-bottom-up-semantic-parsing)
+  * [ConSERT A Contrastive Framework for Self-Supervised Sentence Representation Transfer](#consert-a-contrastive-framework-for-self-supervised-sentence-representation-transfer)
+  * [SimCSE Simple Contrastive Learning of Sentence Embeddings](#simcse-simple-contrastive-learning-of-sentence-embeddings)
   * [Keep the Structure: A Latent Shift-Reduce Parser for Semantic Parsing](#keep-the-structure--a-latent-shift-reduce-parser-for-semantic-parsing)
-  * [MEDA: Meta-Learning with Data Augmentation for Few-Shot Text Classification](#meda--meta-learning-with-data-augmentation-for-few-shot-text-classification)
+  * [MEDA Meta-Learning with Data Augmentation for Few-Shot Text Classification](#meda-meta-learning-with-data-augmentation-for-few-shot-text-classification)
   * [All NLP Tasks Are Generation Tasks: A General Pretraining Framework](#all-nlp-tasks-are-generation-tasks--a-general-pretraining-framework)
   * [Joint Verification and Reranking for Open Fact Checking Over Tables](#joint-verification-and-reranking-for-open-fact-checking-over-tables)
   * [Towards Table-to-Text Generation with Numerical Reasoning](#towards-table-to-text-generation-with-numerical-reasoning)
   * [Towards Robustness of Text-to-SQL Models against Synonym Substitution](#towards-robustness-of-text-to-sql-models-against-synonym-substitution)
-  * [LGESQL: Line Graph Enhanced Text-to-SQL Model with Mixed Local and Non-Local Relations](#lgesql--line-graph-enhanced-text-to-sql-model-with-mixed-local-and-non-local-relations)
+  * [LGESQL Line Graph Enhanced Text-to-SQL Model with Mixed Local and Non-Local Relations](#lgesql-line-graph-enhanced-text-to-sql-model-with-mixed-local-and-non-local-relations)
   * [Optimizing Deeper Transformers on Small Datasets](#optimizing-deeper-transformers-on-small-datasets)
   * [From Paraphrasing to Semantic Parsing: Unsupervised Semantic Parsing via Synchronous Semantic Decoding](#from-paraphrasing-to-semantic-parsing--unsupervised-semantic-parsing-via-synchronous-semantic-decoding)
   * [Span-based Semantic Parsing for Compositional Generalization](#span-based-semantic-parsing-for-compositional-generalization)
   * [Compositional Generalization and Natural Language Variation: Can a Semantic Parsing Approach Handle Both?](#compositional-generalization-and-natural-language-variation--can-a-semantic-parsing-approach-handle-both-)
   * [On the Sentence Embeddings from Pre-trained Language Models](#on-the-sentence-embeddings-from-pre-trained-language-models)
   * [All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text](#all-that-s--human--is-not-gold--evaluating-human-evaluation-of-generated-text)
-  * [KILT: a Benchmark for Knowledge Intensive Language Tasks](#kilt--a-benchmark-for-knowledge-intensive-language-tasks)
+  * [KILT a Benchmark for Knowledge Intensive Language Tasks](#kilt-a-benchmark-for-knowledge-intensive-language-tasks)
   * [WIKITABLET A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections](#wikitablet-a-large-scale-data-to-text-dataset-for-generating-wikipedia-article-sections)
   * [Describing a Knowledge Base](#describing-a-knowledge-base)
   * [GenWiki A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki-a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
@@ -85,7 +85,7 @@ token 词表的选择在NLP中非常重要， 传统的词表选择有基于char
 
 在实验部分，在多个数据集上都能取得很稳定的效果，在词表大小减小为1/3的情况下，BLEU值甚至能持平或者更好（高0.5%的点已经非常多了）。   总体来看， 本文基于optimal transport的思想，很新颖，并且实验的结果非常充分，solid。
 
-### SMBOP: Semi-autoregressive Bottom-up Semantic Parsing 
+### SMBOP Semi-autoregressive Bottom-up Semantic Parsing 
 
 NAACL 2021 
 
@@ -97,7 +97,7 @@ https://arxiv.org/pdf/2010.12412.pdf
 
 在实验结果上，本文在 SPIDER 数据集上的实验结果和RAT-SQL 类似， 只有 0.3%的点的损失，考虑到采用了Semi-autoregressive的情况下，已经是不错的结果了。 同时本文也分析了在 senmantic parsing的场景下，bottom-up方法和 top-down方法在理论上的差距不是很大。
 
-### ConSERT: A Contrastive Framework for Self-Supervised Sentence Representation Transfer 
+### ConSERT A Contrastive Framework for Self-Supervised Sentence Representation Transfer 
 
 ACL 2021
 
@@ -111,7 +111,7 @@ BERT在对句子的编码中会出现崩塌的现象，即几乎所有的句子�
 在实验结果上，在无监督设定和监督学习设定下，都在6 个STS 数据集上取得了最优效果，并且还在某些数据集上取得了非常大的提升。并且本文另一优势是fine-tune所需要的时间比较短， 单GPU几个小时就可以完成。
 
 
-### SimCSE: Simple Contrastive Learning of Sentence Embeddings 
+### SimCSE Simple Contrastive Learning of Sentence Embeddings 
 
 https://arxiv.org/pdf/2104.08821.pdf
 
@@ -133,7 +133,7 @@ https://www.ijcai.org/proceedings/2021/0532.pdf
 在实验结果上，在Geoquery dataset没有取得SOTA，但是比其他的所有不使用BERT的方法效果都好（本文也没有使用BERT）， 在更加复杂的 WQ dataset 数据集上取得了最佳的效果。   总体来看，本文通过引入 Splitter提升了 Semantic Parsing 的可解释性。
 
 
-### MEDA: Meta-Learning with Data Augmentation for Few-Shot Text Classification 
+### MEDA Meta-Learning with Data Augmentation for Few-Shot Text Classification 
 
 IJCAI-21 
 
@@ -195,7 +195,7 @@ https://aclanthology.org/2021.acl-long.195.pdf
 
 最终的实验效果上， 在Spider-Syn 数据集，目前的各个方法基本都下降了20个点以上， 作者使用的两个针对性增强方法分别也能提升10个点以上，可以说是非常的有效果了。 但离模型原本的效果也仍然有一定距离，说明这个方向仍然也有可以做的空间。
 
-### LGESQL: Line Graph Enhanced Text-to-SQL Model with Mixed Local and Non-Local Relations 
+### LGESQL Line Graph Enhanced Text-to-SQL Model with Mixed Local and Non-Local Relations 
 
 ACL 2021
 
@@ -272,7 +272,7 @@ https://aclanthology.org/2021.acl-long.565.pdf
 
 在自然语言生成领域，人类评估一般被认为是标准， 但是随着模型生成的文本质量的提升，人类评估者是否能够非常好的对文本进行评估是需要进一步讨论的。 所以本文通过设计实验来评估人类是否能够区分 人类写作的文本和机器生成的文本， 在故事，新闻和食谱三个领域中，实验结果表明对于GPT2生成的文本识人类别准确率为57%， 对于GPT3生成的文本人类识别准确率为49%（甚至不如随机的50%）。 作者分析主要是随着模型性能的提升，生成文本的流利程度增加，错误往往发生在细节和逻辑层面，在生成的文本很长的情况下，非领域专家相对粗浅的阅读很难进行区分。 本文后续又通过三种方式对评估人员进行训练，分别是提供指导意见，给一些例子，给出对比，发现在给出例子的情况下准确率能到55%左右，虽然不是特别高，但是也已经好过了随机效果。   所以基于上述的实验结果，作者推荐后续的NLG领域在进行人工评估的时候最好给评估人员例子进行训练，并且对实验的设定进行更细节的报告来提升实验的可信程度。
 
-### KILT: a Benchmark for Knowledge Intensive Language Tasks
+### KILT a Benchmark for Knowledge Intensive Language Tasks
 
 https://arxiv.org/pdf/2009.02252.pdf
 
