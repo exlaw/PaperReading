@@ -1,3 +1,19 @@
+# AAAI 投稿中关于 Text-to-SQL 任务做的点
+
+暂时先整理了 Text-to-SQL 领域， semantic parsing 领域之后再去做。
+
+- [AAAI 投稿中关于 Text-to-SQL 任务做的点](#aaai-------text-to-sql------)
+    + [Reinforcement Learning to Jointly Encode Prompts and Database Schemas for Text-to-SQL Semantic Parsing](#reinforcement-learning-to-jointly-encode-prompts-and-database-schemas-for-text-to-sql-semantic-parsing)
+    + [Semi-Supervised Self-Training for Text-to-SQL via Column-Specificity-Based Meta-Learning](#semi-supervised-self-training-for-text-to-sql-via-column-specificity-based-meta-learning)
+    + [Harnessing Pre-Trained Language Model with Structure-Aware Ability for Text-to-SQL](#harnessing-pre-trained-language-model-with-structure-aware-ability-for-text-to-sql)
+    + [Improving the Database Generalizability of the Text-to-SQL Task](#improving-the-database-generalizability-of-the-text-to-sql-task)
+    + [AUTOSQL: Question Auto-Completion for Text-to-SQL](#autosql--question-auto-completion-for-text-to-sql)
+    + [SeaD: End-to-end Text-to-SQL Generation with Schema-aware Denoising](#sead--end-to-end-text-to-sql-generation-with-schema-aware-denoising)
+    + [Schema Dependency-Enhanced Curriculum Pre-Training for Table Semantic Parsing](#schema-dependency-enhanced-curriculum-pre-training-for-table-semantic-parsing)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 ### Reinforcement Learning to Jointly Encode Prompts and Database Schemas for Text-to-SQL Semantic Parsing
 
 讲用强化学习解决Text-to-SQL,没看出亮点。
