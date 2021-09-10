@@ -351,7 +351,7 @@ https://arxiv.org/pdf/2109.02707.pdf
 
 在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。 
 
-### BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension 
+### BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation Translation and Comprehension 
 
 https://aclanthology.org/2020.acl-main.703.pdf
 
