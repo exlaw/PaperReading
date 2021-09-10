@@ -29,8 +29,11 @@
   * [GenWiki A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki-a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
   * [WikiGraphs A Wikipedia Text Knowledge Graph Paired Dataset](#wikigraphs-a-wikipedia-text-knowledge-graph-paired-dataset)
   * [Text-to-Table A New Way of Information Extraction](#text-to-table-a-new-way-of-information-extraction)
+  * [BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension](#bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation--translation--and-comprehension)
+  * [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer](#exploring-the-limits-of-transfer-learning-with-a-unified-text-to-text-transformer)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -346,5 +349,28 @@ https://arxiv.org/pdf/2109.02707.pdf
 
 第一个策略是table constraint, 由于seq2seq模型不能保证生成的数据每行数量一样多，所以设计了这个算法首先记下第一行的长度，之后每行decode产生这个长度时就自动开始decode下一行。  第二个策略是table relation embedding,   由于table数据本身不同cell之间是存在关系的，比如一个cell 和其row header和column header都有相关性，所以在生成每个cell的时候都增加了和其相关cell的attention。  具体来说，采用思路就是Self-Attention with Relative Position Representations 这篇文章中的Relation-aware Self-Attention（但这篇文章没引用）， 即在 transformer中增加了关系编码，如果两个编码之间之间本身有关系（cell 和 header关系），在计算attention的时候会增加一个关系向量。
 
-在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。  
+在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。 
+
+### BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension 
+
+https://aclanthology.org/2020.acl-main.703.pdf
+
+ACL 2020
+
+从目前来看已经是一个非常出名的预训练模型了，之前一直没有对这篇文章进行总结。 
+
+BART 是一个使用去噪自动编码器进行预训练的seq2seq模型。 在BART之前已经有很多的预训练模型采用了 MASK-LANGUAGE 方法来进行预训练，但是这些模型着重的END TASK都过于局限？  所以这篇文章提出了BART，和BERT不同的是，BART是一个seq2seq模型，同时使用了transformer的encoder和decoder，这也使得bart对一些生成式的下游效果更好。
+
+具体来说，bart的预训练方式，首先对文本进行打乱，打乱的方式有以下几种，token masking(和Bert中相同)， Token Deletion （把一些词删除）， Text Infilling 
+（根据泊松分布采样出span长度，mask这些span）, Sentence Permutation （对句子进行完全打乱）， Document Rotation（对文档进行旋转）， 把打乱后的文本放入encoder, 把正常顺序的文本作为decoder的输入，来构建出完整的文本。 
+
+最终在 Sequence Classification Tasks ， Token Classification Tasks ， Sequence Generation Tasks ， Machine Translation 上都稳定取得了最好效果。
+
+### Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer 
+
+https://arxiv.org/pdf/1910.10683.pdf
+
+Journal of Machine Learning Research 21 (2020) 
+
+著名的T5模型，T5是Text-to-Text Transfer Transformer的缩写。 主要的思想是把所有的nlp任务都建模成了一个 text-to-text 任务，使用了一个encoder-decoder的transformer架构来学习几乎所有任务， 取得了不错的效果。 本文的特点是进行了非常大量的实验。
 
