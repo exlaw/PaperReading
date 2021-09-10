@@ -29,10 +29,11 @@
   * [GenWiki A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation](#genwiki-a-dataset-of-13-million-content-sharing-text-and-graphs-for-unsupervised-graph-to-text-generation)
   * [WikiGraphs A Wikipedia Text Knowledge Graph Paired Dataset](#wikigraphs-a-wikipedia-text-knowledge-graph-paired-dataset)
   * [Text-to-Table A New Way of Information Extraction](#text-to-table-a-new-way-of-information-extraction)
-  * [BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension](#bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation--translation--and-comprehension)
+  * [BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation Translation and Comprehension](#bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension)
   * [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer](#exploring-the-limits-of-transfer-learning-with-a-unified-text-to-text-transformer)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
