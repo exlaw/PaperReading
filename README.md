@@ -31,6 +31,9 @@
   * [Text-to-Table A New Way of Information Extraction](#text-to-table-a-new-way-of-information-extraction)
   * [BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation Translation and Comprehension](#bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension)
   * [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer](#exploring-the-limits-of-transfer-learning-with-a-unified-text-to-text-transformer)
+  * [Improving Language Understanding by Generative Pre-Training](#improving-language-understanding-by-generative-pre-training)
+  * [Language Models are unsupervised multitask learners](#language-models-are-unsupervised-multitask-learners)
+  * [Language models are few shot learners](#language-models-are-few-shot-learners)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -373,5 +376,57 @@ https://arxiv.org/pdf/1910.10683.pdf
 
 Journal of Machine Learning Research 21 (2020) 
 
-著名的T5模型，T5是Text-to-Text Transfer Transformer的缩写。 主要的思想是把所有的nlp任务都建模成了一个 text-to-text 任务，使用了一个encoder-decoder的transformer架构来学习几乎所有任务， 取得了不错的效果。 本文的特点是进行了非常大量的实验。
+著名的T5模型，T5是Text-to-Text Transfer Transformer的缩写。 主要的思想是把所有的nlp任务都建模成了一个 text-to-text 任务，使用了一个encoder-decoder的transformer架构来学习几乎所有任务， 取得了不错的效果。 本文的特点是进行了非常大量的实验
+
+
+### Improving Language Understanding by Generative Pre-Training
+
+https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf
+
+GPT 系列的第一篇论文， 最近相对预训练模型系列进行研究，回来读一下。
+
+动机： 在GPT出现之前的大多数工作都是完全监督学习的，必须要有标注数据才能学习。 GPT这篇文章使用了大量的无监督数据来进行预训练，然后使用预训练后的模型在无监督数据上进行fine-tune得到好的结果。 GPT应该是最早提出了预训练的一批工作，并且是最早使用Transformer进行预训练的工作。
+
+训练方式： 无监督语言建模任务，即在语料库中，给出上文预测下一个单词。 预训练时候就只采用这一个任务和对应的loss。 对具体的任务进行fine-tune上的时候，目标是具体任务的目标和语言建模loss。
+
+模型组成：使用了12层的 transformer decoder。 一共有 117M 参数。
+
+数据集： 使用了 BookCorpus 数据集，有7000本书的文本。
+
+实验效果： 在12个任务中的9个任务中都取得了最优效果。
+
+
+### Language Models are unsupervised multitask learners
+
+https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
+
+GPT2论文初看好像改动不是很大， 但总结下来有两点， 1是提供了一种新的思路，生成式的预训练模型本身可以直接去解决多种任务。 2. 模型的规模大大提升之后取得了非常优异的效果。
+
+
+新的理念： 之前的大多数任务都会被建模成 P(output|input) ， 但 GPT2的目标是使用同一个无监督的模型去学习多个任务， 具体来讲模型的输出就会变成 P(output|input, task)。  给模型同时输入任务描述（条件），这样就可以针对相同的输入产生不同的输出。 这种建模也是能进行 zero-shot learning 的根本。 
+
+理念的实现方式： 在输入中加入不同的prompt可以达成这样的效果。 比如(translate to french, english text, french text)这样的文本串中，输入translate to french, english text 让模型输出后面的 french text就完成翻译的任务。  刚看到这里的很困惑，为什么GPT2可以清楚的解释不同的prompt并且产生输出？ 可能的解释是，GPT2的模型性能非常强，有语义的prompt可以给GPT2非常强的提示，并且即使这样zero-shot效果也不是特别好的，还是需要给几个例子，即few-shot learning 能产生更好的效果。
+
+数据集： 在 40G 的相对比较高质量的 WebText 数据集上进行了预训练。
+
+模型： 用了48 层的 transformer decoder, 50,257 词表大小， 512的batch_size,  最终参数量是 1.5B。
+
+实验效果： 在zero-shot setting下，在8个语言建模中的7个取得了最好效果。 在阅读理解，翻译，摘要等任务的zero-setting也取得了还不错的效果，但是没达到SOTA。
+
+
+### Language models are few shot learners
+
+https://papers.nips.cc/paper/2020/file/1457c0d6bfcb4967418bfb8ac142f64a-Paper.pdf
+
+Nip2020 最佳论文
+
+GPT3模型仍然是相对于GPT2模型的一个增量改进， 其实并没有新的理念提出，但是由于模型的性能更加强大了，也由此让人们对于GPT2提出的理念理解更加深刻了？
+
+理念更新： In context learning,  文章中说，在训练时任务是给context word预测下一个词，但模型在这个过程中也会对于文本的模式进行自动的学习，来更好的对下一个词进行预测。 这样就引出了一种新的模式： 不需要梯度更新的few-shot learning。 直接把few-shot 的case作为提示放在文本前面（比较长的prompt）,GPT3会自动学习这种模型然后产生对应的输出。  由于GPT3非常强大的模型性能和prompt多样性，GPT3真实现了一个效果还不错的 zero-shot learner。  
+
+数据集： 在Common Crawl, WebText2, Books1, Books2 and Wikipedia 5个数据集上进行了预训练。
+
+模型： 使用了96层的 transformer decoder，每个decoder有96个attention heads。  最终有  175 billion 参数。 
+
+实验结果： 在 语言建模任务上， 在 zero-shot setting 下就能超过SOTA，在非常多其他的任务上比如翻译，问答也能使用  zero-shot setting 或者  one-shot setting  达到最优效果或者接近最优效果。
 
