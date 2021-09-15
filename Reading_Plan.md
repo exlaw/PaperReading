@@ -3,7 +3,7 @@
 下面的是按照优先级排序的。
 
 - [X] It’s Not Just Size That Matters: Small Language Models Are Also Few-Shot Learners
-- [ ] KnowPrompt: Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction
+- [X] KnowPrompt: Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction
 - [ ] Prefix-tuning: Optimizing continuous prompts for generation. 
 - [ ] ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators
 - [ ] Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference.
