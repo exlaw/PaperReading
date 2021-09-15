@@ -34,7 +34,8 @@
   * [Improving Language Understanding by Generative Pre-Training](#improving-language-understanding-by-generative-pre-training)
   * [Language Models are unsupervised multitask learners](#language-models-are-unsupervised-multitask-learners)
   * [Language models are few shot learners](#language-models-are-few-shot-learners)
-  * [It’s Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#it-s-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
+  * [Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
+  * [KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction](#knowprompt-knowledge-aware-prompt-tuning-with-synergistic-optimization-for-relation-extraction)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -431,7 +432,7 @@ GPT3模型仍然是相对于GPT2模型的一个增量改进， 其实并没有�
 实验结果： 在 语言建模任务上， 在 zero-shot setting 下就能超过SOTA，在非常多其他的任务上比如翻译，问答也能使用  zero-shot setting 或者  one-shot setting  达到最优效果或者接近最优效果。
 
 
-### It’s Not Just Size That Matters Small Language Models Are Also Few-Shot Learners
+### Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners
 
 https://aclanthology.org/2021.naacl-main.185.pdf
 
@@ -449,4 +450,15 @@ GPT3 模型在很多任务的 few-shot learning 设定上取得了非常出色�
 本文在PET上做了一点改进，之前的PET输出只能是一个token, 不能满足多种NLP任务的需要，其实就很类似 seq 的生成了，先预测第一个token,取概率最大再去预测下一个token。 作者分成 inference 和 train 来去介绍，很类似seq2seq learning的基本 setting。
 
 实验： 在QA任务， Text entailment, 问答的多个数据集上做了实验，在这些数据集大都能取得比GPT3更好的效果。
+
+### KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction 
+
+https://arxiv.org/pdf/2104.07650.pdf
+
+近期，prompt-tuning 方法在 few-shot setting 下取得了不错的进展，但是在关系抽取领域中，如何更好的设计prompt仍然是一个需要领域专家的工作。 本文提出了一个将知识引入 prompt-tuning 的方法来去解决关系抽取问题。
+
+方法，首先还是按照经典的 prompt 方式转换输入，把句子变成 X  E1 【mask】 E2, 这种形式， X是输入的句子，E1，E2是实体，【mask】是要预测的关系，之前的prompt方法是把mask预测出的词和目标label做一个一对一映射，这样做就没有用到关系标签的丰富语义。 于是本文做了如下的改变
+1. 在对mask进行预测的时候，在输出层中，把输入的维度进行扩展，维度从词表的大小扩展到词表的大小+关系的数量。 直接看输出结果在后面 关系数量大小的维度上 logit 来判断类别。这样mask language 的loss就可以直接作为一个交叉熵。
+2. 在实体前后加入特殊符号 [sub] 和 [obj], 使用实体类型对应的向量来进行初始化。  把关系向量使用其中包含单词的向量的来初始化。 然后设置了一个 KE loss， 就是把构成三元组的实体 |h+r -t|尽量小，再负采用一些数据，这些数据的 |h+r -t|尽量大， 有点对比学习的意思。
+实验效果，在5个数据集的标准设定和低资源设定下都取得了不错的效果。
 
