@@ -34,9 +34,9 @@
   * [Improving Language Understanding by Generative Pre-Training](#improving-language-understanding-by-generative-pre-training)
   * [Language Models are unsupervised multitask learners](#language-models-are-unsupervised-multitask-learners)
   * [Language models are few shot learners](#language-models-are-few-shot-learners)
+  * [It’s Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#it-s-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
@@ -429,4 +429,24 @@ GPT3模型仍然是相对于GPT2模型的一个增量改进， 其实并没有�
 模型： 使用了96层的 transformer decoder，每个decoder有96个attention heads。  最终有  175 billion 参数。 
 
 实验结果： 在 语言建模任务上， 在 zero-shot setting 下就能超过SOTA，在非常多其他的任务上比如翻译，问答也能使用  zero-shot setting 或者  one-shot setting  达到最优效果或者接近最优效果。
+
+
+### It’s Not Just Size That Matters Small Language Models Are Also Few-Shot Learners
+
+https://aclanthology.org/2021.naacl-main.185.pdf
+
+NAACL 2021
+
+GPT3 模型在很多任务的 few-shot learning 设定上取得了非常出色的效果， 但是GPT3需要的参数量十分巨大，一般的研究者很难去使用。 这篇文章提出了一个使用cloze question 配合梯度更新的方法， 在只有 GPT参数量 0.1% 的情况下在一些任务上取得了比GPT3更好的效果。 
+
+先介绍本文的前序工作， PET（pattern exploiting training）。 PET把很多NLP任务建模成了以下步骤：
+1.  通过一个 pattern P 把 输入文本 X 变成 T*, T* 中有 cloze question ，包含一个mask。 
+2. 通过 预训练语言模型 预测其中的mask, 产生输出 Y。 
+3. 使用一个 verbalizer V 把Y映射到T，其中 T 是该NLP任务的特定符号，比如情感分析的两个类别。 
+这样的一个 pattern-verbalizer pairs 就是 PVPs。
+同时PET中还使用了多个 PVP，使其相互学习，从无监督数据中增强了模型的效果（有点类似self-training）。
+
+本文在PET上做了一点改进，之前的PET输出只能是一个token, 不能满足多种NLP任务的需要，其实就很类似 seq 的生成了，先预测第一个token,取概率最大再去预测下一个token。 作者分成 inference 和 train 来去介绍，很类似seq2seq learning的基本 setting。
+
+实验： 在QA任务， Text entailment, 问答的多个数据集上做了实验，在这些数据集大都能取得比GPT3更好的效果。
 
