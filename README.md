@@ -2,6 +2,7 @@
 
 阅读论文后自己写总结还是很重要的，一方面提升阅读效果，二是在今后再阅读文章时可以帮助快速回忆，节省时间。
 
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -36,8 +37,10 @@
   * [Language models are few shot learners](#language-models-are-few-shot-learners)
   * [Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
   * [KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction](#knowprompt-knowledge-aware-prompt-tuning-with-synergistic-optimization-for-relation-extraction)
+  * [Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference](#exploiting-cloze-questions-for-few-shot-text-classification-and-natural-language-inference)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
@@ -461,4 +464,24 @@ https://arxiv.org/pdf/2104.07650.pdf
 1. 在对mask进行预测的时候，在输出层中，把输入的维度进行扩展，维度从词表的大小扩展到词表的大小+关系的数量。 直接看输出结果在后面 关系数量大小的维度上 logit 来判断类别。这样mask language 的loss就可以直接作为一个交叉熵。
 2. 在实体前后加入特殊符号 [sub] 和 [obj], 使用实体类型对应的向量来进行初始化。  把关系向量使用其中包含单词的向量的来初始化。 然后设置了一个 KE loss， 就是把构成三元组的实体 |h+r -t|尽量小，再负采用一些数据，这些数据的 |h+r -t|尽量大， 有点对比学习的意思。
 实验效果，在5个数据集的标准设定和低资源设定下都取得了不错的效果。
+
+
+### Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference 
+
+EACL 2021
+
+https://aclanthology.org/2021.eacl-main.20.pdf
+
+有一些工作通过给预训练模型一些任务描述来无监督的解决这些问题，但是这种方法一般是比相对应的监督学习方法差的。 本文就提出了一种Pattern- 
+Exploiting Training (PET) 方法，是一种半监督学习方法，通过把问题建模成完形填空来增强模型对于问题本身的理解。
+
+PET把很多NLP任务建模成了以下步骤：
+1.  通过一个 pattern P 把 输入文本 X 变成 T*, T* 中有 cloze question ，包含一个mask。 
+2. 通过 预训练语言模型 预测其中的mask, 产生输出 Y。 
+3. 使用一个 verbalizer V 把Y映射到T，其中 T 是该NLP任务的特定符号，比如情感分析的两个类别。 
+这样的一个 pattern-verbalizer pairs 就是 PVPs。
+同时PET中还使用了多个 PVP，使其相互学习，从无监督数据中增强了模型的效果（有点类似self-training）。
+
+本文在 Yelp， AG’s News ， Yahoo ，MNLI 的 few-shot setting 下都取得了不错的效果。
+
 
