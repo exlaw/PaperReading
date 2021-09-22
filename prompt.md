@@ -36,3 +36,87 @@ https://arxiv.org/pdf/1902.09492.pdf
 实验结果，在Overnight,Break , SMCalFlow 数据集上都在few-shot setting下进行了实验， 在overnight数据集上能取得和全量数据类似的结果，在其他两个数据集上离全量数据集SOTA方法差距还比较大。
 
 
+
+### Language Models are unsupervised multitask learners
+
+https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
+
+GPT2论文初看好像改动不是很大， 但总结下来有两点， 1是提供了一种新的思路，生成式的预训练模型本身可以直接去解决多种任务。 2. 模型的规模大大提升之后取得了非常优异的效果。
+
+
+新的理念： 之前的大多数任务都会被建模成 P(output|input) ， 但 GPT2的目标是使用同一个无监督的模型去学习多个任务， 具体来讲模型的输出就会变成 P(output|input, task)。  给模型同时输入任务描述（条件），这样就可以针对相同的输入产生不同的输出。 这种建模也是能进行 zero-shot learning 的根本。 
+
+理念的实现方式： 在输入中加入不同的prompt可以达成这样的效果。 比如(translate to french, english text, french text)这样的文本串中，输入translate to french, english text 让模型输出后面的 french text就完成翻译的任务。  刚看到这里的很困惑，为什么GPT2可以清楚的解释不同的prompt并且产生输出？ 可能的解释是，GPT2的模型性能非常强，有语义的prompt可以给GPT2非常强的提示，并且即使这样zero-shot效果也不是特别好的，还是需要给几个例子，即few-shot learning 能产生更好的效果。
+
+数据集： 在 40G 的相对比较高质量的 WebText 数据集上进行了预训练。
+
+模型： 用了48 层的 transformer decoder, 50,257 词表大小， 512的batch_size,  最终参数量是 1.5B。
+
+实验效果： 在zero-shot setting下，在8个语言建模中的7个取得了最好效果。 在阅读理解，翻译，摘要等任务的zero-setting也取得了还不错的效果，但是没达到SOTA。
+
+
+### Language models are few shot learners
+
+https://papers.nips.cc/paper/2020/file/1457c0d6bfcb4967418bfb8ac142f64a-Paper.pdf
+
+Nip2020 最佳论文
+
+GPT3模型仍然是相对于GPT2模型的一个增量改进， 其实并没有新的理念提出，但是由于模型的性能更加强大了，也由此让人们对于GPT2提出的理念理解更加深刻了？
+
+理念更新： In context learning,  文章中说，在训练时任务是给context word预测下一个词，但模型在这个过程中也会对于文本的模式进行自动的学习，来更好的对下一个词进行预测。 这样就引出了一种新的模式： 不需要梯度更新的few-shot learning。 直接把few-shot 的case作为提示放在文本前面（比较长的prompt）,GPT3会自动学习这种模型然后产生对应的输出。  由于GPT3非常强大的模型性能和prompt多样性，GPT3真实现了一个效果还不错的 zero-shot learner。  
+
+数据集： 在Common Crawl, WebText2, Books1, Books2 and Wikipedia 5个数据集上进行了预训练。
+
+模型： 使用了96层的 transformer decoder，每个decoder有96个attention heads。  最终有  175 billion 参数。 
+
+实验结果： 在 语言建模任务上， 在 zero-shot setting 下就能超过SOTA，在非常多其他的任务上比如翻译，问答也能使用  zero-shot setting 或者  one-shot setting  达到最优效果或者接近最优效果。
+
+
+### Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners
+
+https://aclanthology.org/2021.naacl-main.185.pdf
+
+NAACL 2021
+
+GPT3 模型在很多任务的 few-shot learning 设定上取得了非常出色的效果， 但是GPT3需要的参数量十分巨大，一般的研究者很难去使用。 这篇文章提出了一个使用cloze question 配合梯度更新的方法， 在只有 GPT参数量 0.1% 的情况下在一些任务上取得了比GPT3更好的效果。 
+
+先介绍本文的前序工作， PET（pattern exploiting training）。 PET把很多NLP任务建模成了以下步骤：
+1.  通过一个 pattern P 把 输入文本 X 变成 T*, T* 中有 cloze question ，包含一个mask。 
+2. 通过 预训练语言模型 预测其中的mask, 产生输出 Y。 
+3. 使用一个 verbalizer V 把Y映射到T，其中 T 是该NLP任务的特定符号，比如情感分析的两个类别。 
+这样的一个 pattern-verbalizer pairs 就是 PVPs。
+同时PET中还使用了多个 PVP，使其相互学习，从无监督数据中增强了模型的效果（有点类似self-training）。
+
+本文在PET上做了一点改进，之前的PET输出只能是一个token, 不能满足多种NLP任务的需要，其实就很类似 seq 的生成了，先预测第一个token,取概率最大再去预测下一个token。 作者分成 inference 和 train 来去介绍，很类似seq2seq learning的基本 setting。
+
+实验： 在QA任务， Text entailment, 问答的多个数据集上做了实验，在这些数据集大都能取得比GPT3更好的效果。
+
+### KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction 
+
+https://arxiv.org/pdf/2104.07650.pdf
+
+近期，prompt-tuning 方法在 few-shot setting 下取得了不错的进展，但是在关系抽取领域中，如何更好的设计prompt仍然是一个需要领域专家的工作。 本文提出了一个将知识引入 prompt-tuning 的方法来去解决关系抽取问题。
+
+方法，首先还是按照经典的 prompt 方式转换输入，把句子变成 X  E1 【mask】 E2, 这种形式， X是输入的句子，E1，E2是实体，【mask】是要预测的关系，之前的prompt方法是把mask预测出的词和目标label做一个一对一映射，这样做就没有用到关系标签的丰富语义。 于是本文做了如下的改变
+1. 在对mask进行预测的时候，在输出层中，把输入的维度进行扩展，维度从词表的大小扩展到词表的大小+关系的数量。 直接看输出结果在后面 关系数量大小的维度上 logit 来判断类别。这样mask language 的loss就可以直接作为一个交叉熵。
+2. 在实体前后加入特殊符号 [sub] 和 [obj], 使用实体类型对应的向量来进行初始化。  把关系向量使用其中包含单词的向量的来初始化。 然后设置了一个 KE loss， 就是把构成三元组的实体 |h+r -t|尽量小，再负采用一些数据，这些数据的 |h+r -t|尽量大， 有点对比学习的意思。
+实验效果，在5个数据集的标准设定和低资源设定下都取得了不错的效果。
+
+
+### Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference 
+
+EACL 2021
+
+https://aclanthology.org/2021.eacl-main.20.pdf
+
+有一些工作通过给预训练模型一些任务描述来无监督的解决这些问题，但是这种方法一般是比相对应的监督学习方法差的。 本文就提出了一种Pattern- 
+Exploiting Training (PET) 方法，是一种半监督学习方法，通过把问题建模成完形填空来增强模型对于问题本身的理解。
+
+PET把很多NLP任务建模成了以下步骤：
+1.  通过一个 pattern P 把 输入文本 X 变成 T*, T* 中有 cloze question ，包含一个mask。 
+2. 通过 预训练语言模型 预测其中的mask, 产生输出 Y。 
+3. 使用一个 verbalizer V 把Y映射到T，其中 T 是该NLP任务的特定符号，比如情感分析的两个类别。 
+这样的一个 pattern-verbalizer pairs 就是 PVPs。
+同时PET中还使用了多个 PVP，使其相互学习，从无监督数据中增强了模型的效果（有点类似self-training）。
+
+本文在 Yelp， AG’s News ， Yahoo ，MNLI 的 few-shot setting 下都取得了不错的效果。
