@@ -1,5 +1,5 @@
 
-Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing 
+### Pre-train Prompt and Predict A Systematic Survey of Prompting Methods in Natural Language Processing 
 
 https://arxiv.org/pdf/2107.13586
 
@@ -25,5 +25,14 @@ Applications: 目前 prompt方法相关的应用，只列举几个比较关心�
 挑战：  1. prompt 设计，目前大多数应用还是在 分类和生成任务，对于信息抽取的等任务仍然很少有做。  使用prompt来生成结构化信息也很少有工作在做。 如何同时考虑 prompt和answer的设计也是一个比较大的挑战。  2. Answer Engineering, 分类任务的两个挑战是如何选取最优answer space和答案有多个词的时候如何去生成（X-FACTR: Multilingual factual knowledge retrieval from pretrained language models. ）。 生成任务的挑战，多reference的学习如何设计？  
 
 
+### Constrained Language Models Yield Few-Shot Semantic Parsers 
+
+https://arxiv.org/pdf/1902.09492.pdf
+
+这篇文章探索了 大规模预训练模型能否在 semantic parsing 任务上做  Few-Shot  learning， 由于semantic parsing 任务生成的都是结构化表示，但预训练模型生成的都是自然语言，所以本文首先建立出了一种可控标准的英文表达形式（这种形式和结构化表示是一一对应的），可以通过规则化的代码相互转化。  然后控制预训练模型去生成这种可控的标准英文表达形式。  
+
+本文的方法主要有两个点，1是Dynamic Prompt Creation， 其实就是用example作为prompt, 使用了GPT3动态选取了example。 2. 是Constrained Decoding， 每一步decode并不是从全词表生成，而是设置了一个validNextTokens 函数，这个函数来判断可以生成的下一个token范围，来确保生成的句子是满足固定格式的。 本文没有在GPT3上没有fine-tune, 在一些其他相对比较小的模型上也使用了一些方法进行fine-tune。
+
+实验结果，在Overnight,Break , SMCalFlow 数据集上都在few-shot setting下进行了实验， 在overnight数据集上能取得和全量数据类似的结果，在其他两个数据集上离全量数据集SOTA方法差距还比较大。
 
 
