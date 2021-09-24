@@ -484,4 +484,39 @@ PET把很多NLP任务建模成了以下步骤：
 
 本文在 Yelp， AG’s News ， Yahoo ，MNLI 的 few-shot setting 下都取得了不错的效果。
 
+### Bidirectional Transition-Based Dependency Parsing 
+
+https://ojs.aaai.org//index.php/AAAI/article/view/4733
+
+AAAI-2019
+
+Transition-Based Dependency Parsing:   把parsing tree变成一系列的action(transition),   也就是这个任务需要学习文本到action sequence的映射，其实和seq2seq任务很像了。 action一般有三种动作，SHIFT： 把输入队列中的元素移动到栈中。 LEFT（reduce）： 栈顶的两个元素是左子树关系。 RIGHT(reduce)： 栈顶的两个元素是右子树关系。
+
+之前的很多 Transition-Based Dependency Parsing都是从左到右进行处理，这样容易造成误差累积，这篇文章同时学习了从左到右生成和从右到左生成两个parser, 然后设计了三种不同的decode算法来解决这个问题。
+
+Vanilla Joint Scoring:  最简单的decode方法，先分别用两个parser完整的生成，然后分别使用两个paser对生成的结果进行打分，选择打分相加最高的。
+
+Joint Decoding with Dual Decomposition:  其实仍然是一种基于 score的思想，优化目标是两个方向的parser 生成的 tree得分加起来最高, 限制条件是两个 tree 相同， 这是一个有限制条件的优化目标，作者使用拉格朗日松弛找到一个可以优化的上界（我能简单理解拉格朗日松弛，但是不理解他的公式怎么产生的）。  然后针对这个优化目标设计了一个decode的算法，就是Joint Decoding with Dual Decomposition， 主要思想是迭代法，每轮迭代两个paser会产生两个矩阵（和tree一样）， 如果两个矩阵不同就把不同的部分单独拿出来称为矩阵u，在后续迭代的时候输入矩阵u，使得两个paser得到的解尽可能相似。 因为由于之前说的这个算法能优化上界，所以也能尽可能的获得一个比较优的解。
+
+Joint Decoding Guided by Dynamic Oracle:  这个decoding方法用到了Dynamic Oracle，这是一种在测试阶段提供一个gold树来防止误差累积的方法（Training Deterministic Parsers with Non-Deterministic Oracles）。 本文的这个decoding算法就用到了 Dynamic Oracle， 仍然是迭代的思想，两个paser在上一轮生成的树互为gold tree输入到下一轮，使用 Dynamic Oracle来指导两个paser生成相同的 tree。
+
+最终实验结果上，在很多数据集都有提升，但提升也都不到一个点的样子。
+
+### Constrained Language Models Yield Few-Shot Semantic Parsers 
+
+https://arxiv.org/pdf/1902.09492.pdf
+
+这篇文章探索了 大规模预训练模型能否在 semantic parsing 任务上做  Few-Shot  learning， 由于semantic parsing 任务生成的都是结构化表示，但预训练模型生成的都是自然语言，所以本文首先建立出了一种可控标准的英文表达形式（这种形式和结构化表示是一一对应的），可以通过规则化的代码相互转化。  然后控制预训练模型去生成这种可控的标准英文表达形式。  
+
+本文的方法主要有两个点，1是Dynamic Prompt Creation， 其实就是用example作为prompt, 使用了GPT3动态选取了example。 2. 是Constrained Decoding， 每一步decode并不是从全词表生成，而是设置了一个validNextTokens 函数，这个函数来判断可以生成的下一个token范围，来确保生成的句子是满足固定格式的。 本文没有在GPT3上没有fine-tune, 在一些其他相对比较小的模型上也使用了一些方法进行fine-tune。
+
+实验结果，在Overnight,Break , SMCalFlow 数据集上都在few-shot setting下进行了实验， 在overnight数据集上能取得和全量数据类似的结果，在其他两个数据集上离全量数据集SOTA方法差距还比较大。
+
+
+### HTLM: Hyper-Text Pre-Training and Prompting of Language Models 
+
+https://arxiv.org/pdf/2107.06955.pdf
+
+使用大量爬取的html数据预训练得到的模型， 使用了类似BART的预训练方法，用HTML里自带的prompt达成里一个效果还不错的zero-shot summarization， 还可以进行一些HTML补全等任务。
+
 
