@@ -2,7 +2,6 @@
 
 阅读论文后自己写总结还是很重要的，一方面提升阅读效果，二是在今后再阅读文章时可以帮助快速回忆，节省时间。
 
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -38,9 +37,11 @@
   * [Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
   * [KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction](#knowprompt-knowledge-aware-prompt-tuning-with-synergistic-optimization-for-relation-extraction)
   * [Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference](#exploiting-cloze-questions-for-few-shot-text-classification-and-natural-language-inference)
+  * [Bidirectional Transition-Based Dependency Parsing](#bidirectional-transition-based-dependency-parsing)
+  * [Constrained Language Models Yield Few-Shot Semantic Parsers](#constrained-language-models-yield-few-shot-semantic-parsers)
+  * [HTLM: Hyper-Text Pre-Training and Prompting of Language Models](#htlm--hyper-text-pre-training-and-prompting-of-language-models)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
