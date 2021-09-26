@@ -40,6 +40,9 @@
   * [Constrained Language Models Yield Few-Shot Semantic Parsers](#constrained-language-models-yield-few-shot-semantic-parsers)
   * [HTLM: Hyper-Text Pre-Training and Prompting of Language Models](#htlm--hyper-text-pre-training-and-prompting-of-language-models)
   * [Pre-train Prompt and Predict A Systematic Survey of Prompting Methods in Natural Language Processing](#pre-train-prompt-and-predict-a-systematic-survey-of-prompting-methods-in-natural-language-processing)
+  * [NumER A Fine-Grained Numeral Entity Recognition Dataset](#numer-a-fine-grained-numeral-entity-recognition-dataset)
+  * [Asynchronous Bidirectional Decoding for Neural Machine Translation](#asynchronous-bidirectional-decoding-for-neural-machine-translation)
+  * [Agreement-Based Joint Training for Bidirectional Attention-Based Neural Machine Translation](#agreement-based-joint-training-for-bidirectional-attention-based-neural-machine-translation)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -544,7 +547,41 @@ Applications: 目前 prompt方法相关的应用，只列举几个比较关心�
 
 挑战：  1. prompt 设计，目前大多数应用还是在 分类和生成任务，对于信息抽取的等任务仍然很少有做。  使用prompt来生成结构化信息也很少有工作在做。 如何同时考虑 prompt和answer的设计也是一个比较大的挑战。  2. Answer Engineering, 分类任务的两个挑战是如何选取最优answer space和答案有多个词的时候如何去生成（X-FACTR: Multilingual factual knowledge retrieval from pretrained language models. ）。 生成任务的挑战，多reference的学习如何设计？  
 
+### NumER A Fine-Grained Numeral Entity Recognition Dataset 
 
+https://link.springer.com/content/pdf/10.1007%2F978-3-030-80599-9.pdf
+
+NLDB 2021
+
+数字实体可以文本中发挥非常重要的作用， 数字实体可以暗示出名字，长度，实体等概念，但是在之前的工作中，一般都还是着重于单词实体的，本文就提出了一个数字实体识别数据集，包括了新闻，wiki文章，问题和一些指示。 并且训练了一个数字BERT模型来去检测文本中的数字实体，最终达到了95%的准确率。 
+
+本文的标注上，主要是分成了8个类别，标注的数据来源为1. 一些 text-to-sql的数据集  2. wikidata数据集 3. Epicurious 食谱数据集 4. 新闻分类。 
+
+最终也仅仅采用了一些比较基础的baseline去实验，发现仅仅用预训练模型效果就已经不错了。
+
+### Asynchronous Bidirectional Decoding for Neural Machine Translation 
+
+https://arxiv.org/pdf/1801.05122.pdf
+
+AAAI 2018
+
+尽管seq2seq方法采用的attention机制目前取得了还不错的效果，但是仍然存在的问题是不能利用 reverse context, 即right-to-left 方向的 context,  这样就会有 left-to-right方向的误差累积问题。
+
+于是本文，在训练的时候采用的模型包括一个encder和两个decoder，两个decoder分别是 backward decoder（从right-left 方向decode）和 forward decoder（从left-right)方向进行decode, 具体的流程是，经过encoder之后，先经过一个 backward decoder, 生成反向的表示，然后经过 forward decoder, 此时计算attention会同时计算 encoder中的状态和backward decoder中的状态，这样就考虑了到了reverse context， 一定程度上的避免了只有left-to-right方向的误差累积问题。
+
+在几个数据集上都能取得一个点以上的提升，效果还是不错的。
+
+### Agreement-Based Joint Training for Bidirectional Attention-Based Neural Machine Translation
+
+https://www.ijcai.org/Proceedings/16/Papers/392.pdf
+
+IJCAI 2016
+
+本文的主要目标是去优化在 seqseq 生成时 attention 矩阵的质量， 具体来说，之前的seq2seq模型在捕捉attention时可能仅仅会捕捉到特定方面的，甚至可能会有噪声出现（不正确的attention）。  于是本文设计了一种优化 attention 矩阵的质量 的方法， 主要方法是让 source-target 和 target-to-source 两个模型真对相同训练数据的attention矩阵算一个agreement 值，把这个agreement值也作为一个优化目标，最终使得两个模型的attention矩阵尽可能相似，最终优化出一个不错的attention矩阵。
+
+本文设计了三种算法来去计算 aggrement 值， 分别是Square of addition (SOA)， Square of subtraction (SOS)， Multiplication (MUL) 。
+
+实验结果上，提升的幅度还是不算小，说明了结果的有效性。
 
 
 
