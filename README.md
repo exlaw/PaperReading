@@ -43,6 +43,7 @@
   * [NumER A Fine-Grained Numeral Entity Recognition Dataset](#numer-a-fine-grained-numeral-entity-recognition-dataset)
   * [Asynchronous Bidirectional Decoding for Neural Machine Translation](#asynchronous-bidirectional-decoding-for-neural-machine-translation)
   * [Agreement-Based Joint Training for Bidirectional Attention-Based Neural Machine Translation](#agreement-based-joint-training-for-bidirectional-attention-based-neural-machine-translation)
+  * [Data Augmentation with Hierarchical SQL-to-Question Generation for Cross-domain Text-to-SQL Parsing](#data-augmentation-with-hierarchical-sql-to-question-generation-for-cross-domain-text-to-sql-parsing)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -582,6 +583,19 @@ IJCAI 2016
 本文设计了三种算法来去计算 aggrement 值， 分别是Square of addition (SOA)， Square of subtraction (SOS)， Multiplication (MUL) 。
 
 实验结果上，提升的幅度还是不算小，说明了结果的有效性。
+
+
+### Data Augmentation with Hierarchical SQL-to-Question Generation for Cross-domain Text-to-SQL Parsing 
+
+EMNLP 2021， 但是目前阅读的版本应该和最终版本是有差距的，目前应该读不到最终版本。
+
+https://arxiv.org/abs/2103.02227
+
+cross domain text-to-sql目前主要面临了两大问题，1是测试数据库在训练时无法见到，这样就需要模型有很强的泛化性。 2是数据量比较小，并且标注数据比较困难。 
+
+本文采用数据增强的思路来解决这个问题，即直接从数据库中生成数据，并且采用了一种SQL-to-question 的方法获取 sql-text pair。 具体来说，根据SQL的语法采样的语法模版，应用到各个数据库中，就产生了大量的SQL语句，然后采用了一个 Hierarchical Generation 的方法，把SQL和文本的对应部分划分出来，分别训练seq2seq模型，最终再把生成的数据拼接起来形成数据对。 
+
+实验方面，在WikiSQL， Spider ， DuSQL 三个数据上的 seen 和 unseen两个设定上进行了实验，发现了都是有提升的。  比较有意思的实验是三种训练策略，使用 pre-train方法竟然是提升最小的。
 
 
 
