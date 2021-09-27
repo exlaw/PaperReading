@@ -46,6 +46,7 @@
   * [Agreement-Based Joint Training for Bidirectional Attention-Based Neural Machine Translation](#agreement-based-joint-training-for-bidirectional-attention-based-neural-machine-translation)
   * [Data Augmentation with Hierarchical SQL-to-Question Generation for Cross-domain Text-to-SQL Parsing](#data-augmentation-with-hierarchical-sql-to-question-generation-for-cross-domain-text-to-sql-parsing)
   * [Exploring Underexplored Limitations of Cross-Domain Text-to-SQL Generalization](#exploring-underexplored-limitations-of-cross-domain-text-to-sql-generalization)
+  * [Natural SQL: Making SQL Easier to Infer from Natural Language Specifications](#natural-sql--making-sql-easier-to-infer-from-natural-language-specifications)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -608,4 +609,17 @@ https://arxiv.org/pdf/2109.05157.pdf
 本文属于一篇独辟蹊径的角度，虽然spider数据集确实是声明模型不需要领域知识的引入就能取得比较好的效果，但是本文却总结了5类需要领域知识的例子。 主要原因在于测试集和验证集的domain是不同的，一些隐含的领域知识可能需要对这个领域的学习才能得到。 于是作者在验证集中挑选出了一些需要domain kownledge 的数据作为新的spider-DK 验证集。
 
 最终在实验结果上也表明，在新的验证集上，模型的表现并不好，这也就说明了目前的模型并不能够很好的建模领域知识。 同时一个实验数据也非常有意思，模型倾向于把预测order的顺序反向， 这样主要是由于训练数据label不均匀，所以后续解决这个问题可能也会成为一个方向。
+
+
+### Natural SQL: Making SQL Easier to Infer from Natural Language Specifications 
+
+EMNLP 2021 findings
+
+https://arxiv.org/pdf/2109.05153.pdf
+
+本文提出了一种更好的SQL 表示， 降低了自然语言和SQL语言之间的GAP，让模型可以更好的进行训练和推断。  
+
+本文提出的表示主要有三个特点： 1.  消除了GROUP BY， HAVING， FROM， JOIN ON这些语句，仅仅保留了 SELECT，WHERE，ORDER BY 2. 消除了 SET， UNION， EXCEPT. 等语句， 并且消除了嵌套语句。3  减少了需要的 schema 数量，使得schema-linking 更加简单。
+
+同时由于本文的value只存在于where语句中，可以限制按照顺序生成，所以这种表示方法容易生成比较高执行准确率的模型。 最终效果，在执行准确率和exact match 都有提升，尤其在执行准确率上取得了SOTA效果。
 
