@@ -2,6 +2,7 @@
 
 论文阅读笔记，基本每天更新。
 
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -47,8 +48,10 @@
   * [Data Augmentation with Hierarchical SQL-to-Question Generation for Cross-domain Text-to-SQL Parsing](#data-augmentation-with-hierarchical-sql-to-question-generation-for-cross-domain-text-to-sql-parsing)
   * [Exploring Underexplored Limitations of Cross-Domain Text-to-SQL Generalization](#exploring-underexplored-limitations-of-cross-domain-text-to-sql-generalization)
   * [Natural SQL: Making SQL Easier to Infer from Natural Language Specifications](#natural-sql--making-sql-easier-to-infer-from-natural-language-specifications)
+  * [TinyBERT Distilling BERT for Natural Language Understanding](#tinybert-distilling-bert-for-natural-language-understanding)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -622,4 +625,16 @@ https://arxiv.org/pdf/2109.05153.pdf
 本文提出的表示主要有三个特点： 1.  消除了GROUP BY， HAVING， FROM， JOIN ON这些语句，仅仅保留了 SELECT，WHERE，ORDER BY 2. 消除了 SET， UNION， EXCEPT. 等语句， 并且消除了嵌套语句。3  减少了需要的 schema 数量，使得schema-linking 更加简单。
 
 同时由于本文的value只存在于where语句中，可以限制按照顺序生成，所以这种表示方法容易生成比较高执行准确率的模型。 最终效果，在执行准确率和exact match 都有提升，尤其在执行准确率上取得了SOTA效果。
+
+### TinyBERT Distilling BERT for Natural Language Understanding
+
+https://aclanthology.org/2020.findings-emnlp.372.pdf
+
+EMNLP 2020
+
+预训练模型对于提升NLP模型的性能起到了非常巨大的作用，但是预训练模型的计算开销特别大，在一些计算资源有限的设备很难运行。 所以本文使用 知识蒸馏（knowledge distillation）的方法使得一个参数量更小的BERT模型可以取得和标准参数量的BERT的类似效果。 
+
+具体来说，设计了一个 Transformer Distillation 机制，专门针对transformer模型的知识蒸馏方法。  每个层的具体知识蒸馏方法稍有不同。  在做法上，分成了General Distillation 和 Task-specific Distillation，General Distillation 就是在大规模语料库上直接使用了 Transformer Distillation。 Task-specific Distillation 同时使用了  Transformer Distillation和数据增强， 数据增强的具体方法，随机mask输入中的词，使用标准bert还原。 
+
+最终的实验结果，在只有bert10%左右参数下，取得了96%的效果。 并且对比实验说明，好像数据增强方法是这当中最有效的。
 
