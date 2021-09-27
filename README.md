@@ -2,7 +2,6 @@
 
 论文阅读笔记，基本每天更新。
 
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -49,6 +48,7 @@
   * [Exploring Underexplored Limitations of Cross-Domain Text-to-SQL Generalization](#exploring-underexplored-limitations-of-cross-domain-text-to-sql-generalization)
   * [Natural SQL: Making SQL Easier to Infer from Natural Language Specifications](#natural-sql--making-sql-easier-to-infer-from-natural-language-specifications)
   * [TinyBERT Distilling BERT for Natural Language Understanding](#tinybert-distilling-bert-for-natural-language-understanding)
+  * [UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING](#unsupervised-data-augmentation-for-consistency-training)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -637,4 +637,20 @@ EMNLP 2020
 具体来说，设计了一个 Transformer Distillation 机制，专门针对transformer模型的知识蒸馏方法。  每个层的具体知识蒸馏方法稍有不同。  在做法上，分成了General Distillation 和 Task-specific Distillation，General Distillation 就是在大规模语料库上直接使用了 Transformer Distillation。 Task-specific Distillation 同时使用了  Transformer Distillation和数据增强， 数据增强的具体方法，随机mask输入中的词，使用标准bert还原。 
 
 最终的实验结果，在只有bert10%左右参数下，取得了96%的效果。 并且对比实验说明，好像数据增强方法是这当中最有效的。
+
+
+
+### UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING
+
+https://arxiv.org/pdf/1904.12848.pdf
+
+NeurIPS 2020 
+
+本文研究了数据增强框架如何和半监督学习一起去使用，之前的数据增强方法只能用在监督学习上，而且普遍被认为作用相对比较小，本文探索图和结合大规模无监督数据和数据增强方法。
+
+具体的方法其实非常简单，整体的loss分成了两个部分，一个是标准数据部分对应的 Supervised loss, 另一个是 Unlabeled Data经过模型预测产生label,然后把unlabeled data 经过数据增强， 这样就产生了 （x, y）, (x1, y) 两个pair,尽管y可能是有噪声的，但是只要让模型认为x和x1对应的label是相同的就可以了，这样经过一个 KL 散度就产生了Unsupervised Consistency Loss。 具体的数据增强方法采用的是相对比较高级的 Back translation, randAugment, TF-IDF word replacement (目标是保存信息含量高的单词，删除掉信息含量比较低的单词) 等。  本文同时还提供了一些理论分析（不愧是 NeurIPS论文）。
+
+在多个领域的多个数据集都取得了不错的结果。
+
+
 
