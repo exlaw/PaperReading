@@ -1,6 +1,7 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -44,9 +45,9 @@
   * [Asynchronous Bidirectional Decoding for Neural Machine Translation](#asynchronous-bidirectional-decoding-for-neural-machine-translation)
   * [Agreement-Based Joint Training for Bidirectional Attention-Based Neural Machine Translation](#agreement-based-joint-training-for-bidirectional-attention-based-neural-machine-translation)
   * [Data Augmentation with Hierarchical SQL-to-Question Generation for Cross-domain Text-to-SQL Parsing](#data-augmentation-with-hierarchical-sql-to-question-generation-for-cross-domain-text-to-sql-parsing)
+  * [Exploring Underexplored Limitations of Cross-Domain Text-to-SQL Generalization](#exploring-underexplored-limitations-of-cross-domain-text-to-sql-generalization)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -598,5 +599,13 @@ cross domain text-to-sql目前主要面临了两大问题，1是测试数据库�
 实验方面，在WikiSQL， Spider ， DuSQL 三个数据上的 seen 和 unseen两个设定上进行了实验，发现了都是有提升的。  比较有意思的实验是三种训练策略，使用 pre-train方法竟然是提升最小的。
 
 
+### Exploring Underexplored Limitations of Cross-Domain Text-to-SQL Generalization 
 
+EMNLP 2021 短文
+
+https://arxiv.org/pdf/2109.05157.pdf
+
+本文属于一篇独辟蹊径的角度，虽然spider数据集确实是声明模型不需要领域知识的引入就能取得比较好的效果，但是本文却总结了5类需要领域知识的例子。 主要原因在于测试集和验证集的domain是不同的，一些隐含的领域知识可能需要对这个领域的学习才能得到。 于是作者在验证集中挑选出了一些需要domain kownledge 的数据作为新的spider-DK 验证集。
+
+最终在实验结果上也表明，在新的验证集上，模型的表现并不好，这也就说明了目前的模型并不能够很好的建模领域知识。 同时一个实验数据也非常有意思，模型倾向于把预测order的顺序反向， 这样主要是由于训练数据label不均匀，所以后续解决这个问题可能也会成为一个方向。
 
