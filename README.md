@@ -49,6 +49,7 @@
   * [Natural SQL: Making SQL Easier to Infer from Natural Language Specifications](#natural-sql--making-sql-easier-to-infer-from-natural-language-specifications)
   * [TinyBERT Distilling BERT for Natural Language Understanding](#tinybert-distilling-bert-for-natural-language-understanding)
   * [UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING](#unsupervised-data-augmentation-for-consistency-training)
+  * [GRAPPA: GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING](#grappa--grammar-augmented-pre-training-for-table-semantic-parsing)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -651,6 +652,23 @@ NeurIPS 2020
 具体的方法其实非常简单，整体的loss分成了两个部分，一个是标准数据部分对应的 Supervised loss, 另一个是 Unlabeled Data经过模型预测产生label,然后把unlabeled data 经过数据增强， 这样就产生了 （x, y）, (x1, y) 两个pair,尽管y可能是有噪声的，但是只要让模型认为x和x1对应的label是相同的就可以了，这样经过一个 KL 散度就产生了Unsupervised Consistency Loss。 具体的数据增强方法采用的是相对比较高级的 Back translation, randAugment, TF-IDF word replacement (目标是保存信息含量高的单词，删除掉信息含量比较低的单词) 等。  本文同时还提供了一些理论分析（不愧是 NeurIPS论文）。
 
 在多个领域的多个数据集都取得了不错的结果。
+
+### GRAPPA: GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING
+
+https://arxiv.org/pdf/2009.13845.pdf
+
+ICLR 2021
+
+相对看过比较早一篇文章，再来总结一下。
+
+主要动机，想要进一步的去fine-tune当前的预训练模型， 因为经典的预训练模型在处理文本和表格数据时还是存在一定的gap的。
+
+主要做法，先使用一个 SCFG 从数据库中采样出SQL语句（作者也承认这样采样出的SQL语句其实很粗糙，可能需要进一步的筛选）， 然后构建了SQL和文本之间的对齐模版，生成SQL后可以直接生成对应的文本。 在生成了大量的数据后，采用了两个任务对预训练模型进行进一步的fine-tune, 分别是 MLM （经典的训练任务）， SSP objective（预测一个列是否出现在文本中，并且是什么操作中出现的）。
+
+在WIKISQL ， WIKITABLEQUESTIONS ，SPIDER数据集上都取得了很好的效果。
+
+本文后续提出的几个可以详细思考的点，1. Pre-training objectives ， 同时MLM和SSP比两个单独使用效果要好很多。2. Generalization， 尽管是text-to-sql任务上训练的，但是却可以在其他的一些semantic parsing 任务上取得不错的效果。 3. Pre-training time and data： 他们的实验表明仅仅需要相对比较小的数据进行fine-tune就可以，需要的epoch也比较小，这样可以让BERT获得新的能力同时保留其encoding能力。  这里还有一点是，GRAPPA是用相对规则文本进行训练的，这样容易影响模型的encoding性能，但是如果使用预训练模型生成的数据可能会好一点？4.  Pre-training vs. training data augmentation  本文的实验表明采用预训练的方式是更好的选择。
+
 
 
 
