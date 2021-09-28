@@ -1,7 +1,6 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -50,6 +49,7 @@
   * [TinyBERT Distilling BERT for Natural Language Understanding](#tinybert-distilling-bert-for-natural-language-understanding)
   * [UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING](#unsupervised-data-augmentation-for-consistency-training)
   * [GRAPPA GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING](#grappa-grammar-augmented-pre-training-for-table-semantic-parsing)
+  * [Learning Contextual Representations for Semantic Parsing with Generation-Augmented Pre-Training](#learning-contextual-representations-for-semantic-parsing-with-generation-augmented-pre-training)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -668,6 +668,22 @@ ICLR 2021
 在WIKISQL ， WIKITABLEQUESTIONS ，SPIDER数据集上都取得了很好的效果。
 
 本文后续提出的几个可以详细思考的点，1. Pre-training objectives ， 同时MLM和SSP比两个单独使用效果要好很多。2. Generalization， 尽管是text-to-sql任务上训练的，但是却可以在其他的一些semantic parsing 任务上取得不错的效果。 3. Pre-training time and data： 他们的实验表明仅仅需要相对比较小的数据进行fine-tune就可以，需要的epoch也比较小，这样可以让BERT获得新的能力同时保留其encoding能力。  这里还有一点是，GRAPPA是用相对规则文本进行训练的，这样容易影响模型的encoding性能，但是如果使用预训练模型生成的数据可能会好一点？4.  Pre-training vs. training data augmentation  本文的实验表明采用预训练的方式是更好的选择。
+
+### Learning Contextual Representations for Semantic Parsing with Generation-Augmented Pre-Training 
+
+AAAI 2021
+
+https://ojs.aaai.org/index.php/AAAI/article/view/17627
+
+这也是一个很早就读过的文章了，再重新总结一下～
+
+目前大多数的预训练模型都是适合在通用场景下，但是在应用到text-to-sql模型时会遇到几个问题： 分别是 1. fail to detect column mentions in the utterances 2. fail to infer column mentions from cell values 3. fail to compose complex SQL queries.    所以本文提出了一个框架，能够生成增强数据，然后再进行预训练。 
+
+首先是预训练部分，本文一共有4个预训练任务，分别是 1. Column Prediction (CPred) ： 预测一个列是否在文本中出现 2.  Column Recovery (CRec):  从cell value 推断 column。（之前有一点低估了这个任务，现在看来还要重视一下）   3. SQL Generation (GenSQL):  直接生成SQL语句  4.  Masked Language Model(MLM)： 和经典预训练训练的方法一样。 
+
+数据生成： SQL和表格都是爬虫获得的，SQL-to-Text 直接采用了 BART 模型，没有采用什么预训练的机制。  table-to-text:  使用了一些 control code 配合table生成了text。
+
+实验结果表明， Column Recovery (CRec) 的效果竟然还是挺好的。
 
 
 
