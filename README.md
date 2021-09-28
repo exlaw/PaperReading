@@ -1,6 +1,7 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -50,6 +51,7 @@
   * [UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING](#unsupervised-data-augmentation-for-consistency-training)
   * [GRAPPA GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING](#grappa-grammar-augmented-pre-training-for-table-semantic-parsing)
   * [Learning Contextual Representations for Semantic Parsing with Generation-Augmented Pre-Training](#learning-contextual-representations-for-semantic-parsing-with-generation-augmented-pre-training)
+  * [Calibrate Before Use Improving Few-Shot Performance of Language Models](#calibrate-before-use-improving-few-shot-performance-of-language-models)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -684,6 +686,20 @@ https://ojs.aaai.org/index.php/AAAI/article/view/17627
 数据生成： SQL和表格都是爬虫获得的，SQL-to-Text 直接采用了 BART 模型，没有采用什么预训练的机制。  table-to-text:  使用了一些 control code 配合table生成了text。
 
 实验结果表明， Column Recovery (CRec) 的效果竟然还是挺好的。
+
+### Calibrate Before Use Improving Few-Shot Performance of Language Models
+
+http://arxiv.org/abs/2102.09690 
+
+ICML 2021
+
+探究 prompt 不稳定性的paper。作者指出 GPT-3 incontext learning (prompting) 的方案在 few-shot 场景下波动很大的三个因素在于：
+
+- majority label bias: 示例中有类别的不均衡造成；
+- recency bias: 示例中连续重复的 label 也会对 prediction 造成 bias;
+- common token bias: 预测的 label token 在 MLM 任务中的频率也会对预测结果造成影响。
+
+作者提出基于上下文的 calibration 策略，在给定 prompt 的情况下，先将输入的带预测文本置成 N/A 得到对应的概率，然后用这个分布再对待预测文本的预测进行校正。作者发现这种方案能够大比较明显地提高模型的预测效果，同时也对 variance 起到了一定的降低的效果。
 
 
 
