@@ -49,7 +49,7 @@
   * [Natural SQL: Making SQL Easier to Infer from Natural Language Specifications](#natural-sql--making-sql-easier-to-infer-from-natural-language-specifications)
   * [TinyBERT Distilling BERT for Natural Language Understanding](#tinybert-distilling-bert-for-natural-language-understanding)
   * [UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING](#unsupervised-data-augmentation-for-consistency-training)
-  * [GRAPPA: GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING](#grappa--grammar-augmented-pre-training-for-table-semantic-parsing)
+  * [GRAPPA GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING](#grappa-grammar-augmented-pre-training-for-table-semantic-parsing)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -653,7 +653,7 @@ NeurIPS 2020
 
 在多个领域的多个数据集都取得了不错的结果。
 
-### GRAPPA: GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING
+### GRAPPA GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING
 
 https://arxiv.org/pdf/2009.13845.pdf
 
