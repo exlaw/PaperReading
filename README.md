@@ -52,6 +52,7 @@
   * [GRAPPA GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING](#grappa-grammar-augmented-pre-training-for-table-semantic-parsing)
   * [Learning Contextual Representations for Semantic Parsing with Generation-Augmented Pre-Training](#learning-contextual-representations-for-semantic-parsing-with-generation-augmented-pre-training)
   * [Calibrate Before Use Improving Few-Shot Performance of Language Models](#calibrate-before-use-improving-few-shot-performance-of-language-models)
+  * [Zero-Shot Text-to-SQL Learning with Auxiliary Task](#zero-shot-text-to-sql-learning-with-auxiliary-task)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -701,6 +702,17 @@ ICML 2021
 
 作者提出基于上下文的 calibration 策略，在给定 prompt 的情况下，先将输入的带预测文本置成 N/A 得到对应的概率，然后用这个分布再对待预测文本的预测进行校正。作者发现这种方案能够大比较明显地提高模型的预测效果，同时也对 variance 起到了一定的降低的效果。
 
+### Zero-Shot Text-to-SQL Learning with Auxiliary Task 
+
+https://ojs.aaai.org/index.php/AAAI/article/view/6246
+
+AAAI 2020
+
+本文研究 如何在 zero-shot 下进行 text-to-sql 工作，  具体来说，是在 wiki-SQL 数据集下，按照作者的说法， 在wikiSQL 数据集默认的划分中，测试集中70%的数据库在训练集中是见过的，这样不太符合设定。 （其实spider数据集也已经是 zero-shot setting 了，但本文没在这个数据集下实验）。
+
+具体来说，首先使用了两个LSTM网络分别对问题和column进行编码， 然后使用了一个BiAttn 机制，对column和问题进行更好的互编码。  在decode的时候针对 select, agg 和 where分别设计了不同的解码模块。 同时设计了一个辅助任务来更好的对齐 column 和 问题， 辅助任务具体是先通过 sequence labeling 识别句子中和列对应的地方，然后使用一个 pointer网络上进行学习。
+
+实验效果上，在WikiSQL 标准数据集下取得了3%的进步， zero-shot setting 的数据集下有 5%的提升。
 
 
 
