@@ -142,3 +142,18 @@ PET把很多NLP任务建模成了以下步骤：
 https://arxiv.org/pdf/2107.06955.pdf
 
 使用大量爬取的html数据预训练得到的模型， 使用了类似BART的预训练方法，用HTML里自带的prompt达成里一个效果还不错的zero-shot summarization， 还可以进行一些HTML补全等任务。
+
+
+### Calibrate Before Use Improving Few-Shot Performance of Language Models
+
+http://arxiv.org/abs/2102.09690 
+
+ICML 2021
+
+探究 prompt 不稳定性的paper。作者指出 GPT-3 incontext learning (prompting) 的方案在 few-shot 场景下波动很大的三个因素在于：
+
+- majority label bias: 示例中有类别的不均衡造成；
+- recency bias: 示例中连续重复的 label 也会对 prediction 造成 bias;
+- common token bias: 预测的 label token 在 MLM 任务中的频率也会对预测结果造成影响。
+
+作者提出基于上下文的 calibration 策略，在给定 prompt 的情况下，先将输入的带预测文本置成 N/A 得到对应的概率，然后用这个分布再对待预测文本的预测进行校正。作者发现这种方案能够大比较明显地提高模型的预测效果，同时也对 variance 起到了一定的降低的效果。
