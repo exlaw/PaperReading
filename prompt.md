@@ -1,17 +1,18 @@
 ## 和prompt有关的文章
 
 
-- [Pre-train Prompt and Predict A Systematic Survey of Prompting Methods in Natural Language Processing](#pre-train-prompt-and-predict-a-systematic-survey-of-prompting-methods-in-natural-language-processing)
-- [Constrained Language Models Yield Few-Shot Semantic Parsers](#constrained-language-models-yield-few-shot-semantic-parsers)
-- [Language Models are unsupervised multitask learners](#language-models-are-unsupervised-multitask-learners)
-- [Language models are few shot learners](#language-models-are-few-shot-learners)
-- [Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
-- [KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction](#knowprompt-knowledge-aware-prompt-tuning-with-synergistic-optimization-for-relation-extraction)
-- [Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference](#exploiting-cloze-questions-for-few-shot-text-classification-and-natural-language-inference)
-- [HTLM Hyper-Text Pre-Training and Prompting of Language Models](#htlm-hyper-text-pre-training-and-prompting-of-language-models)
+- [和prompt有关的文章](#-prompt-----)
+  * [Pre-train Prompt and Predict A Systematic Survey of Prompting Methods in Natural Language Processing](#pre-train-prompt-and-predict-a-systematic-survey-of-prompting-methods-in-natural-language-processing)
+  * [Constrained Language Models Yield Few-Shot Semantic Parsers](#constrained-language-models-yield-few-shot-semantic-parsers)
+  * [Language Models are unsupervised multitask learners](#language-models-are-unsupervised-multitask-learners)
+  * [Language models are few shot learners](#language-models-are-few-shot-learners)
+  * [Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners](#its-not-just-size-that-matters-small-language-models-are-also-few-shot-learners)
+  * [KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction](#knowprompt-knowledge-aware-prompt-tuning-with-synergistic-optimization-for-relation-extraction)
+  * [Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference](#exploiting-cloze-questions-for-few-shot-text-classification-and-natural-language-inference)
+  * [HTLM Hyper-Text Pre-Training and Prompting of Language Models](#htlm-hyper-text-pre-training-and-prompting-of-language-models)
+  * [Calibrate Before Use Improving Few-Shot Performance of Language Models](#calibrate-before-use-improving-few-shot-performance-of-language-models)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 ### Pre-train Prompt and Predict A Systematic Survey of Prompting Methods in Natural Language Processing 
