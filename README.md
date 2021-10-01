@@ -53,6 +53,7 @@
   * [Learning Contextual Representations for Semantic Parsing with Generation-Augmented Pre-Training](#learning-contextual-representations-for-semantic-parsing-with-generation-augmented-pre-training)
   * [Calibrate Before Use Improving Few-Shot Performance of Language Models](#calibrate-before-use-improving-few-shot-performance-of-language-models)
   * [Zero-Shot Text-to-SQL Learning with Auxiliary Task](#zero-shot-text-to-sql-learning-with-auxiliary-task)
+  * [Leveraging Table Content for Zero-shot Text-to-SQL with Meta-Learning](#leveraging-table-content-for-zero-shot-text-to-sql-with-meta-learning)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -708,11 +709,27 @@ https://ojs.aaai.org/index.php/AAAI/article/view/6246
 
 AAAI 2020
 
+github地址 https://github.com/JD-AI-Research-Silicon-Valley/auxiliary-task-for-text-to-sql
+
 本文研究 如何在 zero-shot 下进行 text-to-sql 工作，  具体来说，是在 wiki-SQL 数据集下，按照作者的说法， 在wikiSQL 数据集默认的划分中，测试集中70%的数据库在训练集中是见过的，这样不太符合设定。 （其实spider数据集也已经是 zero-shot setting 了，但本文没在这个数据集下实验）。
 
 具体来说，首先使用了两个LSTM网络分别对问题和column进行编码， 然后使用了一个BiAttn 机制，对column和问题进行更好的互编码。  在decode的时候针对 select, agg 和 where分别设计了不同的解码模块。 同时设计了一个辅助任务来更好的对齐 column 和 问题， 辅助任务具体是先通过 sequence labeling 识别句子中和列对应的地方，然后使用一个 pointer网络上进行学习。
 
 实验效果上，在WikiSQL 标准数据集下取得了3%的进步， zero-shot setting 的数据集下有 5%的提升。
+
+### Leveraging Table Content for Zero-shot Text-to-SQL with Meta-Learning 
+
+https://www.aaai.org/AAAI21Papers/AAAI-6324.ChenY.pdf
+
+AAAI 2021
+
+Github地址:   https://github.com/qjay612/meta_learning_NL2SQL
+
+本文同样是去解决 zero-shot text-to-sql 的问题，没有使用其他的数据，仅仅使用wikiSQL 中的数据，引入了数据库内容并且使用 meta-learning 的方法在 zero-shot setting 下取得了很好的效果。
+
+具体来说，在基础模型上，也是先给了一个skeleton，然后把整个任务分成了6个子任务 （Select-Column(SC),	 Select-Aggregation(SA), 	Where-Number(WN), Where-Column(WC), Where-Operator(WO)， Where-Value(WV)。   在引入数据库内容上，由于有的数据库内容会太多，不可能全部进行编码，所以本文首先了进行了筛选，筛选出了一些比相关的数据库内容。 在编码方式上，把问题和数据库column一同放到BERT中进行编码，然后把数据内容通过char embedding进行编码， 然后Ec 和 Eq 分别输入到6个不同的子任务模块中。  元学习方法就有点类似经典的方法了，不再多介绍了。
+
+最终在多个wikiSQL 和 ESQL 数据集的 full, few-shot 和 zero-shot setting 下都取得了最优的效果。
 
 
 
