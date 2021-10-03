@@ -1,7 +1,6 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -56,9 +55,9 @@
   * [Leveraging Table Content for Zero-shot Text-to-SQL with Meta-Learning](#leveraging-table-content-for-zero-shot-text-to-sql-with-meta-learning)
   * [Prefix-to-SQL Text-to-SQL Generation from Incomplete User Questions](#prefix-to-sql-text-to-sql-generation-from-incomplete-user-questions)
   * [DoT An efficient Double Transformer for NLP tasks with tables](#dot-an-efficient-double-transformer-for-nlp-tasks-with-tables)
+  * [Understanding tables with intermediate pre-training](#understanding-tables-with-intermediate-pre-training)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -753,6 +752,13 @@ github地址： https://github.com/google-research/tapas
 
 在几个文本和表格合并输入的任务上都取得了不错的效果， 没有损失精度的情况下训练和推断速度都大大提升了。   主要实验的数据集WIKISQL （Text-to-SQL）, TABFACT (表格事实验证)， WIKITQ （表格问答）。
 
+### Understanding tables with intermediate pre-training 
+
+ACL 2020  findings
+
+https://aclanthology.org/2020.findings-emnlp.27.pdf
+
+研究的主要任务是 Table entailment， 判断一个句子是否能被表格中的内容支持， 是一个二分类任务， 类似于Fact-check任务，作者也是用了数据增强预训练的方式来做的。
 
 
 
