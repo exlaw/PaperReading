@@ -55,6 +55,7 @@
   * [Zero-Shot Text-to-SQL Learning with Auxiliary Task](#zero-shot-text-to-sql-learning-with-auxiliary-task)
   * [Leveraging Table Content for Zero-shot Text-to-SQL with Meta-Learning](#leveraging-table-content-for-zero-shot-text-to-sql-with-meta-learning)
   * [Prefix-to-SQL Text-to-SQL Generation from Incomplete User Questions](#prefix-to-sql-text-to-sql-generation-from-incomplete-user-questions)
+  * [DoT An efficient Double Transformer for NLP tasks with tables](#dot-an-efficient-double-transformer-for-nlp-tasks-with-tables)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -739,6 +740,19 @@ https://arxiv.org/pdf/2109.13066.pdf
 提出了一个新的数据评价方式，从已经存在的各个数据集中进行构造，根据用户输入到一半的文本推断出SQL语句，可能只需要满足top-k准确率就可以了。
 
 在各个数据集上的准确率目前是参差不齐的。
+
+### DoT An efficient Double Transformer for NLP tasks with tables 
+
+ACL 2021 findings
+
+https://aclanthology.org/2021.findings-acl.289.pdf
+
+github地址： https://github.com/google-research/tapas
+
+本文主要是来提升有table输入的问题的计算效率问题， 设计了一个double transformer,  设计了一个double transformer,  其中第一个transformer是用来选择token的，计算出一个pruning score，作为下一个transformer时的一个输入。
+
+在几个文本和表格合并输入的任务上都取得了不错的效果， 没有损失精度的情况下训练和推断速度都大大提升了。   主要实验的数据集WIKISQL （Text-to-SQL）, TABFACT (表格事实验证)， WIKITQ （表格问答）。
+
 
 
 
