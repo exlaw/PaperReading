@@ -54,6 +54,7 @@
   * [Calibrate Before Use Improving Few-Shot Performance of Language Models](#calibrate-before-use-improving-few-shot-performance-of-language-models)
   * [Zero-Shot Text-to-SQL Learning with Auxiliary Task](#zero-shot-text-to-sql-learning-with-auxiliary-task)
   * [Leveraging Table Content for Zero-shot Text-to-SQL with Meta-Learning](#leveraging-table-content-for-zero-shot-text-to-sql-with-meta-learning)
+  * [Prefix-to-SQL Text-to-SQL Generation from Incomplete User Questions](#prefix-to-sql-text-to-sql-generation-from-incomplete-user-questions)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -730,6 +731,15 @@ Github地址:   https://github.com/qjay612/meta_learning_NL2SQL
 具体来说，在基础模型上，也是先给了一个skeleton，然后把整个任务分成了6个子任务 （Select-Column(SC),	 Select-Aggregation(SA), 	Where-Number(WN), Where-Column(WC), Where-Operator(WO)， Where-Value(WV)。   在引入数据库内容上，由于有的数据库内容会太多，不可能全部进行编码，所以本文首先了进行了筛选，筛选出了一些比相关的数据库内容。 在编码方式上，把问题和数据库column一同放到BERT中进行编码，然后把数据内容通过char embedding进行编码， 然后Ec 和 Eq 分别输入到6个不同的子任务模块中。  元学习方法就有点类似经典的方法了，不再多介绍了。
 
 最终在多个wikiSQL 和 ESQL 数据集的 full, few-shot 和 zero-shot setting 下都取得了最优的效果。
+
+### Prefix-to-SQL Text-to-SQL Generation from Incomplete User Questions 
+
+https://arxiv.org/pdf/2109.13066.pdf
+
+提出了一个新的数据评价方式，从已经存在的各个数据集中进行构造，根据用户输入到一半的文本推断出SQL语句，可能只需要满足top-k准确率就可以了。
+
+在各个数据集上的准确率目前是参差不齐的。
+
 
 
 
