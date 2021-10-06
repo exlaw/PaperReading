@@ -1,6 +1,7 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -56,8 +57,10 @@
   * [Prefix-to-SQL Text-to-SQL Generation from Incomplete User Questions](#prefix-to-sql-text-to-sql-generation-from-incomplete-user-questions)
   * [DoT An efficient Double Transformer for NLP tasks with tables](#dot-an-efficient-double-transformer-for-nlp-tasks-with-tables)
   * [Understanding tables with intermediate pre-training](#understanding-tables-with-intermediate-pre-training)
+  * [Re-examining the Role of Schema Linking in Text-to-SQL](#re-examining-the-role-of-schema-linking-in-text-to-sql)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -760,6 +763,22 @@ https://aclanthology.org/2020.findings-emnlp.27.pdf
 
 研究的主要任务是 Table entailment， 判断一个句子是否能被表格中的内容支持， 是一个二分类任务， 类似于Fact-check任务，作者也是用了数据增强预训练的方式来做的。
 
+
+### Re-examining the Role of Schema Linking in Text-to-SQL 
+
+https://aclanthology.org/2020.emnlp-main.564.pdf
+
+github地址：https://github.com/WING-NUS/slsql
+
+EMNLP 2020
+
+在这篇工作之前，cross-domain text-to-sql任务中的 schema-linking 模块都被认为是一个比较小的模块， 本文主要研究 schema-linking 这个模块带来的影响。   
+
+本文首先在 spider 数据集上对schema-linking的信息进行了标注，具体方法是结合了自动标注和人工标注。 首先进行自动标注匹配，然后进行人工筛选。 作者发现，影响自动标准准确率最大的障碍是一些缩写，一些string缩写后和之前不能完全匹配。
+
+在模型方面，本文提出了一个相对来说简单的模型，更好的测试schema-linking的准确度， encoder部分还是直接使用bert编码，然后单独设计了一个 Schema Linking Learning， 学习question token和 schema token 之间的link, 之后是 Schema-aware Representation， 根据上个步骤学到的 Schema Linking 结果，进行一个加权求和表示。
+
+在实验上，作者在几个下面几个设定下进行了实验： base model:  只进行了 encoder和decoder部分，没有进行任何的 scema-linking 模块。  auto：使用自动标注的 schema-linking模块进行训练。 hard reference： 不加权了，直接把概率最大的两个 concat 起来。oracle：不使用schema-linking模块，直接把oracle的结果拿来，同时包括了dev 集和train集。  在auto上是取得了最佳效果，能提升10个点以上。 本文的结论也就是说 schema-linking是一个十分重要的模块了，能够让一个简单的BERT模型取得十分好的效果。
 
 
 
