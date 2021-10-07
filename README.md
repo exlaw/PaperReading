@@ -58,9 +58,9 @@
   * [DoT An efficient Double Transformer for NLP tasks with tables](#dot-an-efficient-double-transformer-for-nlp-tasks-with-tables)
   * [Understanding tables with intermediate pre-training](#understanding-tables-with-intermediate-pre-training)
   * [Re-examining the Role of Schema Linking in Text-to-SQL](#re-examining-the-role-of-schema-linking-in-text-to-sql)
+  * [Translate & Fill Improving Zero-Shot Multilingual Semantic Parsing with Synthetic Data](#translate---fill-improving-zero-shot-multilingual-semantic-parsing-with-synthetic-data)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -779,6 +779,16 @@ EMNLP 2020
 在模型方面，本文提出了一个相对来说简单的模型，更好的测试schema-linking的准确度， encoder部分还是直接使用bert编码，然后单独设计了一个 Schema Linking Learning， 学习question token和 schema token 之间的link, 之后是 Schema-aware Representation， 根据上个步骤学到的 Schema Linking 结果，进行一个加权求和表示。
 
 在实验上，作者在几个下面几个设定下进行了实验： base model:  只进行了 encoder和decoder部分，没有进行任何的 scema-linking 模块。  auto：使用自动标注的 schema-linking模块进行训练。 hard reference： 不加权了，直接把概率最大的两个 concat 起来。oracle：不使用schema-linking模块，直接把oracle的结果拿来，同时包括了dev 集和train集。  在auto上是取得了最佳效果，能提升10个点以上。 本文的结论也就是说 schema-linking是一个十分重要的模块了，能够让一个简单的BERT模型取得十分好的效果。
+
+
+### Translate & Fill Improving Zero-Shot Multilingual Semantic Parsing with Synthetic Data
+
+https://arxiv.org/pdf/2109.04319.pdf
+
+总体来说是一个帮助semantic parsing跨语言zero-shot进行学习的工作， 目前的在英语上很多的 semantic parsing工作已经做的比较好了， 但是在其他语言上面临的问题是确实监督训练数据集。 
+
+本文的大概思想是设计了一个框架，借助了跨语言的预训练模型，采用了一种先翻译句子，再让预训练模型去fill的过程来学习，再zero-shot 的情况学到一种不错的跨语言 sementic parsing 工作。
+
 
 
 
