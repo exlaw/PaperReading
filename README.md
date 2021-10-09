@@ -59,6 +59,8 @@
   * [Understanding tables with intermediate pre-training](#understanding-tables-with-intermediate-pre-training)
   * [Re-examining the Role of Schema Linking in Text-to-SQL](#re-examining-the-role-of-schema-linking-in-text-to-sql)
   * [Translate & Fill Improving Zero-Shot Multilingual Semantic Parsing with Synthetic Data](#translate---fill-improving-zero-shot-multilingual-semantic-parsing-with-synthetic-data)
+  * [Context-Aware Attention Network for Image-Text Retrieval](#context-aware-attention-network-for-image-text-retrieval)
+  * [Table2Vec: Neural Word and Entity Embeddings for Table Population and Retrieval](#table2vec--neural-word-and-entity-embeddings-for-table-population-and-retrieval)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
