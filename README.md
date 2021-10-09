@@ -1,7 +1,6 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -61,6 +60,7 @@
   * [Translate & Fill Improving Zero-Shot Multilingual Semantic Parsing with Synthetic Data](#translate---fill-improving-zero-shot-multilingual-semantic-parsing-with-synthetic-data)
   * [Context-Aware Attention Network for Image-Text Retrieval](#context-aware-attention-network-for-image-text-retrieval)
   * [Table2Vec: Neural Word and Entity Embeddings for Table Population and Retrieval](#table2vec--neural-word-and-entity-embeddings-for-table-population-and-retrieval)
+  * [CPT COLORFUL PROMPT TUNING FOR PRE-TRAINED VISION-LANGUAGE MODELS](#cpt-colorful-prompt-tuning-for-pre-trained-vision-language-models)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -809,5 +809,15 @@ https://arxiv.org/pdf/1906.00041.pdf
 SIGIR2019 short paper
 
 这篇文章使用 table 做了一个预训练模型，大概使用了类似于word2vec的方法，最终在Row Population， column population, Table Retrieval  三个下游任务上都取得了不错的效果。
+
+### CPT COLORFUL PROMPT TUNING FOR PRE-TRAINED VISION-LANGUAGE MODELS 
+
+https://arxiv.org/pdf/2109.11797.pdf
+
+尽管视觉语言模型已经取得了非常的大的进展，但是在预训练和fine-tune的时候仍然有一个比较大的gap，这就导致了fine-tune的时候也需要相对比较大的数据量，所以本文提出了CPT（Cross-modal Prompt Tuning ）也可以叫做Colorful Prompt Tuning， 把visual grouding 任务变成 fill-in-the-bank 任务。 
+
+具体来说，为了把文本图片统计进行建模，文章把图片中的物体渲染上了不同的颜色，然后在文本中就可以使用颜色来代指图片中的具体部分，这样就可以很方面的时候自然语言来构造prompt,  比如 the horse watched by the woman is in  [mask] color.  这样可以选择mask文本的不同部分，就可以完成建模中图片中元素关系任务。
+
+最终在zero-shot 和 few-shot setting 上取得了比较大的进步。
 
 
