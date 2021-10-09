@@ -790,5 +790,22 @@ https://arxiv.org/pdf/2109.04319.pdf
 本文的大概思想是设计了一个框架，借助了跨语言的预训练模型，采用了一种先翻译句子，再让预训练模型去fill的过程来学习，再zero-shot 的情况学到一种不错的跨语言 sementic parsing 工作。
 
 
+### Context-Aware Attention Network for Image-Text Retrieval
+
+CVPR 2020
+
+https://openaccess.thecvf.com/content_CVPR_2020/papers/Zhang_Context-Aware_Attention_Network_for_Image-Text_Retrieval_CVPR_2020_paper.pdf
+
+这篇文章还是针对于每个 image-text pair 去做处理了， 打的核心的点是说可以同时做到识别跨模态的相似度和同一个模态内部的相似度。
+
+这篇文章同时写了一些 related-work 部分，对image-text retrieval 的两个方向进行了介绍，分别是Global embeddings based methods（把图片和文本建模到同一个空间中去）， Local fragments based methods （文本的细节和图片的细节可以去对应）。
+
+### Table2Vec: Neural Word and Entity Embeddings for Table Population and Retrieval 
+
+https://arxiv.org/pdf/1906.00041.pdf
+
+SIGIR2019 short paper
+
+这篇文章使用 table 做了一个预训练模型，大概使用了类似于word2vec的方法，最终在Row Population， column population, Table Retrieval  三个下游任务上都取得了不错的效果。
 
 
