@@ -1,6 +1,8 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -61,8 +63,10 @@
   * [Context-Aware Attention Network for Image-Text Retrieval](#context-aware-attention-network-for-image-text-retrieval)
   * [Table2Vec: Neural Word and Entity Embeddings for Table Population and Retrieval](#table2vec--neural-word-and-entity-embeddings-for-table-population-and-retrieval)
   * [CPT COLORFUL PROMPT TUNING FOR PRE-TRAINED VISION-LANGUAGE MODELS](#cpt-colorful-prompt-tuning-for-pre-trained-vision-language-models)
+  * [NSP-BERT A Prompt-based Zero-Shot Learner Through an Original Pre-training Task Next Sentence Prediction](#nsp-bert-a-prompt-based-zero-shot-learner-through-an-original-pre-training-task-next-sentence-prediction)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -820,4 +824,15 @@ https://arxiv.org/pdf/2109.11797.pdf
 
 最终在zero-shot 和 few-shot setting 上取得了比较大的进步。
 
+### NSP-BERT A Prompt-based Zero-Shot Learner Through an Original Pre-training Task Next Sentence Prediction 
+
+https://arxiv.org/pdf/2109.03564.pdf
+
+github 地址 https://github.com/sunyilgdx/NSP-BERT
+
+之前的 prompt-based 的相关工作，都是都是探究更好的利用的预训练模型，很少有关注具体的预训练任务的。 这篇工作充分发挥了NSP任务的潜力， 并且启发我们哪怕局限在Prompt-based，其研究思路还有很大的发散空间。
+
+所谓NSP任务，并不是真的去预测下一句，而是给定两个句子，判断这两个句子是否相邻。相应地，NSP-BERT的思路其实很简单，以分类问题为例，就是把输入视为第一句，然后将每个候选类别添加特定的Prompt作为第二句，逐一判断第一句与哪个第二句更加连贯。可以发现NSP-BERT思路跟PET很相似，其实Prompt-based的工作都很容易理解，难的是如何首先想到这样做。 
+
+最终的实验表明，NSP-BERT的 prompt learning 取得了十分不错的效果，在 few-shot learning 的诸多baseline上都有很好的效果。
 
