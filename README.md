@@ -1,7 +1,6 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -65,6 +64,7 @@
   * [NSP-BERT A Prompt-based Zero-Shot Learner Through an Original Pre-training Task Next Sentence Prediction](#nsp-bert-a-prompt-based-zero-shot-learner-through-an-original-pre-training-task-next-sentence-prediction)
   * [TAPEX Table Pre-training via Learning a Neural SQL Executor](#tapex-table-pre-training-via-learning-a-neural-sql-executor)
   * [On the Importance of Word Order Information in Cross-lingual Sequence Labeling](#on-the-importance-of-word-order-information-in-cross-lingual-sequence-labeling)
+  * [Multiplicative Position-aware Transformer Models for Language Understanding](#multiplicative-position-aware-transformer-models-for-language-understanding)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -859,4 +859,30 @@ AAAI 2021
 2.  Shuffling Word Order， 直接对单词的顺序进行shuffle,   输入到模型中，在英语的效果下降了，在其他语言大多数效果也下降了。
 3. Order-Agnostic Positional Embeddings ， 使用 M-BERT 中的固定位置编码， 并且不更新这个编码，效果也是大多数都不好。
 4. 对M-BERT不调节位置进行fine-tune, 在英语上下降，在其他语言上都有提升。
+
+
+### Multiplicative Position-aware Transformer Models for Language Understanding
+
+
+https://arxiv.org/pdf/2109.12788.pdf
+
+
+这篇文章主要研究在 transformer 中如何去引入一些 position 机制。
+
+
+由于 transformer 全部采用的是 self-attention layer, 必须要显式的引入位置信息，本文总结了目前方法中的引入位置信息的方式，并且在自己的实现下进行实验，同时提出了一个比较好的位置编码方法。 
+
+目前可以采用的位置编码方式有
+
+1.  transformer原文中提出的相对位置编码。
+2.  Self-attention with relative position represen- tations. 文章中把距离信息引入self attention 的计算公式， $e_{i j}=\frac{\left(x_{i} W^{Q}\right)\left(x_{j} W^{K}+a_{i j}\right)^{T}}{\sqrt{d_{z}}}$
+3.  Exploring the limits of transfer learning with a unified text-to-text trans- former.  同样放入 self-attention 公式，以加法的形式放入， $e_{i j}=\frac{\left(x_{i} W^{Q}\right)\left(x_{j} W^{K}\right)^{T}+a_{i j}}{\sqrt{d_{z}}}$
+4. Improve transformer models with better relative position embeddings， 放入self-attention 公式，以乘法的形式放进去$e_{i j}=\frac{\left(x_{i} W^{Q}\right)\left(x_{j} W^{K}\right)^{T} \times a_{i j}}{\sqrt{d_{z}}}$， 同时还有 M4版本$e_{i j}=\frac{\left(x_{i} W^{Q}\right) \cdot\left(x_{j} W^{K}\right)+\left(x_{i} W^{Q}\right) \cdot a_{i j}+\left(x_{j} W^{K}\right) \cdot a_{i j}}{\sqrt{d_{z}}}$， 
+5. Deberta: Decoding-enhanced bert with disentangled attention. 文章中分开引入self-attention 公式的方式$e_{i j}=\frac{\left(x_{i} W^{Q}\right) \cdot\left(x_{j} W^{K}\right)+\left(x_{i} W^{Q}\right) \cdot\left(a_{i j} W^{R}\right)+\left(x_{j} W^{K}\right) \cdot\left(a_{i j} W^{T}\right)}{\sqrt{3 d_{z}}}$
+6. Rethink- ing positional encoding in language pre-training. 中的先求self-attention 再求和方式， $e_{i j}=\frac{\left(x_{i} W^{Q}\right) \cdot\left(x_{j} W^{K}\right)+\left(p_{i} U^{Q}\right) \cdot\left(p_{j} U^{K}\right)}{\sqrt{2 d_{z}}}+a_{i j}$
+7. 本文最后提出的是 $e_{i j}=\frac{\left(x_{i} W^{Q}\right) \cdot\left(x_{j} W^{K}\right) \times\left(x_{i} W^{Q}\right) \cdot a_{i j} \times\left(x_{j} W^{K}\right) \cdot a_{i j}}{\sqrt{d_{z}}}$
+
+本文提出了相对位置编码在多个任务上都取得了不错的效果。 
+
+同时也显而易见的是，最简单的相对位置编码效果是最差的。
 
