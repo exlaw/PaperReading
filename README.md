@@ -64,6 +64,7 @@
   * [CPT COLORFUL PROMPT TUNING FOR PRE-TRAINED VISION-LANGUAGE MODELS](#cpt-colorful-prompt-tuning-for-pre-trained-vision-language-models)
   * [NSP-BERT A Prompt-based Zero-Shot Learner Through an Original Pre-training Task Next Sentence Prediction](#nsp-bert-a-prompt-based-zero-shot-learner-through-an-original-pre-training-task-next-sentence-prediction)
   * [TAPEX Table Pre-training via Learning a Neural SQL Executor](#tapex-table-pre-training-via-learning-a-neural-sql-executor)
+  * [On the Importance of Word Order Information in Cross-lingual Sequence Labeling](#on-the-importance-of-word-order-information-in-cross-lingual-sequence-labeling)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -845,4 +846,17 @@ https://openreview.net/pdf?id=O50443AsCP
 又是一篇 table 预训练的文章， 针对表格的预训练方法一般有两个方面需要去考虑，一个是如何去获取数据集，还有就是如何去设计预训练的任务。  之前的方法要么是采用爬虫数据，或者是自己生成数据， 作者任务这两种方式都是有问题的。 
 
 在本文中，采用的预训练任务非常简单，就是给一个SQL语句和对应的表格，让模型去输出答案，即让模型去学习一个SQL解析器，这样做的优点是可以有无穷多的数据可以使用，因为SQL是可以无限采样的，并且数据质量也是很高的。 作者就在BART模型的基础上进行预训练，最终在多个数据集上都达到了非常高的执行准确率。 
+
+### On the Importance of Word Order Information in Cross-lingual Sequence Labeling 
+
+https://arxiv.org/pdf/2001.11164.pdf
+
+AAAI 2021
+
+在一种语言上训练的跨语言模型可以很轻松的迁移到其他的语言上，但是本文发现，因为文本的顺序的差别在不同的语言中出现的十分频繁，一旦跨语言的模型在一种语言训练时overfit到语言的顺序，可能会对其他语言上的性能产生影响。 所以本文提出了假设，减少单词顺序信息的影响可以提升模型在其他语言上的泛化性。 为了验证这个猜想，作者采用了三种不同的方法进行验证。
+
+1. Order-Reduced Transformer， 消除 transformer 中的 position embedding, 并且使用了一个一维的cnn对位置进行编码。 替换了一些baseline 中的对应模块，发现在英文（源语言上的效果下降了），但是在其他语言上的效果上升了。
+2.  Shuffling Word Order， 直接对单词的顺序进行shuffle,   输入到模型中，在英语的效果下降了，在其他语言大多数效果也下降了。
+3. Order-Agnostic Positional Embeddings ， 使用 M-BERT 中的固定位置编码， 并且不更新这个编码，效果也是大多数都不好。
+4. 对M-BERT不调节位置进行fine-tune, 在英语上下降，在其他语言上都有提升。
 
