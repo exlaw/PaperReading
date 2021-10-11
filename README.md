@@ -2,7 +2,6 @@
 
 论文阅读笔记，基本每天更新。
 
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -64,6 +63,7 @@
   * [Table2Vec: Neural Word and Entity Embeddings for Table Population and Retrieval](#table2vec--neural-word-and-entity-embeddings-for-table-population-and-retrieval)
   * [CPT COLORFUL PROMPT TUNING FOR PRE-TRAINED VISION-LANGUAGE MODELS](#cpt-colorful-prompt-tuning-for-pre-trained-vision-language-models)
   * [NSP-BERT A Prompt-based Zero-Shot Learner Through an Original Pre-training Task Next Sentence Prediction](#nsp-bert-a-prompt-based-zero-shot-learner-through-an-original-pre-training-task-next-sentence-prediction)
+  * [TAPEX Table Pre-training via Learning a Neural SQL Executor](#tapex-table-pre-training-via-learning-a-neural-sql-executor)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -835,4 +835,14 @@ github 地址 https://github.com/sunyilgdx/NSP-BERT
 所谓NSP任务，并不是真的去预测下一句，而是给定两个句子，判断这两个句子是否相邻。相应地，NSP-BERT的思路其实很简单，以分类问题为例，就是把输入视为第一句，然后将每个候选类别添加特定的Prompt作为第二句，逐一判断第一句与哪个第二句更加连贯。可以发现NSP-BERT思路跟PET很相似，其实Prompt-based的工作都很容易理解，难的是如何首先想到这样做。 
 
 最终的实验表明，NSP-BERT的 prompt learning 取得了十分不错的效果，在 few-shot learning 的诸多baseline上都有很好的效果。
+
+### TAPEX Table Pre-training via Learning a Neural SQL Executor 
+
+ICLR 2022 投稿文章
+
+https://openreview.net/pdf?id=O50443AsCP
+
+又是一篇 table 预训练的文章， 针对表格的预训练方法一般有两个方面需要去考虑，一个是如何去获取数据集，还有就是如何去设计预训练的任务。  之前的方法要么是采用爬虫数据，或者是自己生成数据， 作者任务这两种方式都是有问题的。 
+
+在本文中，采用的预训练任务非常简单，就是给一个SQL语句和对应的表格，让模型去输出答案，即让模型去学习一个SQL解析器，这样做的优点是可以有无穷多的数据可以使用，因为SQL是可以无限采样的，并且数据质量也是很高的。 作者就在BART模型的基础上进行预训练，最终在多个数据集上都达到了非常高的执行准确率。 
 
