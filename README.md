@@ -65,6 +65,7 @@
   * [TAPEX Table Pre-training via Learning a Neural SQL Executor](#tapex-table-pre-training-via-learning-a-neural-sql-executor)
   * [On the Importance of Word Order Information in Cross-lingual Sequence Labeling](#on-the-importance-of-word-order-information-in-cross-lingual-sequence-labeling)
   * [Multiplicative Position-aware Transformer Models for Language Understanding](#multiplicative-position-aware-transformer-models-for-language-understanding)
+  * [Semi-Supervised Learning for Neural Machine Translation](#semi-supervised-learning-for-neural-machine-translation)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -887,4 +888,16 @@ https://arxiv.org/pdf/2109.12788.pdf
 同时也显而易见的是，最简单的相对位置编码效果是最差的。
 
 感觉如果把文本作为图建模的话这些方法都是可以使用的。
+
+### Semi-Supervised Learning for Neural Machine Translation 
+
+https://aclanthology.org/P16-1185.pdf
+
+ACL 2016
+
+这篇文章做半监督的机器翻译，机器翻译领域的一个很大的瓶颈是很难获得很大量的标注文本， 所以如何利用好单语言语料库来做半监督学习提升机器翻译模型的性能就成了一个问题。
+
+这篇文章提出了使用autoencoder的方法，具体来说，就是从y->x->y 重构的过程， 但是和标准的autoencoder不同的是，这里的梯度是截断的，但是由于x的空间是无限的无法进行优化，所以简化了搜索空间，使用top 10 的 x 作为全部空间（beam search）。 整体的目标函数就是标准机器翻译loss+两个方向的autoencoder loss。
+
+最终的实验效果， 在中文英文翻译的设定下，在几个数据集上大都取得了进步。
 
