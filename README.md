@@ -66,6 +66,7 @@
   * [On the Importance of Word Order Information in Cross-lingual Sequence Labeling](#on-the-importance-of-word-order-information-in-cross-lingual-sequence-labeling)
   * [Multiplicative Position-aware Transformer Models for Language Understanding](#multiplicative-position-aware-transformer-models-for-language-understanding)
   * [Semi-Supervised Learning for Neural Machine Translation](#semi-supervised-learning-for-neural-machine-translation)
+  * [CONDITIONAL SET GENERATION USING SEQ2SEQ MODELS](#conditional-set-generation-using-seq2seq-models)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -900,4 +901,18 @@ ACL 2016
 这篇文章提出了使用autoencoder的方法，具体来说，就是从y->x->y 重构的过程， 但是和标准的autoencoder不同的是，这里的梯度是截断的，但是由于x的空间是无限的无法进行优化，所以简化了搜索空间，使用top 10 的 x 作为全部空间（beam search）。 整体的目标函数就是标准机器翻译loss+两个方向的autoencoder loss。
 
 最终的实验效果， 在中文英文翻译的设定下，在几个数据集上大都取得了进步。
+
+### CONDITIONAL SET GENERATION USING SEQ2SEQ MODELS
+
+ICLR 2022 投稿论文
+
+https://openreview.net/pdf?id=q23I9kJE3gA
+
+本文解决的是 sequence2set 的任务，即给一个文本，生成其对应的集合，常见的任务包括 open-entity typing 和 fine-grained emotion classification。
+
+之前基本都是把这个任务完全放在seq2seq的设定下来做，但是这样做有两个问题， 1是集合本身是无序的，但是seq2seq会考虑顺序，这样就会带来不必要的特征 2. 集合中的元素数量没有显式的在模型中建模。 
+
+于是本文采用的做法是，给set中的所有元素做一个拓扑排序，设定一个全局的顺序，生成一个拓扑网络， 通过拓扑排序可以一个一个集合采样出多种顺序，这样顺便还达到了数据增强的效果，同时在集合在最前面加上集合的数量。 
+
+实验效果还是出奇的好，效果提升了10个点。
 
