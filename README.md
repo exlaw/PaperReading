@@ -70,6 +70,7 @@
   * [CONDITIONAL SET GENERATION USING SEQ2SEQ MODELS](#conditional-set-generation-using-seq2seq-models)
   * [ELECTRA PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS](#electra-pre-training-text-encoders-as-discriminators-rather-than-generators)
   * [End-to-End Object Detection with Transformers](#end-to-end-object-detection-with-transformers)
+  * [PIX2SEQ A LANGUAGE MODELING FRAMEWORK FOR OBJECT DETECTION](#pix2seq-a-language-modeling-framework-for-object-detection)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -938,4 +939,15 @@ DEtection TRansformer， 一个使用 transformer的方法来做 object detectio
 具体的做法是，首先使用CNN backbone对图片进行的编码，生成的编码压平后加入绝对位置编码作为transformer encder的输入，transformer decoder的输入也是特殊的position embedding,  同时接受 encoder的输入， FFN分类后产生框的中心位置，宽， 高和类别。
 
 在多个backbone, 多个数据集上都取得了最优效果。
+
+### PIX2SEQ A LANGUAGE MODELING FRAMEWORK FOR OBJECT DETECTION 
+
+https://arxiv.org/pdf/2109.10852.pdf
+
+这个工作也是采用 transformer 来去解决计算机视觉中的目标检测问题，和上一篇DETR方法不同，这篇工作的输出是一个自回归的序列。
+
+具体来说，也是用一些backbone的输出作为transformer encoder的输入，然后重点是采用了一些数据增强的技术，同时在序列解码时，采用了一些 sequence construction&augmentation  技术， 个人理解是直接naive的做效果并不好，这样确实提升了指标。
+
+最终的实验效果，和DETR 类似，但是直接以序列的方式建模目标检测的思路还是让人眼前一亮的。 
+
 
