@@ -1,6 +1,7 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -67,6 +68,7 @@
   * [Multiplicative Position-aware Transformer Models for Language Understanding](#multiplicative-position-aware-transformer-models-for-language-understanding)
   * [Semi-Supervised Learning for Neural Machine Translation](#semi-supervised-learning-for-neural-machine-translation)
   * [CONDITIONAL SET GENERATION USING SEQ2SEQ MODELS](#conditional-set-generation-using-seq2seq-models)
+  * [ELECTRA PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS](#electra-pre-training-text-encoders-as-discriminators-rather-than-generators)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -915,4 +917,12 @@ https://openreview.net/pdf?id=q23I9kJE3gA
 于是本文采用的做法是，给set中的所有元素做一个拓扑排序，设定一个全局的顺序，生成一个拓扑网络， 通过拓扑排序可以一个一个集合采样出多种顺序，这样顺便还达到了数据增强的效果，同时在集合在最前面加上集合的数量。 
 
 实验效果还是出奇的好，效果提升了10个点。
+
+### ELECTRA PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS 
+
+BERT模型采用的 mask language 模型只利用了一部分语言特征，也就是mask掉的那15%，这样被认为计算利用率不高。
+
+所以本文提出了 ELECTRA 是 Efficiently Learning an Encoder that Classifies Token Replacements Accurately的简称， 设计了一个新的预训练任务，即对原本的句子使用一个小的MLM模型进行替换，再让ELECTRA去判断哪个词被替换了，这样就大大的提升了计算利用率，把所有的文本都利用到了，也有一点对抗学习的感觉。
+
+最终的实验效果上，ELECTRA 模型的训练时间显著减少，并且取得了比BERT模型更优秀的效果。
 
