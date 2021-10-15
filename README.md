@@ -69,6 +69,7 @@
   * [Semi-Supervised Learning for Neural Machine Translation](#semi-supervised-learning-for-neural-machine-translation)
   * [CONDITIONAL SET GENERATION USING SEQ2SEQ MODELS](#conditional-set-generation-using-seq2seq-models)
   * [ELECTRA PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS](#electra-pre-training-text-encoders-as-discriminators-rather-than-generators)
+  * [End-to-End Object Detection with Transformers](#end-to-end-object-detection-with-transformers)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -925,4 +926,16 @@ BERT模型采用的 mask language 模型只利用了一部分语言特征，也�
 所以本文提出了 ELECTRA 是 Efficiently Learning an Encoder that Classifies Token Replacements Accurately的简称， 设计了一个新的预训练任务，即对原本的句子使用一个小的MLM模型进行替换，再让ELECTRA去判断哪个词被替换了，这样就大大的提升了计算利用率，把所有的文本都利用到了，也有一点对抗学习的感觉。
 
 最终的实验效果上，ELECTRA 模型的训练时间显著减少，并且取得了比BERT模型更优秀的效果。
+
+### End-to-End Object Detection with Transformers 
+
+https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460205.pdf
+
+ECCV 2020
+
+DEtection TRansformer， 一个使用 transformer的方法来做 object detection 的尝试。 
+
+具体的做法是，首先使用CNN backbone对图片进行的编码，生成的编码压平后加入绝对位置编码作为transformer encder的输入，transformer decoder的输入也是特殊的position embedding,  同时接受 encoder的输入， FFN分类后产生框的中心位置，宽， 高和类别。
+
+在多个backbone, 多个数据集上都取得了最优效果。
 
