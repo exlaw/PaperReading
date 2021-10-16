@@ -71,6 +71,7 @@
   * [ELECTRA PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS](#electra-pre-training-text-encoders-as-discriminators-rather-than-generators)
   * [End-to-End Object Detection with Transformers](#end-to-end-object-detection-with-transformers)
   * [PIX2SEQ A LANGUAGE MODELING FRAMEWORK FOR OBJECT DETECTION](#pix2seq-a-language-modeling-framework-for-object-detection)
+  * [TextAttack A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP](#textattack-a-framework-for-adversarial-attacks--data-augmentation--and-adversarial-training-in-nlp)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -949,5 +950,17 @@ https://arxiv.org/pdf/2109.10852.pdf
 具体来说，也是用一些backbone的输出作为transformer encoder的输入，然后重点是采用了一些数据增强的技术，同时在序列解码时，采用了一些 sequence construction&augmentation  技术， 个人理解是直接naive的做效果并不好，这样确实提升了指标。
 
 最终的实验效果，和DETR 类似，但是直接以序列的方式建模目标检测的思路还是让人眼前一亮的。 
+
+### TextAttack A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP
+
+https://aclanthology.org/2020.emnlp-demos.16.pdf
+
+EMNLP 2020 demo
+
+这篇文章是提出了一个方便NLP研究者使用的文本攻击工具，名字是TextAttack。
+
+TextAttack 把文本攻击分成了四个模块，分别是goal function（判断攻击是否成功，比如是否导致类别发生变化), A set of constraints (产生的文本必须满足这个限制，比如embedding的相似度不能太大)， transformation（核心方法了， 给一个输入，产生一堆候选）， search method（搜索方式，如何从候选中找出最好的攻击文本）
+
+同时这个框架也集成了之前的好多工作，具有的特点是模型无关（可以在任务模型上应用），并且可以帮助进行数据增强和对抗学习。
 
 
