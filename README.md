@@ -73,6 +73,7 @@
   * [PIX2SEQ A LANGUAGE MODELING FRAMEWORK FOR OBJECT DETECTION](#pix2seq-a-language-modeling-framework-for-object-detection)
   * [TextAttack A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP](#textattack-a-framework-for-adversarial-attacks--data-augmentation--and-adversarial-training-in-nlp)
   * [BERT-ATTACK Adversarial Attack Against BERT Using BERT](#bert-attack-adversarial-attack-against-bert-using-bert)
+  * [Combating Adversarial Misspellings with Robust Word Recognition](#combating-adversarial-misspellings-with-robust-word-recognition)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -977,5 +978,17 @@ EMNLP 2020
 替换词步骤，对同义词表中的词在mask language models 中进行排序。
 
 最终发现这种比较简单的方法能造成一些数据集非常剧烈的效果下降。
+
+### Combating Adversarial Misspellings with Robust Word Recognition
+
+https://aclanthology.org/P19-1561.pdf
+
+ACL 2019
+
+这篇文章算是一篇应对 文本攻击的 方法，但是情景是比较简单的，应对的情景是文本有Misspellings， 一些词语的拼写错误，导致了分词的时候产生UNK ID，最终模型预测错误的情况。
+
+具体的解决方法也比较的简单粗暴，就是在具体的模型前增加一个word recognition 的模型，能够识别错误词并且尽可能的恢复到有正常ID 的词上。
+
+最终的实验也说明该方法在一定程度上起到了帮助。
 
 
