@@ -72,6 +72,7 @@
   * [End-to-End Object Detection with Transformers](#end-to-end-object-detection-with-transformers)
   * [PIX2SEQ A LANGUAGE MODELING FRAMEWORK FOR OBJECT DETECTION](#pix2seq-a-language-modeling-framework-for-object-detection)
   * [TextAttack A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP](#textattack-a-framework-for-adversarial-attacks--data-augmentation--and-adversarial-training-in-nlp)
+  * [BERT-ATTACK Adversarial Attack Against BERT Using BERT](#bert-attack-adversarial-attack-against-bert-using-bert)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -962,5 +963,19 @@ EMNLP 2020 demo
 TextAttack 把文本攻击分成了四个模块，分别是goal function（判断攻击是否成功，比如是否导致类别发生变化), A set of constraints (产生的文本必须满足这个限制，比如embedding的相似度不能太大)， transformation（核心方法了， 给一个输入，产生一堆候选）， search method（搜索方式，如何从候选中找出最好的攻击文本）
 
 同时这个框架也集成了之前的好多工作，具有的特点是模型无关（可以在任务模型上应用），并且可以帮助进行数据增强和对抗学习。
+
+### BERT-ATTACK Adversarial Attack Against BERT Using BERT
+
+https://aclanthology.org/2020.emnlp-main.500.pdf
+
+EMNLP 2020
+
+这篇文章使用BERT模型来做文本的对抗攻击，方法也非常的简单，先找到句子中最关键的词，再对这个词进行相近的替换，直到模型预测的label发生改变。
+
+找关键词步骤，对句子中每个词mask，比较前后输出的logits差别。
+
+替换词步骤，对同义词表中的词在mask language models 中进行排序。
+
+最终发现这种比较简单的方法能造成一些数据集非常剧烈的效果下降。
 
 
