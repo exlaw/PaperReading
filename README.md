@@ -1004,5 +1004,13 @@ seq2seq 中encoder部分还是拼接了问题和column，同时增加了一些�
 
 实验效果上也是高于之前的各种方法，但也高的不是特别多。
 
+### Measuring and Improving Compositional Generalization in Text-to-SQL via Component Alignment 
+
+https://openreview.net/pdf?id=-B3vVVeVyTr
+
+ACL 2022 匿名投稿
+
+这篇文章主要研究Text-to-SQL 中的组合泛化性问题， 对之前的SPIDER数据集进行了更加细粒度的标注，产生了SPIDER-SS数据集，后面又采用了一些方法来帮助解决问题。
+
 
 
