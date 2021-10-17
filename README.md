@@ -74,6 +74,7 @@
   * [TextAttack A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP](#textattack-a-framework-for-adversarial-attacks--data-augmentation--and-adversarial-training-in-nlp)
   * [BERT-ATTACK Adversarial Attack Against BERT Using BERT](#bert-attack-adversarial-attack-against-bert-using-bert)
   * [Combating Adversarial Misspellings with Robust Word Recognition](#combating-adversarial-misspellings-with-robust-word-recognition)
+  * [SeaD End-to-end Text-to-SQL Generation with Schema-aware Denoising](#sead-end-to-end-text-to-sql-generation-with-schema-aware-denoising)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -990,5 +991,18 @@ ACL 2019
 具体的解决方法也比较的简单粗暴，就是在具体的模型前增加一个word recognition 的模型，能够识别错误词并且尽可能的恢复到有正常ID 的词上。
 
 最终的实验也说明该方法在一定程度上起到了帮助。
+
+### SeaD End-to-end Text-to-SQL Generation with Schema-aware Denoising 
+
+https://openreview.net/pdf?id=Dgx157I8729
+
+ACL 匿名投稿
+
+这篇文章做的还是WikiSQL数据集上的实验，主要做法是采用了一个seq2seq的方法累进行text-to-sql任务，同时加入了一些denoising任务。
+
+seq2seq 中encoder部分还是拼接了问题和column，同时增加了一些特殊符号token的处理，在decode的时候使用了一个Transformer with pointer,  来方便进行更好的schema-linking。 关于Schema-aware Denoising，主要进行了两个任务，一个是Erosion， 对原本的column输入进行 	Permutation，Removal 和 addition,  同时removal的时候如果去除了关键的列，那么也会去把对应SQL中的列去除。 另外一个shuffle任务，对原本的句子打乱进行还原。 在inference decode的时候，也采用了一个 execution guided的方法，借助SQL 的执行引擎来帮助生成语法正确的SQL语句。
+
+实验效果上也是高于之前的各种方法，但也高的不是特别多。
+
 
 
