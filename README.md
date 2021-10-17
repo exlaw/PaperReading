@@ -1,7 +1,6 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -75,6 +74,7 @@
   * [BERT-ATTACK Adversarial Attack Against BERT Using BERT](#bert-attack-adversarial-attack-against-bert-using-bert)
   * [Combating Adversarial Misspellings with Robust Word Recognition](#combating-adversarial-misspellings-with-robust-word-recognition)
   * [SeaD End-to-end Text-to-SQL Generation with Schema-aware Denoising](#sead-end-to-end-text-to-sql-generation-with-schema-aware-denoising)
+  * [Measuring and Improving Compositional Generalization in Text-to-SQL via Component Alignment](#measuring-and-improving-compositional-generalization-in-text-to-sql-via-component-alignment)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
