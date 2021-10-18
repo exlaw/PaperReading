@@ -77,6 +77,7 @@
   * [SeaD End-to-end Text-to-SQL Generation with Schema-aware Denoising](#sead-end-to-end-text-to-sql-generation-with-schema-aware-denoising)
   * [Measuring and Improving Compositional Generalization in Text-to-SQL via Component Alignment](#measuring-and-improving-compositional-generalization-in-text-to-sql-via-component-alignment)
   * [RoBERTa A Robustly Optimized BERT Pretraining Approach](#roberta-a-robustly-optimized-bert-pretraining-approach)
+  * [Disentangled Sequence to Sequence Learning for Compositional Generalization](#disentangled-sequence-to-sequence-learning-for-compositional-generalization)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1029,4 +1030,15 @@ https://arxiv.org/pdf/1907.11692.pdf
 3.  在更长的序列上进行训练。  
 4.  根据训练数据动态改变mask方式。  训练的时候动态进行mask, 对每个数据可以产生不同的mask数据。
 
+### Disentangled Sequence to Sequence Learning for Compositional Generalization 
+
+https://arxiv.org/pdf/2110.04655.pdf
+
+这篇文章研究 seq2seq model 为什么不能组合泛化的原因， 一个很重要的假设是， seq2seq model 学习不到局部的context-free,一个关系的编码容易受到另一个关系的影响，这个叫做entangled（相互纠缠）。
+
+一个很简单的预实验是，包含有两个的关系文本，如果对另一个关系进行增强，把所有可能的序列都生成进行增强，那么在预测当前关系时就能学到一个context-free的，当前关系几乎就能100%的预测了。
+
+本文后续设置了一个方法，多步encode， 每次decode一个文本时，都重新去encode文本，避免针对具体target的纠缠。
+
+在几个semantic parsing数据集上取得了比较好的效果。
 
