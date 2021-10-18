@@ -1,6 +1,7 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -75,6 +76,7 @@
   * [Combating Adversarial Misspellings with Robust Word Recognition](#combating-adversarial-misspellings-with-robust-word-recognition)
   * [SeaD End-to-end Text-to-SQL Generation with Schema-aware Denoising](#sead-end-to-end-text-to-sql-generation-with-schema-aware-denoising)
   * [Measuring and Improving Compositional Generalization in Text-to-SQL via Component Alignment](#measuring-and-improving-compositional-generalization-in-text-to-sql-via-component-alignment)
+  * [RoBERTa A Robustly Optimized BERT Pretraining Approach](#roberta-a-robustly-optimized-bert-pretraining-approach)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1012,5 +1014,19 @@ ACL 2022 匿名投稿
 
 这篇文章主要研究Text-to-SQL 中的组合泛化性问题， 对之前的SPIDER数据集进行了更加细粒度的标注，产生了SPIDER-SS数据集，后面又采用了一些方法来帮助解决问题。
 
+### RoBERTa A Robustly Optimized BERT Pretraining Approach 
+
+https://arxiv.org/pdf/1907.11692.pdf
+
+虽然很出名，但是好像没中稿？
+
+这篇文章更多的是一种针对BERT模型的一个工程上的优化，最终的效果确实有了提升，但是本质上没有创新点的，这也是这篇文章最终被拒掉的理由。
+
+具体来说，这篇文章提出的几个优化点分别是：
+
+1.  训练更长的时间，在更多的数据上使用更大的batch。  这个点比较显然，这篇文章直接测试2k的bacth size也太强了。
+2.  去掉 next sentence prediction 任务。   这篇文章通过实验说明这个任务作用不大。
+3.  在更长的序列上进行训练。  
+4.  根据训练数据动态改变mask方式。  训练的时候动态进行mask, 对每个数据可以产生不同的mask数据。
 
 
