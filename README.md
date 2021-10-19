@@ -78,6 +78,7 @@
   * [Measuring and Improving Compositional Generalization in Text-to-SQL via Component Alignment](#measuring-and-improving-compositional-generalization-in-text-to-sql-via-component-alignment)
   * [RoBERTa A Robustly Optimized BERT Pretraining Approach](#roberta-a-robustly-optimized-bert-pretraining-approach)
   * [Disentangled Sequence to Sequence Learning for Compositional Generalization](#disentangled-sequence-to-sequence-learning-for-compositional-generalization)
+  * [Incorporating Extra Knowledge to Enhance Word Embedding](#incorporating-extra-knowledge-to-enhance-word-embedding)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1041,4 +1042,28 @@ https://arxiv.org/pdf/2110.04655.pdf
 本文后续设置了一个方法，多步encode， 每次decode一个文本时，都重新去encode文本，避免针对具体target的纠缠。
 
 在几个semantic parsing数据集上取得了比较好的效果。
+
+### Incorporating Extra Knowledge to Enhance Word Embedding 
+
+IJCAI-20  survey paper
+
+https://www.ijcai.org/Proceedings/2020/0686.pdf
+
+这篇文章是针对如何把外部知识引入词向量中的一个的一个综述性工作。
+
+经典的词向量一般能够很好的建模词之间的共现信息，但对于NLP系统来说也很重要的一些其他信息就很难建模，所以有些情况下需要外部的知识更好的辅助词向量的建模。 主要作用有 1. 提升从文本中学到的词向量的质量。 2. 增加领域知识让领域特定的NLP任务做的更好 3. 解决在特定领域上的数据稀疏问题。 
+
+一共总结了近10年来的21篇工作。 把数据来源分成了 1. Wikipedia  大型文本 2.  Wordnet 建模了词之间的关系，比如同义词表 3. Freebase 包含了关系3元组。  4. Domain Dictionary.  包含特定领域的知识 5. 一些NLP的工具等。 
+
+知识的类型包括： 1. 文本知识 2. 词法知识 3. 类别知识 4. 关系知识 5. 知识图谱知识。
+
+方法的分类有四个维度
+
+1. 静态或者动态的词向量： 是否引入context 的信息。
+2. 共同优化或者后处理： 是否是先学习词向量然后再增加约束。
+3. 单独编码或者耦合编码
+4. 每个词是否有多个语义： 多义词的情况。
+
+最终作者也提出了一些未来的可能方向：1. 可解释性问题 2. 多种知识共同引入 3. 引入文档级别 4. 计算高效性
+
 
