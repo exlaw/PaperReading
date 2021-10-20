@@ -2,8 +2,6 @@
 
 论文阅读笔记，基本每天更新。
 
-![](https://img.shields.io/badge/download-1K-brightgreen.svg)
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -85,8 +83,22 @@
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
+**所有Tag: 方便检索**
+
+* Tag:自监督学习
+* Tag:文档摘要
+* Tag:词向量
+* Tag:语义解析
+* Tag:Text2SQL
+* Tag:Prompt
+* Tag:Text2Table
+* Tag:对话系统
+* Tag:元学习
+* Tag:预训练模型
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
+
+Tag:对话系统  Tag:元学习
 
 AAAI 2021
 
@@ -333,7 +345,7 @@ https://arxiv.org/pdf/2009.02252.pdf
 目前的很多NLP任务都需要从外部的知识库中寻找一些知识，然后辅助任务的完成。 但是目前这类任务有非常多的数据集，每个任务都有不同的知识库，不同的假设，需要不同的数据加载器，评估方式和分析方式。  这样同一个模型在测试的时候就会带来不必要的计算开销，并且也很难测试知识在不同领域的迁移。
 
  所以本文提出了一个统一的知识库，KILT，使用了一个统一的知识库，就是wiki 百科的2019/08/01的版本，针对其他数据集中的不同版本，首先对问题的链接进行了重新匹配，对于文字修改的部分，取BLEU最大的部分进行匹配。  同时，本文针对Fack-checking, entity-linking,slot-filling,question answering 等任务的输入和输出都进行了适配，所有KILT框架可以适配于这些任务。 最终整个模型使用了一个简单的 seq2seq encoder的baseline,就能在上述各个任务上取得非常有竞争力的实验结果。
- 
+
 感觉这篇文章的主要贡献应该还是工程上的，统一了wiki百科的版本，给了一套统一的输入输出实验代码，测试起来更容易并且更有说服力了？
 
 ### WIKITABLET A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections 
@@ -1048,6 +1060,8 @@ https://arxiv.org/pdf/2110.04655.pdf
 
 ### Incorporating Extra Knowledge to Enhance Word Embedding 
 
+Tag:词向量
+
 IJCAI-20  survey paper
 
 https://www.ijcai.org/Proceedings/2020/0686.pdf
@@ -1070,6 +1084,8 @@ https://www.ijcai.org/Proceedings/2020/0686.pdf
 最终作者也提出了一些未来的可能方向：1. 可解释性问题 2. 多种知识共同引入 3. 引入文档级别 4. 计算高效性
 
 ### Self-Supervised Learning for Contextualized Extractive Summarization
+
+Tag:自监督学习 Tag: 摘要
 
 https://aclanthology.org/P19-1214.pdf
 
