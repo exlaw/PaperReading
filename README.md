@@ -1,7 +1,6 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -79,6 +78,7 @@
   * [RoBERTa A Robustly Optimized BERT Pretraining Approach](#roberta-a-robustly-optimized-bert-pretraining-approach)
   * [Disentangled Sequence to Sequence Learning for Compositional Generalization](#disentangled-sequence-to-sequence-learning-for-compositional-generalization)
   * [Incorporating Extra Knowledge to Enhance Word Embedding](#incorporating-extra-knowledge-to-enhance-word-embedding)
+  * [Self-Supervised Learning for Contextualized Extractive Summarization](#self-supervised-learning-for-contextualized-extractive-summarization)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1065,5 +1065,19 @@ https://www.ijcai.org/Proceedings/2020/0686.pdf
 4. 每个词是否有多个语义： 多义词的情况。
 
 最终作者也提出了一些未来的可能方向：1. 可解释性问题 2. 多种知识共同引入 3. 引入文档级别 4. 计算高效性
+
+### Self-Supervised Learning for Contextualized Extractive Summarization
+
+https://aclanthology.org/P19-1214.pdf
+
+ACL 2019
+
+现在的文本摘要模型基本都是从头开始训练， 这样不能很好的提取文档级别的上下文。
+
+本文为了解决这个问题，引入了三个辅助任务来获得文档级别的上下文信息。
+
+具体来说说三个自监督任务分别是  1. Mask： 随机掩盖一些句子，然后从一些候选句子中选择正确的句子。  2. Replace： 随机的从其他的文档中替换一些句子，然后来判断这些句子是否是被替换的。 3. Switch： 在同一个文档内替换一些句子，然后来判断这些句子是否是被交换过顺序的。 
+
+最终增加了各个任务后确实取得了提升。
 
 
