@@ -1,6 +1,6 @@
 ## 论文阅读
 
-论文阅读笔记，基本每天更新。
+![](https://img.shields.io/badge/自然语言处理-brown)  ![](https://img.shields.io/badge/机器翻译-bleu) 
 
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
