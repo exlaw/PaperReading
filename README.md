@@ -1,6 +1,9 @@
 ## 论文阅读
 
 论文阅读笔记，基本每天更新。
+
+![](https://img.shields.io/badge/download-1K-brightgreen.svg)
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
