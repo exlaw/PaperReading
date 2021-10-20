@@ -99,6 +99,10 @@
 * Tag:文本分类
 * Tag:事实验证
 * Tag:表格相关
+* Tag:Data2Text
+* Tag:对抗学习
+* Tag:图网络
+* Tag:优化方法
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -240,7 +244,7 @@ https://arxiv.org/pdf/2103.10360.pdf
 
 ### Joint Verification and Reranking for Open Fact Checking Over Tables 
 
-
+Tag:事实验证  Tag:表格相关
 
 ACL 2021
 
@@ -253,6 +257,8 @@ https://aclanthology.org/2021.acl-long.529.pdf
 在实验结果上，作者首先验证了使用了TF-IDF算法的准确率，基本能有70-85的accuracy。 最终在作者的实验结果中，发现在open domain 设定下取得了结果已经可以和 close domain setting 下的去对比，仅仅比使用额外生成数据的模型效果差一点。  总结来看，本文应该是率先在open domain 的设定下做table-based fact check的，方向还相对比较初级，这个领域应该还是很多工作可以继续进行。
 
 ### Towards Table-to-Text Generation with Numerical Reasoning 
+
+Tag:Data2Text Tag:表格相关
 
 ACL 2021
 
@@ -269,6 +275,8 @@ https://aclanthology.org/2021.acl-long.115.pdf
 
 ### Towards Robustness of Text-to-SQL Models against Synonym Substitution 
 
+Tag:语义解析  Tag:Text2SQL  Tag:对抗学习
+
 ACL 2021
 
 https://aclanthology.org/2021.acl-long.195.pdf
@@ -283,6 +291,8 @@ https://aclanthology.org/2021.acl-long.195.pdf
 
 ### LGESQL Line Graph Enhanced Text-to-SQL Model with Mixed Local and Non-Local Relations 
 
+Tag:图网络  Tag:Text2SQL Tag:语义解析
+
 ACL 2021
 
 https://aclanthology.org/2021.acl-long.198.pdf
@@ -294,6 +304,9 @@ https://aclanthology.org/2021.acl-long.198.pdf
 在实验效果上，作者在spider数据集上取得了 72%的效果，是目前最好的效果。 同时对比实验中也说明了line-graph引入带来的效果。
 
 ### Optimizing Deeper Transformers on Small Datasets 
+
+Tag:Text2SQL Tag:语义解析 Tag:优化方法
+
 ACL 2021
 
 https://aclanthology.org/2021.acl-long.163.pdf
@@ -303,8 +316,9 @@ https://aclanthology.org/2021.acl-long.163.pdf
 之前已经有T-Fixup这篇文章做了相关的工作，但是T-fixup只针对了vanilla transformer，没有针对一些带有关系边的transformer,并且对于输入的初始化有严格的限制， 不能适配由预训练模型得到的初始化。 对此，本文做了一些改进， 首先本文通过一些数学理论分析了Transformer难以优化并且需要进行一些warmup  step的原因。 最后算法做的具体改进为1. 使用了Xavier初始化方法对于一些自由的参数。 2. 移除了warm-up 和所有后续transformer中的layer normalization(这被证明会影响优化的方差)。 3. 前向传播的时候控制每个向量中最大维度的大小 4. 通过上述的维度打来帮助相关 attention层进行参数的确定。 
 最后作者在Text-to-SQL 数据集上进行了实验，使用优化后的RAT-SQL方法取得了70.9的效果，是当时的最佳效果。 并且在阅读理解任务上也取得了SOTA的效果。 
 
-
 ### From Paraphrasing to Semantic Parsing: Unsupervised Semantic Parsing via Synchronous Semantic Decoding
+
+Tag:语义解析
 
 ACL2021
 
@@ -315,8 +329,9 @@ https://www.aclweb.org/anthology/2020.acl-main.608.pdf
 本文的方法步骤大概是，首先选用一个预训练的 paraphrase generation model， 这个模型的主要作用是把文本变成规范化的文本， 但是目前预训练的模型其实做不到生成这种风格的文本。 所以本文首先写了一个从logic form 到规范化文本的一个标准解析器，产生一个数据集，可以使用这个数据集进行fine-tune。 然后使用fine-tune之后的模型生成文本的， 通过规则化解析也就生成了logic-form。
 从实验结果上看，在OVERNIGHT 数据集上取得了SOTA的效果，在GEOGRANNO 和GEO 两个数据集上取得了远远比其他无监督方法好的效果。
 
-
 ### Span-based Semantic Parsing for Compositional Generalization
+
+Tag:语义解析
 
 ACL 2021
 
@@ -327,6 +342,8 @@ https://aclanthology.org/2021.acl-long.74.pdf
 实验结果： 对 GEOQUERY, CLOSURE, SCAN 三个数据集进行了实验，在独立同分布的train-test 集划分设定下，和之前的seq2seq方法效果类似，但是在针对组合泛化性的 train-test 集划分设定下效果有了非常明显的提升。
 
 ### Compositional Generalization and Natural Language Variation: Can a Semantic Parsing Approach Handle Both? 
+
+Tag:语义解析
 
 ACL 2021
 
@@ -340,6 +357,8 @@ https://aclanthology.org/2021.acl-long.75.pdf
 
 ### On the Sentence Embeddings from Pre-trained Language Models 
 
+Tag:预训练模型
+
 EMNLP 2020
 
 https://aclanthology.org/2020.emnlp-main.733.pdf
@@ -351,6 +370,8 @@ https://aclanthology.org/2020.emnlp-main.733.pdf
 在实验结果上，在SST的7个数据集上都取得了比较大的提升效果。 并且还详细分析了相关性和编辑距离的关系，说明了学到了有效的距离。
 
 ### All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text 
+
+
 
 ACL 2021  Outstanding paper
 
