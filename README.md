@@ -95,6 +95,10 @@
 * Tag:对话系统
 * Tag:元学习
 * Tag:预训练模型
+* Tag:机器翻译
+* Tag:文本分类
+* Tag:事实验证
+* Tag:表格相关
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -116,8 +120,9 @@ AAAI 2021 的一篇论文，做的是任务型对话系统。   任务型对话�
 
 从最终的实验效果来看，在 CamRest， In-Car Assistant  和 Multi-WOZ 的各项指标上都取得了最优效果。 
 
-
 ### Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing 
+
+Tag:语义解析
 
 ACL2021 findings
 
@@ -131,6 +136,8 @@ https://aclanthology.org/2021.findings-acl.100.pdf
 
 ### Value-Agnostic Conversational Semantic Parsing 
 
+Tag:语义解析
+
 ACL 2021
 
 https://aclanthology.org/2021.acl-long.284.pdf
@@ -140,6 +147,8 @@ https://aclanthology.org/2021.acl-long.284.pdf
 具体方法： 在编码的过程中，首先通过 transformer 模型把句子编码，然后把句子的编码和对之前program的类型信息作一个attention, 产生对句子的编码。  在解码过程中，对函数序列的预测和对于参数的预测独立开来，不再是作一个 tree 结构预测或者是序列预测， 有点类似于分层的序列预测。  其中具体的参数值设置了四个来源： 之前函数调用的引用，静态词表中的值，句子中复制的字符串，实体提取器中得到的实体。  最终的实验结果中，在SMCALFLOW 和 TREEDST 两个数据集中分别提升了 7.3% 和 10.6%。
 
 ### Vocabulary Learning via Optimal Transport for Neural Machine Translation
+
+Tag:机器翻译
 
 ACL 2021 的最佳论文
 
@@ -153,6 +162,8 @@ token 词表的选择在NLP中非常重要， 传统的词表选择有基于char
 
 ### SMBOP Semi-autoregressive Bottom-up Semantic Parsing 
 
+Tag:语义解析 Tag:Text2SQL
+
 NAACL 2021 
 
 https://arxiv.org/pdf/2010.12412.pdf
@@ -165,6 +176,8 @@ https://arxiv.org/pdf/2010.12412.pdf
 
 ### ConSERT A Contrastive Framework for Self-Supervised Sentence Representation Transfer 
 
+Tag:自监督学习
+
 ACL 2021
 
 https://arxiv.org/pdf/2105.11741.pdf
@@ -176,8 +189,9 @@ BERT在对句子的编码中会出现崩塌的现象，即几乎所有的句子�
 
 在实验结果上，在无监督设定和监督学习设定下，都在6 个STS 数据集上取得了最优效果，并且还在某些数据集上取得了非常大的提升。并且本文另一优势是fine-tune所需要的时间比较短， 单GPU几个小时就可以完成。
 
-
 ### SimCSE Simple Contrastive Learning of Sentence Embeddings 
+
+Tag:自监督学习
 
 https://arxiv.org/pdf/2104.08821.pdf
 
@@ -186,6 +200,8 @@ https://arxiv.org/pdf/2104.08821.pdf
 从实验效果看，在全部都7个语义相似度的数据集上都取得了最佳的效果，并且比之前的最佳都有着不小的进步，并且在7个迁移任务上也几乎都取得了最优的效果。  这篇文章和 ConSERT 的做法几乎是一样的，也几乎是同时期的工作，不过好像这篇文章暂时还没发表在会议上，但是更出名一点。
 
 ### Keep the Structure: A Latent Shift-Reduce Parser for Semantic Parsing 
+
+Tag:语义解析
 
 IJCAI-2021
 
@@ -198,8 +214,9 @@ https://www.ijcai.org/proceedings/2021/0532.pdf
 
 在实验结果上，在Geoquery dataset没有取得SOTA，但是比其他的所有不使用BERT的方法效果都好（本文也没有使用BERT）， 在更加复杂的 WQ dataset 数据集上取得了最佳的效果。   总体来看，本文通过引入 Splitter提升了 Semantic Parsing 的可解释性。
 
-
 ### MEDA Meta-Learning with Data Augmentation for Few-Shot Text Classification 
+
+Tag:元学习  Tag:文本分类
 
 IJCAI-21 
 
@@ -211,6 +228,8 @@ https://www.ijcai.org/proceedings/2021/0541.pdf
 
 ### All NLP Tasks Are Generation Tasks: A General Pretraining Framework 
 
+Tag:预训练模型
+
 https://arxiv.org/pdf/2103.10360.pdf
 
 目前的预训练模型有非常多种，包括autoregressive模型，autoencoding 模型，encoder-decoder 模型等等，但是并没有一类模型能在所有的NLPtask上（分类任务，条件生成任务，非条件生成任务）都能取得非常好的效果。 本文提出了GLM模型，希望能去解决这个问题，在多种类的任务上都能取得不错的效果，减少模型的选择问题。
@@ -219,8 +238,9 @@ https://arxiv.org/pdf/2103.10360.pdf
 
 在实验效果上，在NLU的GLUE数据集上基本能稳定比BERT好（同等参数量和数据量下）， 在 abstractive summarization 任务上取得了比UniLM 更好的效果，在Zero-shot language modeling 任务上取得了比GPT 模型更好的效果。
 
-
 ### Joint Verification and Reranking for Open Fact Checking Over Tables 
+
+
 
 ACL 2021
 
