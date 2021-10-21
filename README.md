@@ -84,7 +84,6 @@
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
-
 **所有Tag: 方便检索**
 
 * Tag:自监督学习
@@ -105,6 +104,12 @@
 * Tag:对抗学习
 * Tag:图网络
 * Tag:优化方法
+* Tag:外部知识引入
+* Tag:Table2Text
+* Tag:数据集
+* Tag:半监督学习
+* Tag:视觉相关
+* Tag:Transformer
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -373,8 +378,6 @@ https://aclanthology.org/2020.emnlp-main.733.pdf
 
 ### All That’s ‘Human’ Is Not Gold: Evaluating Human Evaluation of Generated Text 
 
-
-
 ACL 2021  Outstanding paper
 
 https://aclanthology.org/2021.acl-long.565.pdf
@@ -382,6 +385,8 @@ https://aclanthology.org/2021.acl-long.565.pdf
 在自然语言生成领域，人类评估一般被认为是标准， 但是随着模型生成的文本质量的提升，人类评估者是否能够非常好的对文本进行评估是需要进一步讨论的。 所以本文通过设计实验来评估人类是否能够区分 人类写作的文本和机器生成的文本， 在故事，新闻和食谱三个领域中，实验结果表明对于GPT2生成的文本识人类别准确率为57%， 对于GPT3生成的文本人类识别准确率为49%（甚至不如随机的50%）。 作者分析主要是随着模型性能的提升，生成文本的流利程度增加，错误往往发生在细节和逻辑层面，在生成的文本很长的情况下，非领域专家相对粗浅的阅读很难进行区分。 本文后续又通过三种方式对评估人员进行训练，分别是提供指导意见，给一些例子，给出对比，发现在给出例子的情况下准确率能到55%左右，虽然不是特别高，但是也已经好过了随机效果。   所以基于上述的实验结果，作者推荐后续的NLG领域在进行人工评估的时候最好给评估人员例子进行训练，并且对实验的设定进行更细节的报告来提升实验的可信程度。
 
 ### KILT a Benchmark for Knowledge Intensive Language Tasks
+
+Tag:外部知识引入 
 
 https://arxiv.org/pdf/2009.02252.pdf
 
@@ -393,6 +398,8 @@ https://arxiv.org/pdf/2009.02252.pdf
 
 ### WIKITABLET A Large-Scale Data-to-Text Dataset for Generating Wikipedia Article Sections 
 
+Tag:数据集
+
 https://arxiv-download.xixiaoyao.cn/pdf/2012.14919.pdf
 
 2021 ACL findings
@@ -403,8 +410,9 @@ https://arxiv-download.xixiaoyao.cn/pdf/2012.14919.pdf
 
 作者采用了一些比较简单的方法进行了测试，主要是使用了Transformer模型，并且辅助了一些优化方法，实验效果看起来不是很好，Transformer large模型甚至还不如Transformer base模型。  作者还进行了一些人工检查，结论是生成的文本流畅程度和质量不错，但是出现了一些一致性和事实性问题。  看文章中的说法这应该是非常大型的数据集，质量比较高，还有非常高的提升空间。
 
-
 ### Describing a Knowledge Base
+
+Tag:数据集
 
 ACL 2018
 
@@ -421,8 +429,9 @@ ACL 2018
 
 实验结果上，BLEU最好也就能达到23，不算很高，倒是采用KB reconstruction能达到70%以上的F1 score。
 
-
 ### GenWiki A Dataset of 1.3 Million Content-Sharing Text and Graphs for Unsupervised Graph-to-Text Generation 
+
+Tag:数据集
 
 https://aclanthology.org/2020.coling-main.217.pdf
 
@@ -434,8 +443,9 @@ ICCL 2020
 
 作者尝试了多种无监督方法，最招的CycleGT 的BLEU值能达到40%以上， 效果已经还不错了，错误分析也是常识性错误比较多一点。
 
-
 ### WikiGraphs A Wikipedia Text Knowledge Graph Paired Dataset 
+
+Tag:数据集
 
 https://aclanthology.org/2021.textgraphs-1.7.pdf
 
@@ -446,6 +456,8 @@ https://aclanthology.org/2021.textgraphs-1.7.pdf
 在 data-text, graph-retrieval，text-retrieval 三个任务上都进行了实验，data-text 目前最好的效果能达到BLEU值30左右， text-retrieval  recall@5 能有35， graph-retrieval能达到100% （作者解释是这个任务比较简单）。
 
 ### Text-to-Table A New Way of Information Extraction 
+
+Tag:Table2Text 
 
 https://arxiv.org/pdf/2109.02707.pdf
 
@@ -458,6 +470,8 @@ https://arxiv.org/pdf/2109.02707.pdf
 在实验结果方面，在Rotowire, E2E, Wikitabletext ，WikiBio 数据集上进行了实验，比较的方法基本是使用RE抽取关系，然后再构成表格。 评价指标就是和标准表对比，如果一个cell和值，column header, row header都一致，就算正确，然后计算  Pre, Rec, F1。 从结果上看，本文使用的改进Seq2Seq方法在其中三个数据集取得了最好的F1值。 但比Vanilla Seq2Seq方法的提升并不多。 
 
 ### BART Denoising Sequence-to-Sequence Pre-training for Natural Language Generation Translation and Comprehension 
+
+Tag:预训练模型
 
 https://aclanthology.org/2020.acl-main.703.pdf
 
@@ -474,14 +488,17 @@ BART 是一个使用去噪自动编码器进行预训练的seq2seq模型。 在B
 
 ### Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer 
 
+Tag:预训练模型
+
 https://arxiv.org/pdf/1910.10683.pdf
 
 Journal of Machine Learning Research 21 (2020) 
 
 著名的T5模型，T5是Text-to-Text Transfer Transformer的缩写。 主要的思想是把所有的nlp任务都建模成了一个 text-to-text 任务，使用了一个encoder-decoder的transformer架构来学习几乎所有任务， 取得了不错的效果。 本文的特点是进行了非常大量的实验
 
-
 ### Improving Language Understanding by Generative Pre-Training
+
+Tag:预训练模型
 
 https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf
 
@@ -497,8 +514,9 @@ GPT 系列的第一篇论文， 最近相对预训练模型系列进行研究，
 
 实验效果： 在12个任务中的9个任务中都取得了最优效果。
 
-
 ### Language Models are unsupervised multitask learners
+
+Tag:预训练模型
 
 https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
 
@@ -515,8 +533,9 @@ GPT2论文初看好像改动不是很大， 但总结下来有两点， 1是提�
 
 实验效果： 在zero-shot setting下，在8个语言建模中的7个取得了最好效果。 在阅读理解，翻译，摘要等任务的zero-setting也取得了还不错的效果，但是没达到SOTA。
 
-
 ### Language models are few shot learners
+
+Tag:预训练模型
 
 https://papers.nips.cc/paper/2020/file/1457c0d6bfcb4967418bfb8ac142f64a-Paper.pdf
 
@@ -532,8 +551,9 @@ GPT3模型仍然是相对于GPT2模型的一个增量改进， 其实并没有�
 
 实验结果： 在 语言建模任务上， 在 zero-shot setting 下就能超过SOTA，在非常多其他的任务上比如翻译，问答也能使用  zero-shot setting 或者  one-shot setting  达到最优效果或者接近最优效果。
 
-
 ### Its Not Just Size That Matters Small Language Models Are Also Few-Shot Learners
+
+Tag:预训练模型
 
 https://aclanthology.org/2021.naacl-main.185.pdf
 
@@ -554,6 +574,8 @@ GPT3 模型在很多任务的 few-shot learning 设定上取得了非常出色�
 
 ### KnowPrompt Knowledge-aware Prompt-tuning with Synergistic Optimization for Relation Extraction 
 
+Tag:Prompt
+
 https://arxiv.org/pdf/2104.07650.pdf
 
 近期，prompt-tuning 方法在 few-shot setting 下取得了不错的进展，但是在关系抽取领域中，如何更好的设计prompt仍然是一个需要领域专家的工作。 本文提出了一个将知识引入 prompt-tuning 的方法来去解决关系抽取问题。
@@ -563,8 +585,9 @@ https://arxiv.org/pdf/2104.07650.pdf
 2. 在实体前后加入特殊符号 [sub] 和 [obj], 使用实体类型对应的向量来进行初始化。  把关系向量使用其中包含单词的向量的来初始化。 然后设置了一个 KE loss， 就是把构成三元组的实体 |h+r -t|尽量小，再负采用一些数据，这些数据的 |h+r -t|尽量大， 有点对比学习的意思。
 实验效果，在5个数据集的标准设定和低资源设定下都取得了不错的效果。
 
-
 ### Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference 
+
+Tag:Prompt
 
 EACL 2021
 
@@ -584,6 +607,8 @@ PET把很多NLP任务建模成了以下步骤：
 
 ### Bidirectional Transition-Based Dependency Parsing 
 
+Tag:机器翻译
+
 https://ojs.aaai.org//index.php/AAAI/article/view/4733
 
 AAAI-2019
@@ -602,6 +627,8 @@ Joint Decoding Guided by Dynamic Oracle:  这个decoding方法用到了Dynamic O
 
 ### Constrained Language Models Yield Few-Shot Semantic Parsers 
 
+Tag:语义解析
+
 https://arxiv.org/pdf/1902.09492.pdf
 
 这篇文章探索了 大规模预训练模型能否在 semantic parsing 任务上做  Few-Shot  learning， 由于semantic parsing 任务生成的都是结构化表示，但预训练模型生成的都是自然语言，所以本文首先建立出了一种可控标准的英文表达形式（这种形式和结构化表示是一一对应的），可以通过规则化的代码相互转化。  然后控制预训练模型去生成这种可控的标准英文表达形式。  
@@ -610,14 +637,17 @@ https://arxiv.org/pdf/1902.09492.pdf
 
 实验结果，在Overnight,Break , SMCalFlow 数据集上都在few-shot setting下进行了实验， 在overnight数据集上能取得和全量数据类似的结果，在其他两个数据集上离全量数据集SOTA方法差距还比较大。
 
-
 ### HTLM: Hyper-Text Pre-Training and Prompting of Language Models 
+
+Tag:预训练模型
 
 https://arxiv.org/pdf/2107.06955.pdf
 
 使用大量爬取的html数据预训练得到的模型， 使用了类似BART的预训练方法，用HTML里自带的prompt达成里一个效果还不错的zero-shot summarization， 还可以进行一些HTML补全等任务。
 
 ### Pre-train Prompt and Predict A Systematic Survey of Prompting Methods in Natural Language Processing 
+
+Tag:Prompt
 
 https://arxiv.org/pdf/2107.13586
 
@@ -643,6 +673,8 @@ Applications: 目前 prompt方法相关的应用，只列举几个比较关心�
 
 ### NumER A Fine-Grained Numeral Entity Recognition Dataset 
 
+Tag:数据集
+
 https://link.springer.com/content/pdf/10.1007%2F978-3-030-80599-9.pdf
 
 NLDB 2021
@@ -654,6 +686,8 @@ NLDB 2021
 最终也仅仅采用了一些比较基础的baseline去实验，发现仅仅用预训练模型效果就已经不错了。
 
 ### Asynchronous Bidirectional Decoding for Neural Machine Translation 
+
+Tag:机器翻译
 
 https://arxiv.org/pdf/1801.05122.pdf
 
@@ -667,6 +701,8 @@ AAAI 2018
 
 ### Agreement-Based Joint Training for Bidirectional Attention-Based Neural Machine Translation
 
+Tag:机器翻译
+
 https://www.ijcai.org/Proceedings/16/Papers/392.pdf
 
 IJCAI 2016
@@ -677,8 +713,9 @@ IJCAI 2016
 
 实验结果上，提升的幅度还是不算小，说明了结果的有效性。
 
-
 ### Data Augmentation with Hierarchical SQL-to-Question Generation for Cross-domain Text-to-SQL Parsing 
+
+Tag:Text2SQL
 
 EMNLP 2021， 但是目前阅读的版本应该和最终版本是有差距的，目前应该读不到最终版本。
 
@@ -690,8 +727,9 @@ cross domain text-to-sql目前主要面临了两大问题，1是测试数据库�
 
 实验方面，在WikiSQL， Spider ， DuSQL 三个数据上的 seen 和 unseen两个设定上进行了实验，发现了都是有提升的。  比较有意思的实验是三种训练策略，使用 pre-train方法竟然是提升最小的。
 
-
 ### Exploring Underexplored Limitations of Cross-Domain Text-to-SQL Generalization 
+
+Tag:Text2SQL
 
 EMNLP 2021 短文
 
@@ -701,8 +739,9 @@ https://arxiv.org/pdf/2109.05157.pdf
 
 最终在实验结果上也表明，在新的验证集上，模型的表现并不好，这也就说明了目前的模型并不能够很好的建模领域知识。 同时一个实验数据也非常有意思，模型倾向于把预测order的顺序反向， 这样主要是由于训练数据label不均匀，所以后续解决这个问题可能也会成为一个方向。
 
-
 ### Natural SQL: Making SQL Easier to Infer from Natural Language Specifications 
+
+Tag:Text2SQL
 
 EMNLP 2021 findings
 
@@ -715,6 +754,8 @@ https://arxiv.org/pdf/2109.05153.pdf
 同时由于本文的value只存在于where语句中，可以限制按照顺序生成，所以这种表示方法容易生成比较高执行准确率的模型。 最终效果，在执行准确率和exact match 都有提升，尤其在执行准确率上取得了SOTA效果。
 
 ### TinyBERT Distilling BERT for Natural Language Understanding
+
+Tag:预训练模型
 
 https://aclanthology.org/2020.findings-emnlp.372.pdf
 
@@ -730,6 +771,8 @@ EMNLP 2020
 
 ### UNSUPERVISED DATA AUGMENTATION FOR CONSISTENCY TRAINING
 
+Tag:半监督学习
+
 https://arxiv.org/pdf/1904.12848.pdf
 
 NeurIPS 2020 
@@ -741,6 +784,8 @@ NeurIPS 2020
 在多个领域的多个数据集都取得了不错的结果。
 
 ### GRAPPA GRAMMAR-AUGMENTED PRE-TRAINING FOR TABLE SEMANTIC PARSING
+
+Tag:预训练模型  Tag:语义解析
 
 https://arxiv.org/pdf/2009.13845.pdf
 
@@ -758,6 +803,8 @@ ICLR 2021
 
 ### Learning Contextual Representations for Semantic Parsing with Generation-Augmented Pre-Training 
 
+Tag:预训练模型  Tag:语义解析
+
 AAAI 2021
 
 https://ojs.aaai.org/index.php/AAAI/article/view/17627
@@ -774,6 +821,8 @@ https://ojs.aaai.org/index.php/AAAI/article/view/17627
 
 ### Calibrate Before Use Improving Few-Shot Performance of Language Models
 
+Tag:预训练模型
+
 http://arxiv.org/abs/2102.09690 
 
 ICML 2021
@@ -787,6 +836,8 @@ ICML 2021
 作者提出基于上下文的 calibration 策略，在给定 prompt 的情况下，先将输入的带预测文本置成 N/A 得到对应的概率，然后用这个分布再对待预测文本的预测进行校正。作者发现这种方案能够大比较明显地提高模型的预测效果，同时也对 variance 起到了一定的降低的效果。
 
 ### Zero-Shot Text-to-SQL Learning with Auxiliary Task 
+
+Tag:Text2SQL  Tag:元学习
 
 https://ojs.aaai.org/index.php/AAAI/article/view/6246
 
@@ -802,6 +853,8 @@ github地址 https://github.com/JD-AI-Research-Silicon-Valley/auxiliary-task-for
 
 ### Leveraging Table Content for Zero-shot Text-to-SQL with Meta-Learning 
 
+Tag:Text2SQL
+
 https://www.aaai.org/AAAI21Papers/AAAI-6324.ChenY.pdf
 
 AAAI 2021
@@ -816,6 +869,8 @@ Github地址:   https://github.com/qjay612/meta_learning_NL2SQL
 
 ### Prefix-to-SQL Text-to-SQL Generation from Incomplete User Questions 
 
+Tag:Text2SQL
+
 https://arxiv.org/pdf/2109.13066.pdf
 
 提出了一个新的数据评价方式，从已经存在的各个数据集中进行构造，根据用户输入到一半的文本推断出SQL语句，可能只需要满足top-k准确率就可以了。
@@ -823,6 +878,8 @@ https://arxiv.org/pdf/2109.13066.pdf
 在各个数据集上的准确率目前是参差不齐的。
 
 ### DoT An efficient Double Transformer for NLP tasks with tables 
+
+Tag:表格相关
 
 ACL 2021 findings
 
@@ -842,8 +899,9 @@ https://aclanthology.org/2020.findings-emnlp.27.pdf
 
 研究的主要任务是 Table entailment， 判断一个句子是否能被表格中的内容支持， 是一个二分类任务， 类似于Fact-check任务，作者也是用了数据增强预训练的方式来做的。
 
-
 ### Re-examining the Role of Schema Linking in Text-to-SQL 
+
+Tag:Text2SQL
 
 https://aclanthology.org/2020.emnlp-main.564.pdf
 
@@ -859,8 +917,9 @@ EMNLP 2020
 
 在实验上，作者在几个下面几个设定下进行了实验： base model:  只进行了 encoder和decoder部分，没有进行任何的 scema-linking 模块。  auto：使用自动标注的 schema-linking模块进行训练。 hard reference： 不加权了，直接把概率最大的两个 concat 起来。oracle：不使用schema-linking模块，直接把oracle的结果拿来，同时包括了dev 集和train集。  在auto上是取得了最佳效果，能提升10个点以上。 本文的结论也就是说 schema-linking是一个十分重要的模块了，能够让一个简单的BERT模型取得十分好的效果。
 
-
 ### Translate & Fill Improving Zero-Shot Multilingual Semantic Parsing with Synthetic Data
+
+Tag:语义解析
 
 https://arxiv.org/pdf/2109.04319.pdf
 
@@ -868,8 +927,9 @@ https://arxiv.org/pdf/2109.04319.pdf
 
 本文的大概思想是设计了一个框架，借助了跨语言的预训练模型，采用了一种先翻译句子，再让预训练模型去fill的过程来学习，再zero-shot 的情况学到一种不错的跨语言 sementic parsing 工作。
 
-
 ### Context-Aware Attention Network for Image-Text Retrieval
+
+Tag:视觉相关
 
 CVPR 2020
 
@@ -881,6 +941,8 @@ https://openaccess.thecvf.com/content_CVPR_2020/papers/Zhang_Context-Aware_Atten
 
 ### Table2Vec: Neural Word and Entity Embeddings for Table Population and Retrieval 
 
+Tag:表格相关
+
 https://arxiv.org/pdf/1906.00041.pdf
 
 SIGIR2019 short paper
@@ -888,6 +950,8 @@ SIGIR2019 short paper
 这篇文章使用 table 做了一个预训练模型，大概使用了类似于word2vec的方法，最终在Row Population， column population, Table Retrieval  三个下游任务上都取得了不错的效果。
 
 ### CPT COLORFUL PROMPT TUNING FOR PRE-TRAINED VISION-LANGUAGE MODELS 
+
+Tag:Prompt Tag:视觉相关
 
 https://arxiv.org/pdf/2109.11797.pdf
 
@@ -898,6 +962,8 @@ https://arxiv.org/pdf/2109.11797.pdf
 最终在zero-shot 和 few-shot setting 上取得了比较大的进步。
 
 ### NSP-BERT A Prompt-based Zero-Shot Learner Through an Original Pre-training Task Next Sentence Prediction 
+
+Tag:预训练模型
 
 https://arxiv.org/pdf/2109.03564.pdf
 
@@ -910,6 +976,8 @@ github 地址 https://github.com/sunyilgdx/NSP-BERT
 最终的实验表明，NSP-BERT的 prompt learning 取得了十分不错的效果，在 few-shot learning 的诸多baseline上都有很好的效果。
 
 ### TAPEX Table Pre-training via Learning a Neural SQL Executor 
+
+Tag:Text2SQL
 
 ICLR 2022 投稿文章
 
@@ -932,8 +1000,9 @@ AAAI 2021
 3. Order-Agnostic Positional Embeddings ， 使用 M-BERT 中的固定位置编码， 并且不更新这个编码，效果也是大多数都不好。
 4. 对M-BERT不调节位置进行fine-tune, 在英语上下降，在其他语言上都有提升。
 
-
 ### Multiplicative Position-aware Transformer Models for Language Understanding
+
+Tag:Transformer
 
 
 https://arxiv.org/pdf/2109.12788.pdf
@@ -962,6 +1031,8 @@ https://arxiv.org/pdf/2109.12788.pdf
 
 ### Semi-Supervised Learning for Neural Machine Translation 
 
+Tag:机器翻译
+
 https://aclanthology.org/P16-1185.pdf
 
 ACL 2016
@@ -988,6 +1059,8 @@ https://openreview.net/pdf?id=q23I9kJE3gA
 
 ### ELECTRA PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS 
 
+Tag:预训练模型
+
 BERT模型采用的 mask language 模型只利用了一部分语言特征，也就是mask掉的那15%，这样被认为计算利用率不高。
 
 所以本文提出了 ELECTRA 是 Efficiently Learning an Encoder that Classifies Token Replacements Accurately的简称， 设计了一个新的预训练任务，即对原本的句子使用一个小的MLM模型进行替换，再让ELECTRA去判断哪个词被替换了，这样就大大的提升了计算利用率，把所有的文本都利用到了，也有一点对抗学习的感觉。
@@ -995,6 +1068,8 @@ BERT模型采用的 mask language 模型只利用了一部分语言特征，也�
 最终的实验效果上，ELECTRA 模型的训练时间显著减少，并且取得了比BERT模型更优秀的效果。
 
 ### End-to-End Object Detection with Transformers 
+
+Tag:视觉相关
 
 https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460205.pdf
 
@@ -1008,6 +1083,8 @@ DEtection TRansformer， 一个使用 transformer的方法来做 object detectio
 
 ### PIX2SEQ A LANGUAGE MODELING FRAMEWORK FOR OBJECT DETECTION 
 
+Tag:视觉相关
+
 https://arxiv.org/pdf/2109.10852.pdf
 
 这个工作也是采用 transformer 来去解决计算机视觉中的目标检测问题，和上一篇DETR方法不同，这篇工作的输出是一个自回归的序列。
@@ -1017,6 +1094,8 @@ https://arxiv.org/pdf/2109.10852.pdf
 最终的实验效果，和DETR 类似，但是直接以序列的方式建模目标检测的思路还是让人眼前一亮的。 
 
 ### TextAttack A Framework for Adversarial Attacks, Data Augmentation, and Adversarial Training in NLP
+
+Tag:对抗学习
 
 https://aclanthology.org/2020.emnlp-demos.16.pdf
 
@@ -1029,6 +1108,8 @@ TextAttack 把文本攻击分成了四个模块，分别是goal function（判�
 同时这个框架也集成了之前的好多工作，具有的特点是模型无关（可以在任务模型上应用），并且可以帮助进行数据增强和对抗学习。
 
 ### BERT-ATTACK Adversarial Attack Against BERT Using BERT
+
+Tag:对抗学习
 
 https://aclanthology.org/2020.emnlp-main.500.pdf
 
@@ -1044,6 +1125,8 @@ EMNLP 2020
 
 ### Combating Adversarial Misspellings with Robust Word Recognition
 
+Tag:对抗学习
+
 https://aclanthology.org/P19-1561.pdf
 
 ACL 2019
@@ -1055,6 +1138,8 @@ ACL 2019
 最终的实验也说明该方法在一定程度上起到了帮助。
 
 ### SeaD End-to-end Text-to-SQL Generation with Schema-aware Denoising 
+
+Tag:Text2SQL
 
 https://openreview.net/pdf?id=Dgx157I8729
 
@@ -1068,6 +1153,8 @@ seq2seq 中encoder部分还是拼接了问题和column，同时增加了一些�
 
 ### Measuring and Improving Compositional Generalization in Text-to-SQL via Component Alignment 
 
+Tag:Text2SQL
+
 https://openreview.net/pdf?id=-B3vVVeVyTr
 
 ACL 2022 匿名投稿
@@ -1075,6 +1162,8 @@ ACL 2022 匿名投稿
 这篇文章主要研究Text-to-SQL 中的组合泛化性问题， 对之前的SPIDER数据集进行了更加细粒度的标注，产生了SPIDER-SS数据集，后面又采用了一些方法来帮助解决问题。
 
 ### RoBERTa A Robustly Optimized BERT Pretraining Approach 
+
+Tag:预训练模型
 
 https://arxiv.org/pdf/1907.11692.pdf
 
@@ -1091,6 +1180,8 @@ https://arxiv.org/pdf/1907.11692.pdf
 
 ### Disentangled Sequence to Sequence Learning for Compositional Generalization 
 
+Tag:语义解析
+
 https://arxiv.org/pdf/2110.04655.pdf
 
 这篇文章研究 seq2seq model 为什么不能组合泛化的原因， 一个很重要的假设是， seq2seq model 学习不到局部的context-free,一个关系的编码容易受到另一个关系的影响，这个叫做entangled（相互纠缠）。
@@ -1103,7 +1194,7 @@ https://arxiv.org/pdf/2110.04655.pdf
 
 ### Incorporating Extra Knowledge to Enhance Word Embedding 
 
-Tag:词向量
+Tag:外部知识引入 Tag:词向量
 
 IJCAI-20  survey paper
 
@@ -1143,6 +1234,8 @@ ACL 2019
 最终增加了各个任务后确实取得了提升。
 
 ### Mind the Style of Text Adversarial and Backdoor Attacks Based on Text Style Transfer
+
+Tag:对抗学习
 
 https://scholar.google.com/scholar?cluster=3350315178608645607&hl=zh-CN&as_sdt=0,5
 
