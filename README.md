@@ -80,8 +80,10 @@
   * [Disentangled Sequence to Sequence Learning for Compositional Generalization](#disentangled-sequence-to-sequence-learning-for-compositional-generalization)
   * [Incorporating Extra Knowledge to Enhance Word Embedding](#incorporating-extra-knowledge-to-enhance-word-embedding)
   * [Self-Supervised Learning for Contextualized Extractive Summarization](#self-supervised-learning-for-contextualized-extractive-summarization)
+  * [Mind the Style of Text Adversarial and Backdoor Attacks Based on Text Style Transfer](#mind-the-style-of-text-adversarial-and-backdoor-attacks-based-on-text-style-transfer)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 **所有Tag: 方便检索**
 
@@ -1140,4 +1142,15 @@ ACL 2019
 
 最终增加了各个任务后确实取得了提升。
 
+### Mind the Style of Text Adversarial and Backdoor Attacks Based on Text Style Transfer
+
+https://scholar.google.com/scholar?cluster=3350315178608645607&hl=zh-CN&as_sdt=0,5
+
+这篇文章也是做针对自然语言处理模型的攻击的，主要研究文本风格对自然语言模型的攻击效果，因为文本风格是一个和具体模型无关的特征，模型一般不会去关心这个点，所以文本风格比较适合拿来做攻击。
+
+具体来说，本文使用了STRAP 模型来产生不同风格的文本，该模型主要是采用了GPT2模型在back-translation自动产生的数据上进行训练，并且支持产生多种不同的风格。
+
+在攻击方法上，本文同时尝试了Adversarial Attacks， Backdoor Attacks， Adversarial Attacks 是只改inference阶段。不断生成同语义但是不同风格的文本，直到攻击成功， Backdoor Attacks是在训练的阶段，把语义风格转换后的数据加入到训练集中， 让模型产生偏差。
+
+最终在大多数case上都有攻击效果。
 
