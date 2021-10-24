@@ -2,6 +2,7 @@
 
 ![](https://img.shields.io/badge/自然语言处理-brown)  ![](https://img.shields.io/badge/机器翻译-bleu) ![](https://img.shields.io/badge/语义解析-red) 
 
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -82,6 +83,7 @@
   * [Self-Supervised Learning for Contextualized Extractive Summarization](#self-supervised-learning-for-contextualized-extractive-summarization)
   * [Mind the Style of Text Adversarial and Backdoor Attacks Based on Text Style Transfer](#mind-the-style-of-text-adversarial-and-backdoor-attacks-based-on-text-style-transfer)
   * [A MUTUAL INFORMATION MAXIMIZATION PERSPECTIVE OF LANGUAGE REPRESENTATION LEARNING](#a-mutual-information-maximization-perspective-of-language-representation-learning)
+  * [Unsupervised Pretraining for Sequence to Sequence Learning](#unsupervised-pretraining-for-sequence-to-sequence-learning)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1257,4 +1259,18 @@ https://arxiv.org/pdf/1910.08350.pdf
 ICLR 2020
 
 这篇文章对各种表示学习方法提出了一个统一的视角，使用一个最大化互信息的理论框架来解释表示学习模型。把skip-gram, bert, XLNet 都统一到了这个模型当中，并且指出skip-gram 和BERT其实是最大化一个相似的目标式。  作者使用一个直接优化互信息的自监督方法进行实验， 能够取得和BERT类似的效果。
+
+### Unsupervised Pretraining for Sequence to Sequence Learning
+
+Tag:机器翻译 Tag:预训练模型
+
+ACL 2017
+
+https://arxiv.org/pdf/1611.02683.pdf
+
+相对比较早期的关于预训练的文章，这篇文章针对机器翻译做了一些预训练，一般机器翻译的架构都是encoder-decoder架构，这篇文章假设在encoder和decoder分别独立的情况下， encoder和decoder应该分别是两种语言的语言模型。
+
+所以预训练的方式就是将encoder和decoder分别在两种语言上进行预训练模型的pre-train, 最后在有标注数据集上进行fine-tune。
+
+实验结果在BLEU指标上提升了1.3个点。
 
