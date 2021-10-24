@@ -81,6 +81,7 @@
   * [Incorporating Extra Knowledge to Enhance Word Embedding](#incorporating-extra-knowledge-to-enhance-word-embedding)
   * [Self-Supervised Learning for Contextualized Extractive Summarization](#self-supervised-learning-for-contextualized-extractive-summarization)
   * [Mind the Style of Text Adversarial and Backdoor Attacks Based on Text Style Transfer](#mind-the-style-of-text-adversarial-and-backdoor-attacks-based-on-text-style-transfer)
+  * [A MUTUAL INFORMATION MAXIMIZATION PERSPECTIVE OF LANGUAGE REPRESENTATION LEARNING](#a-mutual-information-maximization-perspective-of-language-representation-learning)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1246,4 +1247,14 @@ https://scholar.google.com/scholar?cluster=3350315178608645607&hl=zh-CN&as_sdt=0
 在攻击方法上，本文同时尝试了Adversarial Attacks， Backdoor Attacks， Adversarial Attacks 是只改inference阶段。不断生成同语义但是不同风格的文本，直到攻击成功， Backdoor Attacks是在训练的阶段，把语义风格转换后的数据加入到训练集中， 让模型产生偏差。
 
 最终在大多数case上都有攻击效果。
+
+### A MUTUAL INFORMATION MAXIMIZATION PERSPECTIVE OF LANGUAGE REPRESENTATION LEARNING 
+
+Tag:词向量 Tag:自监督学习
+
+https://arxiv.org/pdf/1910.08350.pdf
+
+ICLR 2020
+
+这篇文章对各种表示学习方法提出了一个统一的视角，使用一个最大化互信息的理论框架来解释表示学习模型。把skip-gram, bert, XLNet 都统一到了这个模型当中，并且指出skip-gram 和BERT其实是最大化一个相似的目标式。  作者使用一个直接优化互信息的自监督方法进行实验， 能够取得和BERT类似的效果。
 
