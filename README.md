@@ -2,7 +2,6 @@
 
 ![](https://img.shields.io/badge/自然语言处理-brown)  ![](https://img.shields.io/badge/机器翻译-bleu) ![](https://img.shields.io/badge/语义解析-red) 
 
-
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
@@ -84,8 +83,11 @@
   * [Mind the Style of Text Adversarial and Backdoor Attacks Based on Text Style Transfer](#mind-the-style-of-text-adversarial-and-backdoor-attacks-based-on-text-style-transfer)
   * [A MUTUAL INFORMATION MAXIMIZATION PERSPECTIVE OF LANGUAGE REPRESENTATION LEARNING](#a-mutual-information-maximization-perspective-of-language-representation-learning)
   * [Unsupervised Pretraining for Sequence to Sequence Learning](#unsupervised-pretraining-for-sequence-to-sequence-learning)
+  * [Transformer-XL Attentive Language Models Beyond a Fixed-Length Context](#transformer-xl-attentive-language-models-beyond-a-fixed-length-context)
+  * [XLNet Generalized Autoregressive Pretraining for Language Understanding](#xlnet-generalized-autoregressive-pretraining-for-language-understanding)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 **所有Tag: 方便检索**
 
@@ -1273,4 +1275,40 @@ https://arxiv.org/pdf/1611.02683.pdf
 所以预训练的方式就是将encoder和decoder分别在两种语言上进行预训练模型的pre-train, 最后在有标注数据集上进行fine-tune。
 
 实验结果在BLEU指标上提升了1.3个点。
+
+### Transformer-XL Attentive Language Models Beyond a Fixed-Length Context
+
+Tag:Transformer 
+
+ACL 2019
+
+https://arxiv.org/abs/1901.02860
+
+本文主要研究如何赋予编码器捕获长距离依赖的能力。在基于Transformer的模型中，允许词之间直接建立联系【self-attention】，能够更好地捕获长期依赖关系，但是还是有限制。
+
+Transformer最长建模512，更长的可能就会失去一些语义信息，所以提出片段级递归机制(segment-level recurrence mechanism)，引入一个记忆(memory)模块（类似于cache或cell），循环用来建模片段之间的联系。 并且提出了提出相对位置编码机制(relative position embedding scheme)，代替绝对位置编码。
+
+在语言模型上取得了非常优异的效果。
+
+### XLNet Generalized Autoregressive Pretraining for Language Understanding
+
+Nips 2019
+
+https://proceedings.neurips.cc/paper/2019/file/dc6a7e655d7e5840e66733e9ee67cc69-Paper.pdf
+
+Tag:预训练模型
+
+也是一个经典的预训练模型，基于AR的预训练模型只有从左到右的上下文信息。 基于AE的预训练模型 pretrain 和 train不一致。 
+
+本文结合AR LM和AE LM，在Transformer-XL的基础上提出generalized autoregressive method，XLNet。
+
+所有的分解序列作为一个集合，对所有采样序列，XLNet按照AR LM的计算方式求对数似然期望的极大值。通常，当前token的上文包含left和right的tokens：比如原始序列为1-2-3-4，分解序列中采样一个为2-4-1-3，那么如果当前token为3，XLNet的方式就可以看到所有的信息【当然这也是理想情况】，而AR LM只能看到1和2。
+
+引入Transformer-XL的segment recurrence mechanism和relative encoding scheme。
+
+引入Masked Two-Stream Self-Attention解决PLM出现的目标预测歧义【the ambiguity in target prediction】问题。举个例子，比如分解序列中采样一个为2-4-6-1-3-5的序列，假设要预测位置[1]的token，按照经典的Transformer来计算next-token的概率分布，位置[1]的token的概率就是通过[2,4,6]位置上的tokens来计算。但是如果以这种方式去预测next-token，这对[3,5]的预测就会产生影响，因为如果[1]的预测出现错误会把错误传给后面。对后面每一个token的预测，需要建立在之前token都已知的条件下。因此本文计算了两个self-attention计算方式，一个mask当前词，attention值记为g；一个已知当前词，attention值记为h。最后假设self-attention一共有M层，用第M层、t时刻的g_t，去预测词x_t。
+
+最终，在非常多的任务上都取得了很大的提升。
+
+
 
