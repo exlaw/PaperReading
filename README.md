@@ -85,6 +85,7 @@
   * [Unsupervised Pretraining for Sequence to Sequence Learning](#unsupervised-pretraining-for-sequence-to-sequence-learning)
   * [Transformer-XL Attentive Language Models Beyond a Fixed-Length Context](#transformer-xl-attentive-language-models-beyond-a-fixed-length-context)
   * [XLNet Generalized Autoregressive Pretraining for Language Understanding](#xlnet-generalized-autoregressive-pretraining-for-language-understanding)
+  * [Understanding Back-Translation at Scale](#understanding-back-translation-at-scale)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1309,6 +1310,27 @@ Tag:预训练模型
 引入Masked Two-Stream Self-Attention解决PLM出现的目标预测歧义【the ambiguity in target prediction】问题。举个例子，比如分解序列中采样一个为2-4-6-1-3-5的序列，假设要预测位置[1]的token，按照经典的Transformer来计算next-token的概率分布，位置[1]的token的概率就是通过[2,4,6]位置上的tokens来计算。但是如果以这种方式去预测next-token，这对[3,5]的预测就会产生影响，因为如果[1]的预测出现错误会把错误传给后面。对后面每一个token的预测，需要建立在之前token都已知的条件下。因此本文计算了两个self-attention计算方式，一个mask当前词，attention值记为g；一个已知当前词，attention值记为h。最后假设self-attention一共有M层，用第M层、t时刻的g_t，去预测词x_t。
 
 最终，在非常多的任务上都取得了很大的提升。
+
+### Understanding Back-Translation at Scale 
+
+Tag:机器翻译
+
+ACL 2018
+
+https://aclanthology.org/D18-1045.pdf
+
+这篇文章对 beam search 进行了更加详细的研究，主要在有大规模数据的情况下。 研究了5种设定下的实验
+
+1. sampling: 直接从翻译模型中输入y, 采样得到一个x’ （随机采样）
+2. beam search  根据beam search得到x‘, 这样x’的质量较高
+3. beam + noise 在beam search的过程中, 添加给token添加随机噪声
+4. greedy 根据输入y, 翻译时每一步采用最好的一个token, 翻译得到x’
+5. top 10 根据输入y, 翻译时每一个在前10个最可能的token中采样得到下一个token
+
+在平行预料比较多的情况下，带有噪音的采样方法效果好一些(beam+noise, sampling), 原因大致可以解释为去噪的影响, 噪声多了, 效果会好一些。 在平行预料少的情况下，可能还是beam search效果更好一点。
+
+
+
 
 
 
