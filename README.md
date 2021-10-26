@@ -88,8 +88,10 @@
   * [Understanding Back-Translation at Scale](#understanding-back-translation-at-scale)
   * [SQuAD: 100,000+ Questions for Machine Comprehension of Text](#squad--100-000--questions-for-machine-comprehension-of-text)
   * [Know What You Don’t Know: Unanswerable Questions for SQuAD](#know-what-you-don-t-know--unanswerable-questions-for-squad)
+  * [The Power of Prompt Tuning for Low-Resource Semantic Parsing](#the-power-of-prompt-tuning-for-low-resource-semantic-parsing)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 **所有Tag: 方便检索**
 
@@ -1359,6 +1361,18 @@ SQuAD2.0 数据集，和SQuAD1.0 数据集相比，增加了不可回答的问�
 SQuAD2.0 数据集比1.0更有挑战性，在SQuAD1.0上最好的模型在 SQuAD2.0上只有66.3% 的 F1 得分。
 
 但这个数据集目前也已经刷爆了，人类水平是89.452，目前的模型已经达到了93.214。
+
+### The Power of Prompt Tuning for Low-Resource Semantic Parsing 
+
+Tag:Prompt
+
+https://arxiv.org/pdf/2110.08525.pdf
+
+这篇文章主要是一个实验论文，主要研究了两个点。
+
+1.  Prompt Tuning  在低资源语义解析上的作用，实验发现确实是有效果的，在低资源上稳定超过 fine-tune (必须在 large 模型)， 模型越大， prompt的效果越好。  
+2.  Canonical 形式和 Meaning 形式的区别，作者发现，在 T5-large的设定下， 趋势区别是很小的，T5-small 和 T5-base差距还是比较大。  但总体上 Canonical 形式并没有之前模型说的那么大的优势。
+
 
 
 
