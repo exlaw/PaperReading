@@ -86,9 +86,10 @@
   * [Transformer-XL Attentive Language Models Beyond a Fixed-Length Context](#transformer-xl-attentive-language-models-beyond-a-fixed-length-context)
   * [XLNet Generalized Autoregressive Pretraining for Language Understanding](#xlnet-generalized-autoregressive-pretraining-for-language-understanding)
   * [Understanding Back-Translation at Scale](#understanding-back-translation-at-scale)
+  * [SQuAD: 100,000+ Questions for Machine Comprehension of Text](#squad--100-000--questions-for-machine-comprehension-of-text)
+  * [Know What You Don’t Know: Unanswerable Questions for SQuAD](#know-what-you-don-t-know--unanswerable-questions-for-squad)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 **所有Tag: 方便检索**
 
@@ -1329,6 +1330,35 @@ https://aclanthology.org/D18-1045.pdf
 5. top 10 根据输入y, 翻译时每一个在前10个最可能的token中采样得到下一个token
 
 在平行预料比较多的情况下，带有噪音的采样方法效果好一些(beam+noise, sampling), 原因大致可以解释为去噪的影响, 噪声多了, 效果会好一些。 在平行预料少的情况下，可能还是beam search效果更好一点。
+
+### SQuAD: 100,000+ Questions for Machine Comprehension of Text 
+
+Tag:数据集 Tag:问答
+
+https://arxiv.org/pdf/1606.05250.pdf
+
+ACL 2016
+
+著名的 SQuAD 数据集， 机器阅读理解领域的重要数据集。 包含了在536篇文章上的 107,785 个问题-答案对。  
+
+包含了非常多种的答案类型，有Date 、Other Numeric 、 Person 、Location、Other Entity、Common Noun Phrase、Adjective Phrase、Verb Phrase、Clause 、Other  等类型。 并且很多回答都需要一定的推理，因为问题和原文件的语法结构是有一些不同的。
+
+目前这个数据集感觉已经被刷爆了，human performance 是 91.221， 但是模型已经做到了95.719。
+
+
+### Know What You Don’t Know: Unanswerable Questions for SQuAD
+
+Tag:数据集 Tag:问答
+
+https://arxiv.org/pdf/1806.03822.pdf
+
+ACL 2018 best paper
+
+SQuAD2.0 数据集，和SQuAD1.0 数据集相比，增加了不可回答的问题，需要模型去主动的判断提出的问题是否能够在段落中找到依据。 把之前的数据集和 53775 个关于相同段落的、无法回答的新问题相结合。
+
+SQuAD2.0 数据集比1.0更有挑战性，在SQuAD1.0上最好的模型在 SQuAD2.0上只有66.3% 的 F1 得分。
+
+但这个数据集目前也已经刷爆了，人类水平是89.452，目前的模型已经达到了93.214。
 
 
 
