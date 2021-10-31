@@ -1,6 +1,6 @@
 ## 论文阅读
 
-![](https://img.shields.io/badge/PaperNumber-87-brightgreen) ![](https://img.shields.io/github/last-commit/exlaw/PaperReading?color=blue) 
+![](https://img.shields.io/badge/PaperNumber-88-brightgreen) ![](https://img.shields.io/github/last-commit/exlaw/PaperReading?color=blue) 
 
 个人论文阅读笔记，记录了所有读过的论文总结，基本每天更新。
 
@@ -92,6 +92,7 @@
   * [Know What You Don’t Know: Unanswerable Questions for SQuAD](#know-what-you-don-t-know--unanswerable-questions-for-squad)
   * [The Power of Prompt Tuning for Low-Resource Semantic Parsing](#the-power-of-prompt-tuning-for-low-resource-semantic-parsing)
   * [CLINE Contrastive Learning with Semantic Negative Examples for Natural Language Understanding](#cline-contrastive-learning-with-semantic-negative-examples-for-natural-language-understanding)
+  * [Prefix-Tuning Optimizing Continuous Prompts for Generation](#prefix-tuning-optimizing-continuous-prompts-for-generation)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1390,6 +1391,20 @@ https://arxiv.org/pdf/2107.00440.pdf
 首先使用同义词替换构造正例，然后使用反义词替换构造对比例子，这样使用三个loss对预训练模型进行重新调整学习，一个是MLM loss，一个是类似electra 的判断单词是否被替换过的loss,还有一个是对比学习loss。
 
 最终在各个数据集的contrastive 和 adversial case上都能取得最好的效果。
+
+### Prefix-Tuning Optimizing Continuous Prompts for Generation
+
+Tag:Prompt   Tag:Data2Text   Tag:预训练模型
+
+https://arxiv.org/pdf/2101.00190.pdf
+
+微调预训练模型可能成本也是非常昂昂贵的，所以有了很多针对这个方向的优化工作。 一个方向是轻量微调，只优化一部分参数，大概只优化2%-4%就可以有不错的效果。 
+
+本文使用前缀微调，针对生成任务，前缀完全是自由参数，这样调节起来开销就比较小。 本文主要实现了两个任务，分别是 table-to-text和摘要任务，分别是用了GPT-2和BART，对于BART这种模型，在输入和输出的部分都要增加前缀。
+
+直接更浅前缀参数会出现不稳定的情况，因此作者对前缀参数矩阵进行重参数化（多了一个MLP层）
+
+最终和fine-tune相比，只需要很少的参数量调节，在全量数据性能变化不大，在低资源设定下效果更好。
 
 
 
