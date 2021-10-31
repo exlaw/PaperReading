@@ -1,5 +1,5 @@
 ## 论文阅读
-![](https://img.shields.io/badge/PaperNumber-86-brightgreen)
+![](https://img.shields.io/badge/PaperNumber-87-brightgreen)
 
 ![](https://img.shields.io/badge/自然语言处理-brown)  ![](https://img.shields.io/badge/机器翻译-bleu) ![](https://img.shields.io/badge/语义解析-red) 
 
@@ -90,6 +90,7 @@
   * [SQuAD: 100,000+ Questions for Machine Comprehension of Text](#squad--100-000--questions-for-machine-comprehension-of-text)
   * [Know What You Don’t Know: Unanswerable Questions for SQuAD](#know-what-you-don-t-know--unanswerable-questions-for-squad)
   * [The Power of Prompt Tuning for Low-Resource Semantic Parsing](#the-power-of-prompt-tuning-for-low-resource-semantic-parsing)
+  * [CLINE Contrastive Learning with Semantic Negative Examples for Natural Language Understanding](#cline-contrastive-learning-with-semantic-negative-examples-for-natural-language-understanding)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1373,6 +1374,21 @@ https://arxiv.org/pdf/2110.08525.pdf
 
 1.  Prompt Tuning  在低资源语义解析上的作用，实验发现确实是有效果的，在低资源上稳定超过 fine-tune (必须在 large 模型)， 模型越大， prompt的效果越好。  
 2.  Canonical 形式和 Meaning 形式的区别，作者发现，在 T5-large的设定下， 趋势区别是很小的，T5-small 和 T5-base差距还是比较大。  但总体上 Canonical 形式并没有之前模型说的那么大的优势。
+
+
+### CLINE Contrastive Learning with Semantic Negative Examples for Natural Language Understanding
+
+Tag:对抗学习 Tag:预训练模型  Tag:自监督学习
+
+ACL. 2021
+
+https://arxiv.org/pdf/2107.00440.pdf
+
+目前的很多预训练模型容易收到轻微扰动的影响， 比如同义词替换可能使模型产生相反的输出（adversial case), 反义词替换可能使模型仍然有相同的输出（contrastive case）， 仅仅使用adversial training 的方法可能会使模型在 adversial case 上表现比较好，但是在 contrastive case 上表现不佳，所以本文提出了一个对比学习的方法来改善这一点。
+
+首先使用同义词替换构造正例，然后使用反义词替换构造对比例子，这样使用三个loss对预训练模型进行重新调整学习，一个是MLM loss，一个是类似electra 的判断单词是否被替换过的loss,还有一个是对比学习loss。
+
+最终在各个数据集的contrastive 和 adversial case上都能取得最好的效果。
 
 
 
