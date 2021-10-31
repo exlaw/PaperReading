@@ -2,6 +2,8 @@
 
 ![](https://img.shields.io/badge/PaperNumber-87-brightgreen) ![](https://img.shields.io/github/last-commit/exlaw/PaperReading?color=blue) 
 
+个人论文阅读笔记，记录了所有读过的论文总结，基本每天更新。
+
 - [论文阅读](#----)
   * [Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning](#exploring-auxiliary-reasoning-tasks-for-task-oriented-dialog-systems-with-meta-cooperative-learning)
   * [Awakening Latent Grounding from Pretrained Language Models for Semantic Parsing](#awakening-latent-grounding-from-pretrained-language-models-for-semantic-parsing)
