@@ -1,5 +1,5 @@
 ## 论文阅读
-![](https://img.shields.io/badge/PaperNumber-87-brightgreen)
+![](https://img.shields.io/badge/PaperNumber-87-brightgreen) ![](https://img.shields.io/github/last-commit/exlaw/PaperReading?color=blue) 
 
 ![](https://img.shields.io/badge/自然语言处理-brown)  ![](https://img.shields.io/badge/机器翻译-bleu) ![](https://img.shields.io/badge/语义解析-red) 
 
