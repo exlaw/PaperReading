@@ -1,6 +1,6 @@
 ## 论文阅读
 
-![](https://img.shields.io/badge/PaperNumber-88-brightgreen) ![](https://img.shields.io/github/last-commit/exlaw/PaperReading?color=blue) 
+![](https://img.shields.io/badge/PaperNumber-89-brightgreen) ![](https://img.shields.io/github/last-commit/exlaw/PaperReading?color=blue) 
 
 个人论文阅读笔记，记录了所有读过的论文总结，基本每天更新。
 
@@ -93,6 +93,7 @@
   * [The Power of Prompt Tuning for Low-Resource Semantic Parsing](#the-power-of-prompt-tuning-for-low-resource-semantic-parsing)
   * [CLINE Contrastive Learning with Semantic Negative Examples for Natural Language Understanding](#cline-contrastive-learning-with-semantic-negative-examples-for-natural-language-understanding)
   * [Prefix-Tuning Optimizing Continuous Prompts for Generation](#prefix-tuning-optimizing-continuous-prompts-for-generation)
+  * [Datasets  A Community Library for Natural Language Processing](#datasets--a-community-library-for-natural-language-processing)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -124,6 +125,7 @@
 * Tag:视觉相关
 * Tag:Transformer
 * Tag:问答
+* Tag:工具
 
 ### Exploring Auxiliary Reasoning Tasks for Task-oriented Dialog Systems with Meta Cooperative Learning 
 
@@ -1405,6 +1407,30 @@ https://arxiv.org/pdf/2101.00190.pdf
 直接更浅前缀参数会出现不稳定的情况，因此作者对前缀参数矩阵进行重参数化（多了一个MLP层）
 
 最终和fine-tune相比，只需要很少的参数量调节，在全量数据性能变化不大，在低资源设定下效果更好。
+
+### Datasets  A Community Library for Natural Language Processing 
+
+Tag:工具
+
+https://arxiv.org/pdf/2109.02846.pdf
+
+EMNLP 2021 best demo paper
+
+目前NLP领域存在着各种各样的数据集，datasets这个仓库想要去把所有的数据集给用户一个统一的接口。 并且提供了一些通用的处理工具。
+
+目前已经有了1762个可以使用的数据集和30个不同的评价指标可以使用。
+
+数据集是标准的表格结构，同时提供了一个map方法可以进行预处理，并且该库的优越之处在于也可以同时对于预处理之后的数据集进行缓存。
+
+但是这个数据集的特点是数据仍然是从具体的数据集官网上用脚本下载的，容易存在数据集不可用的情况。
+
+具体到text2sql领域，spider数据集和wikisql数据集都是可以直接一行代码加载的。
+
+```python
+spider_dataset = load_dataset(‘spider’)
+```
+
+
 
 
 
