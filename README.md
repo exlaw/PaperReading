@@ -94,6 +94,7 @@
   * [CLINE Contrastive Learning with Semantic Negative Examples for Natural Language Understanding](#cline-contrastive-learning-with-semantic-negative-examples-for-natural-language-understanding)
   * [Prefix-Tuning Optimizing Continuous Prompts for Generation](#prefix-tuning-optimizing-continuous-prompts-for-generation)
   * [Datasets  A Community Library for Natural Language Processing](#datasets--a-community-library-for-natural-language-processing)
+  * [PICARD Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models](#picard-parsing-incrementally-for-constrained-auto-regressive-decoding-from-language-models)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -1430,11 +1431,24 @@ EMNLP 2021 best demo paper
 spider_dataset = load_dataset(‘spider’)
 ```
 
+### PICARD Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models 
 
+Tag:Text2SQL  Tag:语义解析  Tag:预训练模型
 
+EMNLP 2021
 
+https://arxiv.org/abs/2109.05093
 
+seq2seq的预训练模型有不受约束的输出空间，在每个解码步骤，都可以产生数万个token中的任何一个。 当对SQL等约束形式fine-tune时，很可能会产生无效的代码，所以文本提出了 PICARD模型，一种通过增量解析与书语言模型的自回归解码器方法。 本文展示了PICARD将性能尚可的T5模型转换为最先进的解决方案。
 
+具体来说，就是在decode的时候增加了一些控制步骤（增量解析），具体来说，有四种设置，off,lexing,parsing without guards, parsing with guards.
 
+Lexing: 只检查词法级别的输出。
+
+parsing wihout guards: 在最低的语法级别检查输出。
+
+parsing  with guards: 在组装SQL的AST时进行额外的检查。
+
+最终发现，这种方法显著提升了性能，已经能达到几乎SOTA的效果。
 
 
